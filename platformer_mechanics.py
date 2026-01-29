@@ -3,6 +3,8 @@ Spiny Flannel Society - Platformer Mechanics
 Core 3D platformer movement and interaction systems
 """
 
+import math
+import random
 from typing import Optional, Tuple
 from game_entities import *
 from game_config import *
@@ -20,7 +22,7 @@ class PlatformerController:
     
     def move(self, direction: Vector3, delta_time: float):
         """Handle player movement input"""
-        if not direction:
+        if not direction or direction.magnitude() < 0.001:
             return
         
         # Normalize direction
@@ -199,7 +201,6 @@ class HybridGameplay:
         pattern = WIND_PATTERNS.get(pattern_key, WIND_PATTERNS["drifting"])
         
         # Simulate varying wind with some randomness
-        import random
         variance = pattern["variance"]
         self.current_wind = Vector3(
             WIND_FORCE_BASE + random.uniform(-variance, variance),

@@ -181,11 +181,15 @@ class CorruptedSignal:
         if level < 0.1:
             return message
         
+        # Clamp level to avoid division issues
+        level = min(level, 0.99)
+        
         corrupted = ""
+        corruption_interval = max(2, int(1/level + 1))
         for i, char in enumerate(message):
             if char == ' ':
                 corrupted += ' '
-            elif i % int(1/level + 1) == 0:
+            elif i % corruption_interval == 0:
                 corrupted += '█'  # Block character for corruption
             else:
                 corrupted += char

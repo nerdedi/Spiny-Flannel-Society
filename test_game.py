@@ -79,7 +79,7 @@ def test_environment_rewriting():
     """Test environment rewriting mechanics"""
     print("Testing environment rewriting...")
     
-    translator = Translator()
+    translator = Translator(Vector3(0, 0, 0))
     translator.unlock_ability(TranslatorAbilities.REWRITE_ENVIRONMENT)
     
     assumption = HiddenAssumption("Test", "Desc", "constraint", "type")
@@ -135,7 +135,7 @@ def test_corrupted_signal():
     assert not signal.is_decoded, "Should start not decoded"
     assert signal.corrupted_message != original, "Should be corrupted"
     
-    translator = Translator()
+    translator = Translator(Vector3(0, 0, 0))
     translator.unlock_ability(TranslatorAbilities.DECODE_SIGNALS)
     
     result = signal.decode(translator)
@@ -154,7 +154,7 @@ def test_penalized_pathway():
     
     assert not pathway.is_safe, "Should start unsafe"
     
-    translator = Translator()
+    translator = Translator(Vector3(0, 0, 0))
     translator.unlock_ability(TranslatorAbilities.CREATE_PATHWAYS)
     
     result = pathway.create_alternative(translator, "Alternative route")
