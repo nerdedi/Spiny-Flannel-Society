@@ -1,0 +1,6 @@
+# Python standard library only - no external dependencies required
+# The game uses only built-in Python modules:
+# - math (for vector calculations)
+# - random (for wind variance)
+# - time (for demo delays)
+# - typing (for type hints)
