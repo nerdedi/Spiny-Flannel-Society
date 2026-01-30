@@ -57,7 +57,7 @@ namespace SFS.Player
 
         void Start()
         {
-            if (!cameraTransform && Camera.main) cameraTransform = Camera.main.transform;
+            if (!cameraTransform && UnityEngine.Camera.main) cameraTransform = UnityEngine.Camera.main.transform;
             ApplySettings();
         }
 
