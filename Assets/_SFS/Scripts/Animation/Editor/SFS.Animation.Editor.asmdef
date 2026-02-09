@@ -1,14 +1,13 @@
 {
-    "name": "SFS",
-    "rootNamespace": "SFS",
+    "name": "SFS.Animation.Editor",
+    "rootNamespace": "SFS.Animation.Editor",
     "references": [
-        "Unity.TextMeshPro",
-        "Unity.InputSystem",
-        "Unity.Cinemachine",
-        "Unity.Timeline",
+        "SFS",
         "SFS.Animation"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

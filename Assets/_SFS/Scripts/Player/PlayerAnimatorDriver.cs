@@ -1,16 +1,62 @@
 using UnityEngine;
-using SFS.Core;
+using using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Spiny-Flannel-Society/using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+using UnityEngine;
+
+public class PlayerAnimatorDriver : MonoBehaviour
+{
+
+}
+}
+}")]
+public class PlayerAnimatorDriver : ScriptableObject
+{
+
+}
+}
+}
+}
+}SFS.Core;
 
 namespace SFS.Player
 {
     /// <summary>
     /// Sophisticated animation driver that responds to story beats.
     /// Uses damping for smooth transitions and adjusts idle intensity per beat.
+    /// Falls back to SimpleProceduralAnimator if no Animator clips are assigned.
     /// </summary>
     public class PlayerAnimatorDriver : MonoBehaviour
     {
-        [Header("Animator")]
+        [Header("Animator (Optional - leave empty to use procedural)")]
         public Animator animator;
+
+        [Header("Fallback Procedural Animation")]
+        [Tooltip("Used when Animator is missing or has no clips")]
+        public SimpleProceduralAnimator proceduralAnimator;
 
         [Header("Damping")]
         public float speedDamp = 0.08f;
@@ -20,6 +66,8 @@ namespace SFS.Player
         [Header("Story Beat Response")]
         [Tooltip("How much story beat affects idle animation intensity")]
         public float beatInfluence = 1f;
+
+        bool useProceduralFallback;
 
         // Animator parameter hashes
         static readonly int Speed = Animator.StringToHash("Speed");
@@ -41,6 +89,34 @@ namespace SFS.Player
         void Reset()
         {
             animator = GetComponentInChildren<Animator>();
+            proceduralAnimator = GetComponentInChildren<SimpleProceduralAnimator>();
+        }
+
+        void Start()
+        {
+            // Auto-detect if we need procedural fallback
+            useProceduralFallback = (animator == null || !HasValidAnimator());
+
+            if (useProceduralFallback && proceduralAnimator == null)
+            {
+                // Try to find or create procedural animator
+                proceduralAnimator = GetComponentInChildren<SimpleProceduralAnimator>();
+                if (proceduralAnimator == null)
+                {
+                    Debug.LogWarning("[SFS] No Animator clips found and no SimpleProceduralAnimator. " +
+                        "Add SimpleProceduralAnimator component or run SFS > Setup > Generate All Placeholder Animations");
+                }
+            }
+
+            if (useProceduralFallback)
+                Debug.Log("[SFS] Using procedural animation fallback");
+        }
+
+        bool HasValidAnimator()
+        {
+            if (!animator) return false;
+            var controller = animator.runtimeAnimatorController;
+            return controller != null;
         }
 
         void OnEnable()
@@ -95,7 +171,7 @@ namespace SFS.Player
 
         void Update()
         {
-            if (!animator) return;
+            if (!animator || useProceduralFallback) return;
 
             // Get target idle intensity from story beat manager
             float targetIntensity = StoryBeatManager.Instance
@@ -112,11 +188,19 @@ namespace SFS.Player
 
         public void SetMove(float speed01, bool grounded, float yVel)
         {
-            if (!animator) return;
+            // Update procedural animator
+            if (proceduralAnimator)
+            {
+                proceduralAnimator.SetState(speed01, grounded, yVel);
+            }
 
-            animator.SetFloat(Speed, speed01, speedDamp, Time.deltaTime);
-            animator.SetBool(Grounded, grounded);
-            animator.SetFloat(YVelocity, yVel, yVelDamp, Time.deltaTime);
+            // Update Unity Animator if available
+            if (animator && !useProceduralFallback)
+            {
+                animator.SetFloat(Speed, speed01, speedDamp, Time.deltaTime);
+                animator.SetBool(Grounded, grounded);
+                animator.SetFloat(YVelocity, yVel, yVelDamp, Time.deltaTime);
+            }
 
             // Detect landing
             if (grounded && !wasGrounded)
@@ -129,9 +213,14 @@ namespace SFS.Player
 
         public void TriggerJump()
         {
-            if (!animator) return;
-            animator.ResetTrigger(Land);
-            animator.SetTrigger(Jump);
+            if (proceduralAnimator)
+                proceduralAnimator.OnJump();
+
+            if (animator && !useProceduralFallback)
+            {
+                animator.ResetTrigger(Land);
+                animator.SetTrigger(Jump);
+            }
         }
 
         public void TriggerLandIfNeeded()
@@ -141,15 +230,22 @@ namespace SFS.Player
 
         public void TriggerLand()
         {
-            if (!animator) return;
-            animator.ResetTrigger(Jump);
-            animator.SetTrigger(Land);
+            if (animator && !useProceduralFallback)
+            {
+                animator.ResetTrigger(Jump);
+                animator.SetTrigger(Land);
+            }
         }
 
         public void TriggerDie()
         {
-            if (!animator) return;
-            animator.SetTrigger(Die);
+            if (proceduralAnimator)
+                proceduralAnimator.OnDamage();
+
+            if (animator && !useProceduralFallback)
+            {
+                animator.SetTrigger(Die);
+            }
         }
     }
 }

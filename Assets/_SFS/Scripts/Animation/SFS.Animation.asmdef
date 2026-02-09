@@ -1,12 +1,8 @@
 {
-    "name": "SFS",
-    "rootNamespace": "SFS",
+    "name": "SFS.Animation",
+    "rootNamespace": "SFS.Animation",
     "references": [
-        "Unity.TextMeshPro",
-        "Unity.InputSystem",
-        "Unity.Cinemachine",
-        "Unity.Timeline",
-        "SFS.Animation"
+        "SFS"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

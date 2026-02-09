@@ -1,159 +1,329 @@
-# Spiny Flannel Society - Unity Project
+# 🌿 Spiny Flannel Society - Unity Quick Start
 
-## 🎮 Quick Start Guide
+## 🚀 START HERE (One Click Setup)
 
-### Opening the Project
-1. Open **Unity Hub**
-2. Click **Add** → **Add project from disk**
-3. Navigate to this folder and select it
-4. Unity will import and set up the project (first import takes a few minutes)
-5. Unity version: **2022.3 LTS** or newer recommended
+Open Unity and go to:
+```
+Menu → SFS → Animation → Setup Wizard
+```
 
-### First Time Setup
-After Unity finishes importing:
+Click **"Run Setup Wizard"** to create:
+- ✅ All folder structure and prefabs
+- ✅ VFX Manager for particle effects
+- ✅ Player with full animation system
+- ✅ NPCs (DAZIE, June, Winton, companions)
+- ✅ Living architecture prefabs
+- ✅ Antagonistic pattern prefabs
+- ✅ Demo scene ready to play
 
-1. **Install Required Packages** (should auto-install via manifest.json):
-   - Cinemachine
-   - Timeline
-   - TextMeshPro
-   - Input System
-
-2. **Run Full Project Setup**:
-   - Menu: `SFS → Setup → Full Project Setup`
-   - This creates animator controllers and configures everything
-
-3. **Open the Main Scene**:
-   - `Assets/_SFS/Scenes/SFS_MainScene.unity`
-
-4. **Press Play** to test!
+**Then just press Play!**
 
 ---
 
-## 🏗️ Project Structure
+## 🎬 NEW: Comprehensive Animation Package
+
+See **ANIMATION_PACKAGE.md** for full documentation.
+
+### Key Features
+- **Procedural Animation**: No animation clips needed - pure code-driven
+- **Event-Driven**: Decoupled architecture with central event bus
+- **Story-Aware**: Animations respond to emotional tones and story beats
+- **Combat Verb System**: Full support for all 5 combat verbs
+- **Windprint Rig**: Cushion and Guard mode animations
+- **Living Architecture**: Platforms, ramps, bridges that breathe and respond
+- **Antagonistic Patterns**: Echo Form, Distortion, Noise Beast animations
+- **VFX System**: Pooled particle effects for all game actions
+
+### Quick Integration
+
+```csharp
+// Trigger player actions
+AnimationEvents.PlayerAction(PlayerAction.Jump);
+
+// Combat verbs
+AnimationEvents.CombatVerbUsed(CombatVerb.Pulse, position, direction, target);
+
+// Windprint mode
+AnimationEvents.WindprintModeChanged(WindprintMode.None, WindprintMode.Cushion);
+
+// Story/emotion
+AnimationEvents.EmotionalToneChanged(EmotionalTone.Gentle, EmotionalTone.Hopeful);
+```
+
+---
+
+## 📁 Project Structure
 
 ```
 Assets/_SFS/
-├── Animations/           # Animator controllers
+├── Animations/
+│   ├── Clips/              # Animation clips
 │   ├── PlayerAnimator.controller
 │   └── NPCAnimator.controller
-├── Materials/            # URP materials
-│   ├── PlayerMaterial.mat
-│   ├── GroundMaterial.mat
-│   └── CollectibleMaterial.mat
-├── Scenes/               # Game scenes
-│   └── SFS_MainScene.unity
-└── Scripts/              # All game code
-    ├── Audio/            # Sound systems
-    ├── Camera/           # Camera controls
-    ├── Core/             # Events, managers, data
-    ├── Editor/           # Unity editor tools
-    ├── Narrative/        # Story systems, NPCs
-    ├── Player/           # Player controller
-    ├── UI/               # User interface
-    ├── Utility/          # Debug tools
-    └── World/            # Zones, collectibles
+├── Materials/              # Game materials
+├── Prefabs/
+│   ├── Animation/          # Core animation prefabs
+│   ├── Characters/         # Player, NPCs
+│   ├── Environment/        # Architecture prefabs
+│   └── VFX/                # VFX Manager
+├── Scenes/
+│   └── SFS_DemoScene.unity
+├── Scripts/
+│   ├── Animation/          # ★ NEW: Complete animation package
+│   │   ├── Core/           # Events, state machine
+│   │   ├── Player/         # Translator animation
+│   │   ├── NPC/            # All NPC animators
+│   │   ├── Patterns/       # Antagonistic patterns
+│   │   ├── Environment/    # Living architecture
+│   │   ├── VFX/            # Effect system
+│   │   ├── Camera/         # Cinematic camera
+│   │   └── Editor/         # Setup wizard
+│   ├── Camera/             # Third-person camera
+│   ├── Core/               # Game managers, events
+│   ├── Editor/             # Unity editor tools
+│   ├── Narrative/          # Story/cutscene scripts
+│   ├── Player/             # Player controller & animation
+│   ├── UI/                 # Pause, menus
+│   └── World/              # Collectibles, checkpoints
+└── UI/                     # UI assets
 ```
 
 ---
 
-## 🎭 The 7 Story Beats
+## 🎬 Animation System
 
-The game progresses through 7 emotional beats:
+### TranslatorAnimationController (Player)
 
-| Beat | Name | Tone | Zone Position |
-|------|------|------|---------------|
-| 1 | **Arrival** | Gentle | Z: 0 |
-| 2 | **First Contact** | Melancholic | Z: 60 |
-| 3 | **Compression** | Gentle | Z: 130 |
-| 4 | **Choosing Rest** | Hopeful | Z: 200 |
-| 5 | **The Society** | Melancholic | Z: 270 |
-| 6 | **Shared Difficulty** | Hopeful | Z: 340 |
-| 7 | **Quiet Belonging** | Grounded | Z: 420 |
+Add to your player character for complete animation:
+- Idle breathing and sway
+- Walk/run with bob and lean
+- Jump squash/stretch
+- All aerial moves (double jump, air dash, wall run, glide)
+- Combat verb animations
+- Windprint Rig visual modes
+- Damage/collect reactions
+- Story beat emotional response
 
----
+### NPC Animators
 
-## 🎹 Controls
+| Script | Character |
+|--------|-----------|
+| `DAZIEAnimator` | Mentor - precise, measured |
+| `JuneAnimator` | Sensory architect - warm, sparse |
+| `WintonAnimator` | System ghost - ethereal, glitchy |
+| `SocietyMemberAnimator` | Generic NPC with personality |
+| `CompanionAnimator` | Following companion |
 
-| Action | Key |
-|--------|-----|
-| Move | WASD / Arrow Keys |
-| Jump | Space |
-| Pause | Escape |
-| Debug Display | F1 |
-| Skip to Beat | Shift + 1-7 |
+### Living Architecture
 
----
+Add `LivingArchitectureAnimator` to environmental objects:
+- Platforms that bob and breathe
+- Ramps that bloom when you approach
+- Bridges with umbel-style sway
+- Signage affected by Drift
+- Safe pockets that warm up
 
-## 🔧 Debug Tools
+### Antagonistic Patterns
 
-- **F1**: Toggle beat/tone display
-- **Shift + 1-7**: Teleport to specific story beat
-- Menu: `SFS → Build Test Scene` - Regenerate complete test scene
-
----
-
-## ✨ Key Features
-
-### Neuroaffirming Design
-- **Coyote Time**: 0.2s grace period after leaving ledges
-- **Jump Buffer**: 0.15s input buffering
-- **Reduced Motion**: Settings option for camera smoothing
-- **Beat 6 Support**: Extra timing forgiveness when companion is present
-
-### Animation System
-- Animator parameters respond to story beats
-- `IdleIntensity` varies by emotional tone (0.3 gentle → 0.7 intense)
-- `EmotionTone` integer maps to current tone
-- All transitions use damped smoothing
-
-### Audio Layers
-- Base ambient layer
-- Tension layer (beats 3, 5)
-- Calm layer (beats 4, 7)
-- Society layer (beats 5, 6, 7)
+Add `AntagonisticPatternAnimator` to pattern enemies:
+- **Echo Form**: Looping coercive motion
+- **Distortion**: Glitch and phase shift
+- **Noise Beast**: Sensory chaos
 
 ---
 
-## 📋 Creating Custom Content
+## 🎮 Player Controller
 
-### Adding a New Zone
-1. Create empty GameObject with BoxCollider (IsTrigger = true)
-2. Add `StoryBeatZone` component
-3. Set the `beat` field to desired story beat
-4. Add specialized zone scripts as needed:
-   - `RestZone` for Beat 4
-   - `CompressionZone` for Beat 3
-   - `SupportedMovementZone` for Beat 6
+### EnhancedPlayerController
 
-### Adding Society Members
-1. Create character mesh/model
-2. Add `Animator` with NPCAnimator controller
-3. Add `SocietyMember` script
-4. Tag as "SocietyMember"
-5. Set on Layer 10 (NPC)
+Full-featured 3D platformer controller:
 
-### Custom Cutscenes
-1. Menu: `SFS → Create Timeline Template`
-2. Select beat and customize
-3. Use `CutsceneTrigger` to activate
+| Feature | Description |
+|---------|-------------|
+| **Smooth Movement** | Acceleration/deceleration, air control |
+| **Coyote Time** | Jump grace period after leaving ground |
+| **Jump Buffer** | Early jump input remembered |
+| **Jump Cut** | Release early for short hop |
+| **Apex Gravity** | Snappy feel at jump peak |
+| **Camera-Relative** | Movement relative to camera |
+
+**Key Settings:**
+```csharp
+moveSpeed = 7f;       // Max movement speed
+jumpHeight = 2f;      // Jump height in units
+coyoteTime = 0.12f;   // Timing forgiveness
+jumpBuffer = 0.15f;   // Input buffering
+airControl = 0.6f;    // Air maneuverability
+```
+
+### Controls
+
+| Input | Action |
+|-------|--------|
+| WASD / Left Stick | Move |
+| Space / A Button | Jump |
+| Mouse / Right Stick | Camera |
+| Escape | Pause |
+
+---
+
+## 📷 Camera System
+
+### EnhancedThirdPersonCamera
+
+| Feature | Description |
+|---------|-------------|
+| **Orbit Camera** | Mouse/stick orbit around player |
+| **Zoom** | Scroll wheel / triggers |
+| **Collision** | Camera doesn't clip through walls |
+| **Auto-Rotate** | Optional follow behind player |
+| **Cinematic Mode** | Story beat camera overrides |
+| **Shake** | Impact feedback |
+
+**Key Methods:**
+```csharp
+camera.SetDistance(8f);          // Zoom
+camera.Shake(0.3f, 0.2f);        // Screen shake
+camera.EnterCinematicMode(...);  // Cutscene control
+```
+
+---
+
+## 🧩 Key Components
+
+### Core Managers
+
+| Script | Purpose |
+|--------|---------|
+| `StoryBeatManager` | Tracks narrative progression |
+| `SettingsManager` | Accessibility settings |
+| `GameEvents` | Global event bus |
+
+### Animation
+
+| Script | Purpose |
+|--------|---------|
+| `AdvancedProceduralAnimator` | Code-based player animation |
+| `NPCProceduralAnimator` | NPC idle/reaction animation |
+| `PlayerAnimatorDriver` | Unity Animator bridge |
+
+### World
+
+| Script | Purpose |
+|--------|---------|
+| `Collectible` | Pickupable items |
+| `Checkpoint` | Respawn points |
+| `RestZone` | Accessibility rest areas |
+
+---
+
+## 🎯 Adding New Content
+
+### New Character
+
+1. Create capsule/model
+2. Add `CharacterController`
+3. Add `EnhancedPlayerController`
+4. Add `AdvancedProceduralAnimator` to visual child
+5. Tag as "Player"
+
+### New NPC
+
+1. Create capsule/model
+2. Add `CapsuleCollider`
+3. Add `NPCProceduralAnimator` to visual child
+4. Optionally add dialogue/interaction scripts
+
+### New Collectible
+
+1. Create object with trigger collider
+2. Add `Collectible` script
+3. Add `SimpleSpinner` for visual flair
+
+---
+
+## 🔧 Editor Tools
+
+Access via `SFS` menu:
+
+| Menu Item | Action |
+|-----------|--------|
+| **🚀 Project Wizard** | Complete setup UI |
+| **Setup > Complete Setup** | One-click all steps |
+| **Setup > Generate Animations** | Create placeholder clips |
+| **Setup > Assign Animations** | Link clips to controllers |
+| **Setup > Create Player Animator** | Rebuild player controller |
 
 ---
 
 ## 🐛 Troubleshooting
 
-**Missing Scripts**: Run `SFS → Setup → Full Project Setup`
+### "Player doesn't move"
+- Check `EnhancedPlayerController` is attached
+- Check Input settings exist (Edit → Project Settings → Input Manager)
+- Check `CharacterController` radius isn't too small
 
-**No Movement**: Check Player has CharacterController component
+### "No animations"
+- Add `AdvancedProceduralAnimator` to the visual child object
+- Or run: SFS → Setup → Generate All Placeholder Animations
 
-**Camera Issues**: Verify camera has `ThirdPersonCameraRig` and target is set
+### "Camera doesn't follow"
+- Assign player to camera's `Target` field
+- Or tag player as "Player" for auto-detection
 
-**No Audio**: Add AudioSource to AudioController object
+### "Animations too subtle/extreme"
+- Adjust values in `AdvancedProceduralAnimator` inspector
+- `IdleSettings`, `LocomotionSettings`, etc.
 
-**Animator Warnings**: Run `SFS → Setup Animator Controllers`
+### "Compiler errors about missing references"
+- Make sure assembly definitions reference each other
+- Check `SFS.asmdef` includes `SFS.Animation`
 
 ---
 
-## 📄 License
+## 📊 Performance Notes
 
-Created for the Spiny Flannel Society project.
-A neuroaffirming 3D platformer exploring belonging through gentle gameplay.
+- Procedural animation is **more performant** than clip animation
+- Uses no blend trees or state machine overhead
+- Both systems are optimized for mobile
+- Disable `microMovements` if targeting low-end devices
+
+---
+
+## 🎨 Customization
+
+### Color Palette
+
+Edit materials in `Assets/_SFS/Materials/`:
+- `PlayerMaterial` - Main character color
+- `NPCMaterial` - NPC color
+- `GroundMaterial` - Environment base
+- `CollectibleMaterial` - Pickups
+
+### Animation Feel
+
+Adjust in `AdvancedProceduralAnimator`:
+- `idle.breatheSpeed` / `breatheAmount` - Idle intensity
+- `locomotion.walkBobHeight` - Step bounce
+- `airborne.jumpSquash` / `jumpStretch` - Cartoon squash
+- `easing.squashRecoverySpeed` - Snap vs smooth
+
+### Accessibility
+
+Adjust in `EnhancedPlayerController`:
+- `coyoteTime` - Longer = more forgiving
+- `jumpBuffer` - Longer = easier timing
+- `airControl` - Higher = more control in air
+
+---
+
+## 📝 Next Steps
+
+1. ✅ Run the Project Wizard
+2. ✅ Press Play and test movement
+3. Replace placeholder capsules with your character models
+4. Add story beat triggers to your levels
+5. Customize animation settings to match your art style
+6. Build your world!
+
+**Happy developing!** 🌿
