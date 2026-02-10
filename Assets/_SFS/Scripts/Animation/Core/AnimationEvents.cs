@@ -84,6 +84,16 @@ namespace SFS.Animation
 
         #region VFX Events
 
+        /// <summary>Fired when Read Default gesture reveals an assumption</summary>
+        public static event Action<string> OnReadDefaultRevealed;
+
+        /// <summary>Fired when Rewrite Default gesture commits the change</summary>
+        public static event Action<string, string> OnRewriteDefaultCommitted;
+
+        #endregion
+
+        #region VFX Events
+
         /// <summary>Request particle effect spawn</summary>
         public static event Action<VFXType, Vector3, Quaternion, float> OnVFXRequest;
 
@@ -168,6 +178,16 @@ namespace SFS.Animation
         public static void TrailRequest(Transform target, TrailType type, float duration)
             => OnTrailRequest?.Invoke(target, type, duration);
 
+        // Translation Verb triggers
+        public static void PlayerActionTriggered(PlayerAction action)
+            => OnPlayerAction?.Invoke(action);
+
+        public static void ReadDefaultRevealed(string defaultKey)
+            => OnReadDefaultRevealed?.Invoke(defaultKey);
+
+        public static void RewriteDefaultCommitted(string defaultKey, string mode)
+            => OnRewriteDefaultCommitted?.Invoke(defaultKey, mode);
+
         #endregion
     }
 
@@ -203,7 +223,16 @@ namespace SFS.Animation
         LandHard,
         TripleHopShort,
         TripleHopLong,
-        TripleHopFloat
+        TripleHopFloat,
+
+        // Translation Verbs
+        ReadDefault,
+        RewriteCushion,
+        RewriteGuard,
+
+        // Windprint Cost Reactions
+        EntropyBleed,
+        RouteLock
     }
 
     /// <summary>Combat verbs from the design document</summary>

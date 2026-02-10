@@ -1,46 +1,5 @@
 using UnityEngine;
-using using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-using UnityEngine;
-
-[CreateAssetMenu(menuName = "Spiny-Flannel-Society/using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-using UnityEngine;
-
-public class PlayerAnimatorDriver : MonoBehaviour
-{
-
-}
-}
-}")]
-public class PlayerAnimatorDriver : ScriptableObject
-{
-
-}
-}
-}
-}
-}SFS.Core;
+using SFS.Core;
 
 namespace SFS.Player
 {
