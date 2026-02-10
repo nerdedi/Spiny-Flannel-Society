@@ -27,10 +27,11 @@ namespace SFS.Editor
             // Create controller
             var controller = AnimatorController.CreateAnimatorControllerAtPath(path);
 
-            // Add parameters
+            // Add parameters — Locomotion
             controller.AddParameter("Speed", AnimatorControllerParameterType.Float);
             controller.AddParameter("Grounded", AnimatorControllerParameterType.Bool);
             controller.AddParameter("YVelocity", AnimatorControllerParameterType.Float);
+            controller.AddParameter("VerticalVel", AnimatorControllerParameterType.Float);
             controller.AddParameter("IdleIntensity", AnimatorControllerParameterType.Float);
             controller.AddParameter("EmotionTone", AnimatorControllerParameterType.Int);
             controller.AddParameter("InRestZone", AnimatorControllerParameterType.Bool);
@@ -41,6 +42,32 @@ namespace SFS.Editor
             controller.AddParameter("SyncPhase", AnimatorControllerParameterType.Float);
             controller.AddParameter("IdleVariant", AnimatorControllerParameterType.Int);
             controller.AddParameter("Acknowledged", AnimatorControllerParameterType.Bool);
+
+            // Movement extensions
+            controller.AddParameter("Dash", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("Grapple", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("Glide", AnimatorControllerParameterType.Bool);
+            controller.AddParameter("WallRun", AnimatorControllerParameterType.Bool);
+
+            // Translation Verbs
+            controller.AddParameter("ReadDefault", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("RewriteCushion", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("RewriteGuard", AnimatorControllerParameterType.Trigger);
+
+            // Windprint Costs
+            controller.AddParameter("EntropyBleed", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("RouteLock", AnimatorControllerParameterType.Trigger);
+
+            // Symbolic Combat
+            controller.AddParameter("Pulse", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("ThreadLash", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("RadiantHold", AnimatorControllerParameterType.Bool);
+            controller.AddParameter("EdgeClaim", AnimatorControllerParameterType.Trigger);
+            controller.AddParameter("Retune", AnimatorControllerParameterType.Trigger);
+
+            // Sensory
+            controller.AddParameter("Overload", AnimatorControllerParameterType.Float);
+            controller.AddParameter("Calm", AnimatorControllerParameterType.Float);
 
             // Get the base layer
             var rootStateMachine = controller.layers[0].stateMachine;

@@ -3,7 +3,9 @@
     "rootNamespace": "SFS.Animation.Editor",
     "references": [
         "SFS",
-        "SFS.Animation"
+        "SFS.Animation",
+        "Unity.Animation.Rigging",
+        "Unity.Animation.Rigging.DocCodeExamples"
     ],
     "includePlatforms": [
         "Editor"
