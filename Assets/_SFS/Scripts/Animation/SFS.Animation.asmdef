@@ -2,7 +2,9 @@
     "name": "SFS.Animation",
     "rootNamespace": "SFS.Animation",
     "references": [
-        "SFS"
+        "SFS",
+        "Unity.Animation.Rigging",
+        "Unity.Animation.Rigging.DocCodeExamples"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
