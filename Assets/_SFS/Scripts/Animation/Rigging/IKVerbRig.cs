@@ -13,7 +13,7 @@ namespace SFS.Animation.Rigging
     ///
     /// DESIGN INTENT:
     ///   • Read Default:       Right hand rises, palm open → "scanning" gesture
-    ///   • Rewrite Cushion:    Both hands extend, cupping → "softening" gesture  
+    ///   • Rewrite Cushion:    Both hands extend, cupping → "softening" gesture
     ///   • Rewrite Guard:      Both hands push forward → "walling" gesture
     ///   • Windprint Cushion:  Hands float at sides → "flow" posture
     ///   • Windprint Guard:    Fists locked at hips → "rooted" posture
