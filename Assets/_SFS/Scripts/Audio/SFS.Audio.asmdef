@@ -1,15 +1,10 @@
 {
-    "name": "SFS.Editor",
-    "rootNamespace": "SFS.Editor",
+    "name": "SFS.Audio",
+    "rootNamespace": "SFS.Audio",
     "references": [
-        "SFS",
-        "SFS.Audio",
-        "SFS.Visual",
-        "SFS.Interaction"
+        "SFS"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

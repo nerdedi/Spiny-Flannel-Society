@@ -101,11 +101,14 @@ namespace SFS.Player
 
             Debug.Log($"[SFS] Read Default revealed: {pendingDefaultKey}");
 
-            // TODO: Call your DefaultsRegistry.Read(pendingDefaultKey)
-            // Example:
-            // var registry = FindObjectOfType<DefaultsRegistryBehaviour>();
-            // string description = registry.Read(pendingDefaultKey);
-            // UIManager.ShowDefaultOverlay(description);
+            // Read the default from the registry — marks it as seen
+            var registry = Core.DefaultsRegistry.Instance;
+            if (registry != null)
+            {
+                string description = registry.Read(pendingDefaultKey);
+                Debug.Log($"[SFS] Default description: {description}");
+                // TODO: UIManager.ShowDefaultOverlay(description);
+            }
 
             // Fire event for other systems (particles, audio, UI)
             AnimationEvents.ReadDefaultRevealed(pendingDefaultKey);
@@ -121,10 +124,19 @@ namespace SFS.Player
 
             Debug.Log($"[SFS] Rewrite committed: {pendingDefaultKey} via {pendingRewriteMode}");
 
-            // TODO: Call your DefaultsRegistry.Rewrite(pendingDefaultKey)
-            // Example:
-            // var registry = FindObjectOfType<DefaultsRegistryBehaviour>();
-            // bool success = registry.Rewrite(pendingDefaultKey);
+            // Rewrite the default in the registry — triggers world changes
+            var registry = Core.DefaultsRegistry.Instance;
+            if (registry != null)
+            {
+                bool success = registry.Rewrite(pendingDefaultKey);
+                if (!success)
+                    Debug.LogWarning($"[SFS] Rewrite failed for {pendingDefaultKey} — not yet read?");
+            }
+
+            // Record windprint use in game state
+            var state = Core.SFSGameState.Instance;
+            if (state != null)
+                state.RecordWindprintUse(pendingRewriteMode == "cushion");
 
             // Fire event for other systems (VFX, audio, world update)
             AnimationEvents.RewriteDefaultCommitted(pendingDefaultKey, pendingRewriteMode);

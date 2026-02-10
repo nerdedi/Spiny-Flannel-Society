@@ -1,4 +1,8 @@
-# Spiny Flannel Society — Project Summary
+using UnityEngine;
+
+public class FUNDING_SUMMARY : MonoBehaviour
+{
+}# Spiny Flannel Society — Project Summary
 
 **A neuroaffirming 3D platformer where accessibility is the core mechanic, not a menu.**
 

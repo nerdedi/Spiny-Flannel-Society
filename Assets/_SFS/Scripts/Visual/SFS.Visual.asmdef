@@ -1,15 +1,11 @@
 {
-    "name": "SFS.Editor",
-    "rootNamespace": "SFS.Editor",
+    "name": "SFS.Visual",
+    "rootNamespace": "SFS.Visual",
     "references": [
         "SFS",
-        "SFS.Audio",
-        "SFS.Visual",
-        "SFS.Interaction"
+        "Unity.RenderPipelines.Core.Runtime"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -1,15 +1,12 @@
 {
-    "name": "SFS.Editor",
-    "rootNamespace": "SFS.Editor",
+    "name": "SFS.Interaction",
+    "rootNamespace": "SFS.Interaction",
     "references": [
         "SFS",
         "SFS.Audio",
-        "SFS.Visual",
-        "SFS.Interaction"
+        "Unity.TextMeshPro"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
