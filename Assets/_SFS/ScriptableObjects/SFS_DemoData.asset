@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c3d4e5f6789012345678abcdef0123, type: 3}
+  m_Name: SFS_DemoData
+  m_EditorClassIdentifier:
+  GameTitle: Spiny Flannel Society
+  Version: 0.2.0
+  Description: "A hybrid 3D platformer about translation, systems, and diversity.
+    Neuroaffirming | Non-violent combat | Universal design as world law"
+  Setting: "Spiny Flannel Society is a living settlement suspended in permanent
+    wind currents above an Australian coastline. It is not a school\u2014it is a
+    place people live.\n\nWindgap Academy is one precinct inside: a learning commons,
+    workshop district, and navigation hub\u2014the Society\u2019s \u2018translation
+    engine.\u2019"
+  SpinyFlannelAxiom: "The original principle that celebrated diversity:\n\u2022 Multiple
+    valid paths through spaces\n\u2022 Adaptive systems responding to individuals\n\u2022
+    Signals maintaining integrity across interpretation\n\u2022 Environment supports
+    people, not corrects them"
+  TheDrift: "When rigid \u2018standard defaults\u2019 were adopted, the Axiom withdrew.
+    The Drift is systemic bias made physical:\n\n\u2022 Distortions \u2014 Glitched
+    rules (ramps retract if you pause)\n\u2022 Echo Forms \u2014 Social scripts given
+    motion (coercive routines)\n\u2022 Noise Beasts \u2014 Sensory overload as weather"
+  PlayerRole: "You are THE TRANSLATOR. You perceive \u2018Windprints\u2019\u2014how
+    assumptions embed into space. Your mission: make the Society fit people again.\n\nCommunication
+    modes (all equal outcomes):\n\u2022 Direct speech    \u2022 Scripted responses\n\u2022
+    Icon-based       \u2022 Minimal speech"
+  WindprintModes:
+  - Name: Cushion
+    Description: "Expand personal space, hold during sensory moments, create safe
+      distance from overwhelming stimuli"
+    UseCase: Defense / Comfort
+  - Name: Guard
+    Description: "Project protective barriers, maintain translation threads, resist
+      forced normalization"
+    UseCase: Protection / Intervention
+  CombatVerbs:
+  - Name: PULSE
+    Description: Radiate calming energy to de-escalate
+    Unlocked: 1
+  - Name: THREAD LASH
+    Description: Connect translation threads to reveal assumptions
+    Unlocked: 1
+  - Name: RADIANT HOLD
+    Description: Freeze coercive scripts in place
+    Unlocked: 0
+  - Name: EDGE CLAIM
+    Description: Assert boundaries with clarity
+    Unlocked: 0
+  - Name: RETUNE
+    Description: Convert hostile noise into harmonious signal
+    Unlocked: 0
+  Districts:
+  - Name: Windgap Academy
+    Description: The learning commons and translation engine
+    DriftLevel: 0.8
+  - Name: Charter Stone Plaza
+    Description: Where the Axiom was first inscribed
+    DriftLevel: 0.6
+  - Name: Signal Heights
+    Description: Communication and broadcast district
+    DriftLevel: 0.7
+  - Name: The Understory
+    Description: Quiet refuge beneath the main levels
+    DriftLevel: 0.3
+  TotalChapters: 12
+  ChapterPreviews:
+  - Number: 1
+    Title: Arrival
+    Summary: First day. Learn to see Windprints.
+  - Number: 2
+    Title: The Atrium
+    Summary: Encounter your first Drift manifestation.
+  - Number: 3
+    Title: Translation
+    Summary: Begin restoring corrupted civic rules.
