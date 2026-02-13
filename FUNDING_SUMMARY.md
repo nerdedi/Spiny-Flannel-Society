@@ -1,30 +1,4 @@
-using UnityEngine;
-
-public class FUNDING_SUMMARY : MonoBehaviour
-{using UnityEngine;
-
-public class FUNDING_SUMMARY : MonoBehaviour
-{
-using UnityEngine;
-
-public class FUNDING_SUMMARY : MonoBehaviour
-{
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-
-[CustomEditor(typeof())]
-public class FUNDING_SUMMARY : Editor
-{
-  public override VisualElement CreateInspectorGUI()
-  {
-    throw new System.NotImplementedException();
-  }
-}
-}
-}
-}# Spiny Flannel Society — Project Summary
+# Spiny Flannel Society — Project Summary
 
 **A neuroaffirming 3D platformer where accessibility is the core mechanic, not a menu.**
 
