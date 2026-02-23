@@ -1,0 +1,190 @@
+using UnityEngine;
+using SFS.Animation;
+
+namespace SFS.Player
+{
+    /// <summary>
+    /// Bridges the Translation Verb system (Read Default / Rewrite Default)
+    /// to the animation system.
+    ///
+    /// HOW IT WORKS:
+    ///   1. Game logic calls BeginRead() or BeginRewrite()
+    ///   2. This fires the Animator trigger
+    ///   3. The animation clip calls OnReadReveal() / OnRewriteCommit()
+    ///      via Animation Events at the exact right frame
+    ///   4. The world changes on that frame
+    ///
+    /// This ensures the visual gesture and the mechanical effect are
+    /// perfectly synchronised — the rewrite "lands" when the hand gesture lands.
+    ///
+    /// WIRING:
+    ///   - Attach to the player GameObject (same as CharacterAnimationDriver)
+    ///   - Drag references in Inspector
+    ///   - In your ReadDefault / RewriteDefault animation clips, add
+    ///     Animation Events calling OnReadReveal() / OnRewriteCommit()
+    /// </summary>
+    public class TranslationVerbBridge : MonoBehaviour
+    {
+        [Header("Animation")]
+        public CharacterAnimationDriver animDriver;
+
+        [Header("Verb System (assign your game logic scripts)")]
+        [Tooltip("The MonoBehaviour that holds your DefaultsRegistry reference")]
+        public MonoBehaviour defaultsHolder;
+
+        // Internal state for pending operations
+        string pendingDefaultKey;
+        string pendingRewriteMode; // "cushion" or "guard"
+
+        void Start()
+        {
+            if (!animDriver)
+                animDriver = GetComponent<CharacterAnimationDriver>();
+        }
+
+        // ═════════════════════════════════════════════════════════
+        //  CALLED BY GAME LOGIC (when player activates a verb)
+        // ═════════════════════════════════════════════════════════
+
+        /// <summary>
+        /// Player activates Read Default on a world element.
+        /// <para>
+        /// This method records the key and triggers the read gesture animation.
+        /// When the animation clip invokes <see cref="OnReadReveal"/>, the
+        /// registry will actually disclose the description and raise events.
+        /// </para>
+        /// </summary>
+        /// <param name="defaultKey">Identifier of the default to read.</param>
+        public void BeginRead(string defaultKey)
+        {
+            pendingDefaultKey = defaultKey;
+            animDriver?.PlayReadDefault();
+
+            // Fire the animation event system
+            AnimationEvents.PlayerActionTriggered(PlayerAction.ReadDefault);
+        }
+
+        /// <summary>
+        /// <summary>
+        /// Player activates Rewrite Default using the Cushion mode of the
+        /// Windprint Rig.  The gesture animation is played and the rewrite
+        /// is applied when <see cref="OnRewriteCommit"/> is called by the
+        /// clip’s animation event.
+        /// </summary>
+        /// <param name="defaultKey">Identifier of the default to rewrite.</param>
+        public void BeginRewriteCushion(string defaultKey)
+        {
+            pendingDefaultKey = defaultKey;
+            pendingRewriteMode = "cushion";
+            animDriver?.PlayRewriteCushion();
+
+            AnimationEvents.PlayerActionTriggered(PlayerAction.RewriteCushion);
+        }
+
+        /// <summary>
+        /// <summary>
+        /// Player activates Rewrite Default using the Guard mode of the
+        /// Windprint Rig.  Behaviour mirrors <see cref="BeginRewriteCushion"/>
+        /// but the windprint cost animation differs.
+        /// </summary>
+        /// <param name="defaultKey">Identifier of the default to rewrite.</param>
+        public void BeginRewriteGuard(string defaultKey)
+        {
+            pendingDefaultKey = defaultKey;
+            pendingRewriteMode = "guard";
+            animDriver?.PlayRewriteGuard();
+
+            AnimationEvents.PlayerActionTriggered(PlayerAction.RewriteGuard);
+        }
+
+        // ═════════════════════════════════════════════════════════
+        //  ANIMATION EVENT CALLBACKS
+        //  (called from Animation Clips at the exact gesture frame)
+        // ═════════════════════════════════════════════════════════
+
+        /// <summary>
+        /// Called by Animation Event at the moment the Read gesture "focuses."
+        /// This is when the world reveals the default's assumption.
+        /// </summary>
+        /// <summary>
+        /// Animation event callback: the read gesture has reached the frame
+        /// where the default assumption should become visible.  This method is
+        /// invoked by an <c>AnimationEvent</c> placed in the player animation
+        /// clip, so that the visual and mechanical effects are perfectly
+        /// synchronised.
+        /// </summary>
+        public void OnReadReveal()
+        {
+            if (string.IsNullOrEmpty(pendingDefaultKey)) return;
+
+            Debug.Log($"[SFS] Read Default revealed: {pendingDefaultKey}");
+
+            // Read the default from the registry — marks it as seen
+            var registry = Core.DefaultsRegistry.Instance;
+            if (registry != null)
+            {
+                string description = registry.Read(pendingDefaultKey);
+                Debug.Log($"[SFS] Default description: {description}");
+                // show the overlay so the player can read the text in-game
+                SFS.UI.UIManager.ShowDefaultOverlay(description);
+            }
+
+            // Fire event for other systems (particles, audio, UI)
+            AnimationEvents.ReadDefaultRevealed(pendingDefaultKey);
+        }
+
+        /// <summary>
+        /// <summary>
+        /// Animation event callback fired when the rewrite gesture reaches its
+        /// climax.  At that frame the default is rewritten in the registry,
+        /// world systems are notified, and the appropriate windprint cost
+        /// animation is played.
+        /// </summary>
+        public void OnRewriteCommit()
+        {
+            if (string.IsNullOrEmpty(pendingDefaultKey)) return;
+
+            Debug.Log($"[SFS] Rewrite committed: {pendingDefaultKey} via {pendingRewriteMode}");
+
+            // Rewrite the default in the registry — triggers world changes
+            var registry = Core.DefaultsRegistry.Instance;
+            if (registry != null)
+            {
+                bool success = registry.Rewrite(pendingDefaultKey);
+                if (!success)
+                    Debug.LogWarning($"[SFS] Rewrite failed for {pendingDefaultKey} — not yet read?");
+            }
+
+            // Record windprint use in game state
+            var state = Core.SFSGameState.Instance;
+            if (state != null)
+                state.RecordWindprintUse(pendingRewriteMode == "cushion");
+
+            // Fire event for other systems (VFX, audio, world update)
+            AnimationEvents.RewriteDefaultCommitted(pendingDefaultKey, pendingRewriteMode);
+
+            // Fire Windprint cost animation
+            if (pendingRewriteMode == "cushion")
+                animDriver?.PlayEntropyBleed();
+            else if (pendingRewriteMode == "guard")
+                animDriver?.PlayRouteLock();
+
+            // Clear pending state
+            pendingDefaultKey = null;
+            pendingRewriteMode = null;
+        }
+
+        // ═════════════════════════════════════════════════════════
+        //  SYMBOLIC COMBAT VERB TRIGGERS
+        //  (convenience methods for encounter system)
+        // ═════════════════════════════════════════════════════════
+
+        public void UsePulse()      => animDriver?.PlayPulse();
+        public void UseThreadLash() => animDriver?.PlayThreadLash();
+        public void UseEdgeClaim()  => animDriver?.PlayEdgeClaim();
+        public void UseRetune()     => animDriver?.PlayRetune();
+
+        public void BeginRadiantHold() => animDriver?.SetRadiantHold(true);
+        public void EndRadiantHold()   => animDriver?.SetRadiantHold(false);
+    }
+}

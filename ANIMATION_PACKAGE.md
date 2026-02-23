@@ -35,6 +35,32 @@ mechanics to catch regressions early.
 * Expand the tests as the system grows to include additional features like
   windprint mode transitions or NPC behaviour.
 
+### Git‑URL Package Installation
+
+The animation package is also available as a Unity package.  It lives in the
+`Packages/com.nerdedi.sfs.animation` directory of this repository.  To install
+it into another project via Git:
+
+1. Make sure the repo is pushed to GitHub (e.g. `https://github.com/nerdedi/Spiny-Flannel-Society`).
+2. Open the Package Manager in your target project (**Window → Package Manager**).
+3. Click the **+** button and choose **Add package from git URL…**.
+4. Enter one of the following URLs:
+
+   ```
+   https://github.com/nerdedi/Spiny-Flannel-Society.git?path=/Packages/com.nerdedi.sfs.animation
+   ```
+
+   (or, if you split the package into its own repository, use that repo’s URL.)
+
+   Unity will fetch the repository, locate the `package.json` in the given
+   path and install the package.  The package contents appear under
+   `Packages/com.nerdedi.sfs.animation` in the Project window.
+
+5. Run the setup wizard and follow the usual steps to configure your scene.
+
+You can also use a local `file:` URL or simply copy the `Packages/com.nerdedi.sfs.animation`
+folder into your project during development.
+
 ### Manual Setup
 
 1. Add `VFXManager` to your scene (one instance)

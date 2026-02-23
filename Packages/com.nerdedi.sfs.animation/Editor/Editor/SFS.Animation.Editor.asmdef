@@ -1,0 +1,21 @@
+{
+    "name": "SFS.Animation.Editor",
+    "rootNamespace": "SFS.Animation.Editor",
+    "references": [
+        "SFS",
+        "SFS.Animation",
+        "Unity.Animation.Rigging",
+        "Unity.Animation.Rigging.DocCodeExamples"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
