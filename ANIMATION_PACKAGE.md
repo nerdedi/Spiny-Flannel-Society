@@ -22,6 +22,19 @@ The animation system is designed to be:
 3. Click **Run Setup Wizard**
 4. The wizard creates all prefabs and configures the scene
 
+### Automated Validation (Editor tests)
+
+A simple integration test suite has been added under `Assets/_SFS/Tests`.
+These Unity PlayMode tests exercise the animation bridge and UI overlay
+mechanics to catch regressions early.
+
+* Run the tests via **Window > General > Test Runner** (choose PlayMode).
+* `AnimationIntegrationTests` covers read/rewrite gestures and registry
+  interactions; it asserts that the overlay log occurs and that rewrites
+  advance registry progress.
+* Expand the tests as the system grows to include additional features like
+  windprint mode transitions or NPC behaviour.
+
 ### Manual Setup
 
 1. Add `VFXManager` to your scene (one instance)

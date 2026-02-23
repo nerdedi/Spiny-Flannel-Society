@@ -48,9 +48,13 @@ namespace SFS.Player
 
         /// <summary>
         /// Player activates Read Default on a world element.
-        /// Fires the animation; the world reveal happens on the
-        /// Animation Event callback.
+        /// <para>
+        /// This method records the key and triggers the read gesture animation.
+        /// When the animation clip invokes <see cref="OnReadReveal"/>, the
+        /// registry will actually disclose the description and raise events.
+        /// </para>
         /// </summary>
+        /// <param name="defaultKey">Identifier of the default to read.</param>
         public void BeginRead(string defaultKey)
         {
             pendingDefaultKey = defaultKey;
@@ -61,9 +65,13 @@ namespace SFS.Player
         }
 
         /// <summary>
-        /// Player activates Rewrite Default via Cushion.
-        /// The actual registry change happens on OnRewriteCommit().
+        /// <summary>
+        /// Player activates Rewrite Default using the Cushion mode of the
+        /// Windprint Rig.  The gesture animation is played and the rewrite
+        /// is applied when <see cref="OnRewriteCommit"/> is called by the
+        /// clip’s animation event.
         /// </summary>
+        /// <param name="defaultKey">Identifier of the default to rewrite.</param>
         public void BeginRewriteCushion(string defaultKey)
         {
             pendingDefaultKey = defaultKey;
@@ -74,9 +82,12 @@ namespace SFS.Player
         }
 
         /// <summary>
-        /// Player activates Rewrite Default via Guard.
-        /// The actual registry change happens on OnRewriteCommit().
+        /// <summary>
+        /// Player activates Rewrite Default using the Guard mode of the
+        /// Windprint Rig.  Behaviour mirrors <see cref="BeginRewriteCushion"/>
+        /// but the windprint cost animation differs.
         /// </summary>
+        /// <param name="defaultKey">Identifier of the default to rewrite.</param>
         public void BeginRewriteGuard(string defaultKey)
         {
             pendingDefaultKey = defaultKey;
@@ -95,6 +106,13 @@ namespace SFS.Player
         /// Called by Animation Event at the moment the Read gesture "focuses."
         /// This is when the world reveals the default's assumption.
         /// </summary>
+        /// <summary>
+        /// Animation event callback: the read gesture has reached the frame
+        /// where the default assumption should become visible.  This method is
+        /// invoked by an <c>AnimationEvent</c> placed in the player animation
+        /// clip, so that the visual and mechanical effects are perfectly
+        /// synchronised.
+        /// </summary>
         public void OnReadReveal()
         {
             if (string.IsNullOrEmpty(pendingDefaultKey)) return;
@@ -107,7 +125,8 @@ namespace SFS.Player
             {
                 string description = registry.Read(pendingDefaultKey);
                 Debug.Log($"[SFS] Default description: {description}");
-                // TODO: UIManager.ShowDefaultOverlay(description);
+                // show the overlay so the player can read the text in-game
+                SFS.UI.UIManager.ShowDefaultOverlay(description);
             }
 
             // Fire event for other systems (particles, audio, UI)
@@ -115,8 +134,11 @@ namespace SFS.Player
         }
 
         /// <summary>
-        /// Called by Animation Event at the moment the Rewrite gesture "commits."
-        /// This is when the registry value actually changes.
+        /// <summary>
+        /// Animation event callback fired when the rewrite gesture reaches its
+        /// climax.  At that frame the default is rewritten in the registry,
+        /// world systems are notified, and the appropriate windprint cost
+        /// animation is played.
         /// </summary>
         public void OnRewriteCommit()
         {
