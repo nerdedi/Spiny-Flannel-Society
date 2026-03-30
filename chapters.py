@@ -57,8 +57,8 @@ class DialogueNode:
     id: str
     lines: List[DialogueLine]
     responses: List['DialogueResponse'] = field(default_factory=list)
-    next_node: str = None  # Auto-advance to this node if no responses
-    triggers_event: str = None  # Event to trigger after node
+    next_node: Optional[str] = None  # Auto-advance to this node if no responses
+    triggers_event: Optional[str] = None  # Event to trigger after node
 
 
 @dataclass
@@ -66,8 +66,8 @@ class DialogueResponse:
     """A player response option"""
     text: str
     icon_version: str = ""
-    next_node: str = None
-    requires_ability: str = None
+    next_node: Optional[str] = None
+    requires_ability: Optional[str] = None
 
 
 # =============================================================================
@@ -87,7 +87,7 @@ class Character:
         self.introduces = self.data.get("introduces", [])
 
         # Character state
-        self.current_location: str = None
+        self.current_location: Optional[str] = None
         self.dialogue_state: Dict[str, bool] = {}
         self.relationship_level = 0
 
@@ -303,7 +303,7 @@ class Chapter:
         self.state = ChapterState.LOCKED if chapter_id > 1 else ChapterState.AVAILABLE
         self.progress = ChapterProgress()
         self.electives: List[Elective] = []
-        self.design_terminal: DesignTerminal = None
+        self.design_terminal: Optional[DesignTerminal] = None
 
         # Chapter-specific content
         self.intro_dialogue: List[DialogueNode] = []
@@ -557,7 +557,7 @@ class ChapterManager:
             else:
                 self.translator.unlock_ability(unlock)
 
-    def complete_chapter(self, chapter_id: int = None) -> bool:
+    def complete_chapter(self, chapter_id: Optional[int] = None) -> bool:
         """Complete a chapter"""
         chapter_id = chapter_id or self.current_chapter_id
         chapter = self.chapters.get(chapter_id)
@@ -581,7 +581,7 @@ class ChapterManager:
 
         return True
 
-    def get_chapter_summary(self, chapter_id: int = None) -> Dict:
+    def get_chapter_summary(self, chapter_id: Optional[int] = None) -> Dict:
         """Get summary of a chapter's status"""
         chapter_id = chapter_id or self.current_chapter_id
         chapter = self.chapters.get(chapter_id)
