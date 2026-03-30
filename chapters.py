@@ -410,6 +410,106 @@ class ChapterManager:
                     Vector3(i * 10, 0, 0)
                 )
 
+        # Chapter 3: Rayless Form - expression modes
+        self.chapters[3].electives.append(Elective(
+            id="elective_ch3_language",
+            name="Signal Translation",
+            subject=ElectiveSubjects.LANGUAGE,
+            description="Build multi-modal communication sequences to unlock hidden dialogue paths",
+            difficulty=1,
+            rewards=["lore_expression_history", "cosmetic_rayless_glow"]
+        ))
+
+        # Chapter 4: Umbel Logic - community networks
+        self.chapters[4].electives.append(Elective(
+            id="elective_ch4_logic",
+            name="Network Repair",
+            subject=ElectiveSubjects.LOGIC,
+            description="Restore community node connections using IF/THEN bridge logic",
+            difficulty=2,
+            rewards=["lore_umbel_origins", "shortcut_garden_express"]
+        ))
+
+        # Chapter 5: Tickshape Rule - consent and boundaries
+        self.chapters[5].electives.append(Elective(
+            id="elective_ch5_digital",
+            name="Gate Protocol",
+            subject=ElectiveSubjects.DIGITAL,
+            description="Debug the skybridge consent system by tracing permission flows",
+            difficulty=2,
+            rewards=["lore_tickshape_charter", "windprint_perk_gate_sense"]
+        ))
+
+        # Chapter 6: Smoke Signal - debugging correction
+        self.chapters[6].electives.append(Elective(
+            id="elective_ch6_logic",
+            name="Correction Audit",
+            subject=ElectiveSubjects.LOGIC,
+            description="Trace the Correction Engine's decision tree and identify bias nodes",
+            difficulty=2,
+            rewards=["lore_filter_blueprints", "cosmetic_smoke_trail"]
+        ))
+
+        # Chapter 7: Afterrain Bloom - rhythm and pacing
+        self.chapters[7].electives.append(Elective(
+            id="elective_ch7_numeracy",
+            name="Rhythm Calibration",
+            subject=ElectiveSubjects.NUMERACY,
+            description="Calibrate platform pulse ratios to create inclusive timing patterns",
+            difficulty=2,
+            rewards=["lore_rain_cycles", "shortcut_cliff_express"]
+        ))
+
+        # Chapter 8: Sandstone Drift - charter rules
+        self.chapters[8].electives.append(Elective(
+            id="elective_ch8_literacy",
+            name="Charter Decryption",
+            subject=ElectiveSubjects.LITERACY,
+            description="Decode the scratched-out charter inscriptions to reveal original civic laws",
+            difficulty=2,
+            rewards=["lore_founding_charter", "cosmetic_sandstone_texture"]
+        ))
+
+        # Chapter 9: Eucalypt Veil - sensory filtration
+        self.chapters[9].electives.append(Elective(
+            id="elective_ch9_digital",
+            name="Sensory Calibrator",
+            subject=ElectiveSubjects.DIGITAL,
+            description="Configure the canopy's multi-modal cue system for diverse sensory profiles",
+            difficulty=3,
+            rewards=["lore_veil_engineering", "windprint_perk_filter_mastery"]
+        ))
+
+        # Chapter 10: Clonal Echo - breaking monoculture
+        self.chapters[10].electives.append(Elective(
+            id="elective_ch10_numeracy",
+            name="Diversity Index",
+            subject=ElectiveSubjects.NUMERACY,
+            description="Calculate resilience ratios to prove plural routes outperform monoculture",
+            difficulty=3,
+            rewards=["lore_clone_collapse", "cosmetic_prismatic_trail"]
+        ))
+
+        # Chapter 11: Edge Reliquary - principle integration
+        self.chapters[11].electives.append(Elective(
+            id="elective_ch11_digital",
+            name="Principle Stress Test",
+            subject=ElectiveSubjects.DIGITAL,
+            description="Red-team the collected civic principles to ensure they hold under pressure",
+            difficulty=3,
+            rewards=["lore_reliquary_vault", "windprint_perk_principle_shield"]
+        ))
+
+        # Chapter 12: Refound Light - composition finale
+        self.chapters[12].electives.append(Elective(
+            id="elective_ch12_language",
+            name="Axiom Composition",
+            subject=ElectiveSubjects.LANGUAGE,
+            description="Compose the final societal axiom using all language modes simultaneously",
+            difficulty=3,
+            rewards=["lore_axiom_restored", "cosmetic_windprint_crown"]
+        ))
+
     @property
     def current_chapter(self) -> Chapter:
         """Get the current chapter"""
@@ -574,6 +674,168 @@ def get_chapter_intro_dialogue(chapter_id: int) -> List[DialogueLine]:
                 "It measures to me.",
                 "📊 Quiet measures to me.",
                 "Quiet matters."
+            )
+        ],
+        3: [
+            DialogueLine(
+                Characters.DAZIE,
+                "The Social Hall stages residents into roles. Spotlights create platforms only for 'performers'.",
+                "🎭 Spotlights = forced roles",
+                "Spotlights force roles."
+            ),
+            DialogueLine(
+                Characters.DAZIE,
+                "You don't have to play along.",
+                "🚫🎭 Don't perform",
+                "Don't play along."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Performance decoupled from value.",
+                "✅ Value ≠ performance",
+                "Value without performance."
+            )
+        ],
+        4: [
+            DialogueLine(
+                Characters.JUNE,
+                "Belonging isn't a feeling. It's architecture.",
+                "🏗️ Belonging = architecture",
+                "Belonging is structure."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Network integrity declining. Node exclusion detected.",
+                "⚠️ Network losing nodes",
+                "Nodes disconnecting."
+            ),
+            DialogueLine(
+                Characters.DAZIE,
+                "We keep asking people to adapt to a structure that doesn't know them.",
+                "👥→🏛️ People adapt to structure. Should be reversed.",
+                "Structure should know people."
+            )
+        ],
+        5: [
+            DialogueLine(
+                Characters.DAZIE,
+                "Rules exist to protect people from power. When they protect power from people… you get this.",
+                "📜 Rules should protect people, not power",
+                "Rules: protect people, not power."
+            ),
+            DialogueLine(
+                Characters.JUNE,
+                "Boundaries are instructions for safety.",
+                "🛡️ Boundaries = safety instructions",
+                "Boundaries: safety."
+            )
+        ],
+        6: [
+            DialogueLine(
+                Characters.WINTON,
+                "Correction process active.",
+                "⚠️ Correction engine running",
+                "Correction: active."
+            ),
+            DialogueLine(
+                Characters.DAZIE,
+                "It treated human variance like a bug.",
+                "🐛 Variance ≠ bug. Variance = human.",
+                "Variance is human, not a bug."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Correction retired. Adaptation recognised.",
+                "✅ Correction → Adaptation",
+                "Adaptation recognised."
+            )
+        ],
+        7: [
+            DialogueLine(
+                Characters.JUNE,
+                "After crisis, care. Otherwise it's a countdown.",
+                "💛 Crisis → care. Not crisis → repeat.",
+                "After crisis: care."
+            ),
+            DialogueLine(
+                Characters.DAZIE,
+                "We're losing time.",
+                "⏳ Urgency",
+                "Losing time."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Pacing protocol: inclusive by default.",
+                "✅ Pacing = inclusive",
+                "Inclusive pacing."
+            )
+        ],
+        8: [
+            DialogueLine(
+                Characters.WINTON,
+                "The Society does not forget. It repeats.",
+                "🔄 Society repeats, not forgets",
+                "It repeats."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Charter stone inscription: 'Flexible by default.' Status: overwritten.",
+                "📜 'Flexible by default' — scratched out",
+                "Charter overwritten."
+            )
+        ],
+        9: [
+            DialogueLine(
+                Characters.JUNE,
+                "Filtration isn't hiding. It's choosing what helps.",
+                "🔍 Filter = choose helpful",
+                "Filter: choose helpful."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Predictable transitions reinstated.",
+                "✅ Smooth transitions active",
+                "Transitions: predictable."
+            )
+        ],
+        10: [
+            DialogueLine(
+                Characters.DAZIE,
+                "This is what they wanted — one way.",
+                "1️⃣ Monoculture = fragile",
+                "One way = fragile."
+            ),
+            DialogueLine(
+                Characters.JUNE,
+                "Monocultures fail.",
+                "🌱❌ Single species = collapse",
+                "Monocultures collapse."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Resilience increased.",
+                "✅ Diversity → resilience",
+                "Resilience up."
+            )
+        ],
+        11: [
+            DialogueLine(
+                Characters.JUNE,
+                "We stored what we couldn't protect.",
+                "🏛️ Stored principles — couldn't protect them",
+                "Stored what we couldn't protect."
+            ),
+            DialogueLine(
+                "Ari",
+                "Time to plant it back.",
+                "🌱 Replant the principles",
+                "Plant it back."
+            ),
+            DialogueLine(
+                Characters.WINTON,
+                "Rare patterns reintroduced.",
+                "✅ Principles restored",
+                "Patterns restored."
             )
         ],
         12: [

@@ -74,4 +74,112 @@ JUNE_DIALOGUE: Dict[str, List[DialogueLine]] = {
             minimal_version="Quiet route = main route",
         ),
     ],
+    "filtration": [
+        DialogueLine(
+            speaker="June Corrow",
+            text="Filtration isn't hiding. It's choosing what helps.",
+            icon_version="🔍 Filter = choose helpful",
+            minimal_version="Filter: choose helpful",
+        ),
+    ],
+    "rest_pockets": [
+        DialogueLine(
+            speaker="June Corrow",
+            text="Rest isn't weakness. It's maintenance. "
+                 "The Society forgot that.",
+            icon_version="😴 = 🔧 Rest = maintenance",
+            minimal_version="Rest: maintenance",
+        ),
+    ],
+    "belonging": [
+        DialogueLine(
+            speaker="June Corrow",
+            text="Belonging isn't a feeling. It's architecture.",
+            icon_version="🏗️ Belonging = architecture",
+            minimal_version="Belonging: architecture",
+        ),
+    ],
+    "monocultures": [
+        DialogueLine(
+            speaker="June Corrow",
+            text="Monocultures fail. A single species of thought "
+                 "collapses the moment something unexpected arrives.",
+            icon_version="🌱❌ Single species = collapse",
+            minimal_version="One type = fragile",
+        ),
+    ],
+    "stored_principles": [
+        DialogueLine(
+            speaker="June Corrow",
+            text="We stored what we couldn't protect. "
+                 "Now it's time to give it back to the city.",
+            icon_version="🏛️→🌱 Stored principles → replant",
+            minimal_version="Replant principles",
+        ),
+    ],
+}
+
+
+WINTON_DIALOGUE: Dict[str, List[DialogueLine]] = {
+    "system_status": [
+        DialogueLine(
+            speaker="Winton",
+            text="Default engaged. Default is not neutral.",
+            icon_version="⚙️ Default ≠ neutral",
+            minimal_version="Defaults aren't neutral",
+        ),
+    ],
+    "correction_engine": [
+        DialogueLine(
+            speaker="Winton",
+            text="Correction process active. Human variance classified as deviation.",
+            icon_version="⚠️ Correction running. Variance = 'error'",
+            minimal_version="Correction: active. Variance = error.",
+        ),
+    ],
+    "charter_stones": [
+        DialogueLine(
+            speaker="Winton",
+            text="The Society does not forget. It repeats.",
+            icon_version="🔄 Society repeats",
+            minimal_version="Repeats, not forgets",
+        ),
+    ],
+    "network_integrity": [
+        DialogueLine(
+            speaker="Winton",
+            text="Network integrity declining. Node exclusion cascades.",
+            icon_version="📉 Network losing nodes",
+            minimal_version="Nodes disconnecting",
+        ),
+    ],
+    "plural_coherence": [
+        DialogueLine(
+            speaker="Winton",
+            text="Coherence achieved through plurality.",
+            icon_version="✅ Coherence = plurality",
+            minimal_version="Plurality = coherence",
+        ),
+    ],
+}
+
+
+ARI_DIALOGUE: Dict[str, List[DialogueLine]] = {
+    "reliquary": [
+        DialogueLine(
+            speaker="Ari",
+            text="Time to plant it back.",
+            icon_version="🌱 Replant principles",
+            minimal_version="Plant it back",
+        ),
+    ],
+    "hope": [
+        DialogueLine(
+            speaker="Ari",
+            text="Every civic rule in this vault was someone's fight. "
+                 "Now it's ours to carry forward.",
+            icon_version="📜→💪 Past fights → our turn",
+            minimal_version="Our turn to carry forward",
+        ),
+    ],
 }
