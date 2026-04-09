@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "code": "LLND_GROUP_ACTIVITIES",
+      "name": "LLND Group Activities",
+      "description": "Group-based supports with associated direct and non face-to-face components."
+    },
+    {
+      "code": "LLND_CENTRE_CAPITAL",
+      "name": "LLND Centre Capital Costs",
+      "description": "Centre-based capital cost component for eligible delivered supports."
+    },
+    {
+      "code": "LLND_ACTIVITY_BASED_TRANSPORT",
+      "name": "LLND Activity Based Transport",
+      "description": "Activity-based transport support items used with community participation supports."
+    },
+    {
+      "code": "LLND_PROVIDER_TRAVEL_NON_LABOUR",
+      "name": "LLND Provider Travel (Non-Labour Costs)",
+      "description": "Non-labour travel cost claims for provider travel support items."
+    }
+  ]
+}

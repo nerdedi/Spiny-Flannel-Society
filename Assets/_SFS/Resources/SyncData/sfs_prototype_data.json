@@ -1,0 +1,791 @@
+{
+  "_meta": {
+    "generator": "sync_to_unity.py",
+    "gameTitle": "Spiny Flannel Society",
+    "version": "0.2.0",
+    "totalChapters": 12,
+    "totalDistricts": 6,
+    "exportedAt": "2026-03-30T04:23:48Z"
+  },
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Bract Theory",
+      "location": "windgap_academy",
+      "locationName": "Windgap Academy",
+      "theme": "Supports without proof",
+      "civicRule": "ACCESS_WITHOUT_PROOF",
+      "civicRuleDescription": "Supports appear without justification required",
+      "primaryMechanic": "cushion_guard_toggle",
+      "npcs": [
+        "DAZIE",
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "dazie_vine",
+          "text": "Most days the place does orientation for me. Not today.",
+          "iconVersion": "🏛️ Usually auto-orientation. Not today.",
+          "minimalVersion": "Orientation broken today.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "Protection that looks like beauty.",
+          "iconVersion": "🛡️ = 🌸 Protection = beauty",
+          "minimalVersion": "Protection as beauty.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Support withheld pending justification.",
+          "iconVersion": "⚠️ Support needs proof",
+          "minimalVersion": "Support: needs proof",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "That's the new rule. It's wrong. Let's rewrite the welcome.",
+          "iconVersion": "❌ Bad rule. ✏️ Rewrite.",
+          "minimalVersion": "Wrong rule. Rewrite it.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Felt Memory",
+      "location": "windgap_academy",
+      "locationName": "Windgap Academy",
+      "theme": "Overload as information",
+      "civicRule": "BUFFERS_BY_DEFAULT",
+      "civicRuleDescription": "Rest pockets and quiet routes are standard infrastructure",
+      "primaryMechanic": "radiant_hold",
+      "npcs": [
+        "June",
+        "DAZIE"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "june_corrow",
+          "text": "They deleted quiet because it didn't measure.",
+          "iconVersion": "🤫❌ Quiet deleted - not measured",
+          "minimalVersion": "Quiet deleted. Unmeasurable.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "It measures to me.",
+          "iconVersion": "📊 Quiet measures to me.",
+          "minimalVersion": "Quiet matters.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Rayless Form",
+      "location": "windgap_academy",
+      "locationName": "Windgap Academy",
+      "theme": "Equal expression modes",
+      "civicRule": "PERFORMANCE_DECOUPLED_FROM_VALUE",
+      "civicRuleDescription": "Expression mode does not determine worth",
+      "primaryMechanic": "thread_lash",
+      "npcs": [
+        "DAZIE",
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "dazie_vine",
+          "text": "The Social Hall stages residents into roles. Spotlights create platforms only for 'performers'.",
+          "iconVersion": "🎭 Spotlights = forced roles",
+          "minimalVersion": "Spotlights force roles.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "You don't have to play along.",
+          "iconVersion": "🚫🎭 Don't perform",
+          "minimalVersion": "Don't play along.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Performance decoupled from value.",
+          "iconVersion": "✅ Value ≠ performance",
+          "minimalVersion": "Value without performance.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Umbel Logic",
+      "location": "umbel_gardens",
+      "locationName": "The Umbel Gardens",
+      "theme": "Community as architecture",
+      "civicRule": "TRANSLATION_LAYERS",
+      "civicRuleDescription": "Systems accommodate different speeds and communication styles",
+      "primaryMechanic": "grapple_thread",
+      "npcs": [
+        "June",
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "june_corrow",
+          "text": "Belonging isn't a feeling. It's architecture.",
+          "iconVersion": "🏗️ Belonging = architecture",
+          "minimalVersion": "Belonging is structure.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Network integrity declining. Node exclusion detected.",
+          "iconVersion": "⚠️ Network losing nodes",
+          "minimalVersion": "Nodes disconnecting.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "We keep asking people to adapt to a structure that doesn't know them.",
+          "iconVersion": "👥→🏛️ People adapt to structure. Should be reversed.",
+          "minimalVersion": "Structure should know people.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Tickshape Rule",
+      "location": "umbel_gardens",
+      "locationName": "The Umbel Gardens",
+      "theme": "Consent gates",
+      "civicRule": "CONSENT_AS_STRUCTURE",
+      "civicRuleDescription": "Boundaries are encoded into environmental design",
+      "primaryMechanic": "edge_claim",
+      "npcs": [
+        "DAZIE",
+        "June"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "dazie_vine",
+          "text": "Rules exist to protect people from power. When they protect power from people… you get this.",
+          "iconVersion": "📜 Rules should protect people, not power",
+          "minimalVersion": "Rules: protect people, not power.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "june_corrow",
+          "text": "Boundaries are instructions for safety.",
+          "iconVersion": "🛡️ Boundaries = safety instructions",
+          "minimalVersion": "Boundaries: safety.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Smoke Signal",
+      "location": "smoke_margin",
+      "locationName": "The Smoke Margin",
+      "theme": "Difference as adaptation",
+      "civicRule": "ADAPTATION_RECOGNISED",
+      "civicRuleDescription": "Difference is classified as adaptation, not deviation",
+      "primaryMechanic": "retune",
+      "npcs": [
+        "DAZIE",
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "winton",
+          "text": "Correction process active.",
+          "iconVersion": "⚠️ Correction engine running",
+          "minimalVersion": "Correction: active.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "It treated human variance like a bug.",
+          "iconVersion": "🐛 Variance ≠ bug. Variance = human.",
+          "minimalVersion": "Variance is human, not a bug.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Correction retired. Adaptation recognised.",
+          "iconVersion": "✅ Correction → Adaptation",
+          "minimalVersion": "Adaptation recognised.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Afterrain Bloom",
+      "location": "smoke_margin",
+      "locationName": "The Smoke Margin",
+      "theme": "Safe path = main path",
+      "civicRule": "SAFE_PATH_MAIN_PATH",
+      "civicRuleDescription": "Accessible routes are the primary routes",
+      "primaryMechanic": "rhythm_traversal",
+      "npcs": [
+        "June",
+        "DAZIE"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "june_corrow",
+          "text": "After crisis, care. Otherwise it's a countdown.",
+          "iconVersion": "💛 Crisis → care. Not crisis → repeat.",
+          "minimalVersion": "After crisis: care.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "dazie_vine",
+          "text": "We're losing time.",
+          "iconVersion": "⏳ Urgency",
+          "minimalVersion": "Losing time.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Pacing protocol: inclusive by default.",
+          "iconVersion": "✅ Pacing = inclusive",
+          "minimalVersion": "Inclusive pacing.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Sandstone Drift",
+      "location": "sandstone_quarter",
+      "locationName": "Sandstone Quarter",
+      "theme": "Multiple valid routes",
+      "civicRule": "FLEXIBLE_BY_DEFAULT",
+      "civicRuleDescription": "Multiple valid approaches are structurally supported",
+      "primaryMechanic": "guard_pin",
+      "npcs": [
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "winton",
+          "text": "The Society does not forget. It repeats.",
+          "iconVersion": "🔄 Society repeats, not forgets",
+          "minimalVersion": "It repeats.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Charter stone inscription: 'Flexible by default.' Status: overwritten.",
+          "iconVersion": "📜 'Flexible by default' — scratched out",
+          "minimalVersion": "Charter overwritten.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Eucalypt Veil",
+      "location": "veil_market",
+      "locationName": "The Veil Market",
+      "theme": "Engineered calm",
+      "civicRule": "PREDICTABLE_TRANSITIONS",
+      "civicRuleDescription": "Environmental changes are signalled in multiple modalities",
+      "primaryMechanic": "glide_surf",
+      "npcs": [
+        "June",
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "june_corrow",
+          "text": "Filtration isn't hiding. It's choosing what helps.",
+          "iconVersion": "🔍 Filter = choose helpful",
+          "minimalVersion": "Filter: choose helpful.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Predictable transitions reinstated.",
+          "iconVersion": "✅ Smooth transitions active",
+          "minimalVersion": "Transitions: predictable.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Clonal Echo",
+      "location": "veil_market",
+      "locationName": "The Veil Market",
+      "theme": "Diversity = resilience",
+      "civicRule": "PLURAL_ROUTES",
+      "civicRuleDescription": "Diversity increases system resilience",
+      "primaryMechanic": "thread_lash_combo",
+      "npcs": [
+        "DAZIE",
+        "June"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "dazie_vine",
+          "text": "This is what they wanted — one way.",
+          "iconVersion": "1️⃣ Monoculture = fragile",
+          "minimalVersion": "One way = fragile.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "june_corrow",
+          "text": "Monocultures fail.",
+          "iconVersion": "🌱❌ Single species = collapse",
+          "minimalVersion": "Monocultures collapse.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Resilience increased.",
+          "iconVersion": "✅ Diversity → resilience",
+          "minimalVersion": "Resilience up.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Edge Reliquary",
+      "location": "reliquary_edge",
+      "locationName": "The Reliquary Edge",
+      "theme": "Principle modules",
+      "civicRule": "PRINCIPLES_INTEGRATED",
+      "civicRuleDescription": "Rare civic principles are restored to active use",
+      "primaryMechanic": "principle_collection",
+      "npcs": [
+        "June",
+        "Ari"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "june_corrow",
+          "text": "We stored what we couldn't protect.",
+          "iconVersion": "🏛️ Stored principles — couldn't protect them",
+          "minimalVersion": "Stored what we couldn't protect.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "Ari",
+          "text": "Time to plant it back.",
+          "iconVersion": "🌱 Replant the principles",
+          "minimalVersion": "Plant it back.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Rare patterns reintroduced.",
+          "iconVersion": "✅ Principles restored",
+          "minimalVersion": "Patterns restored.",
+          "emotion": "neutral"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Refound Light",
+      "location": "reliquary_edge",
+      "locationName": "The Reliquary Edge",
+      "theme": "Compose new defaults",
+      "civicRule": "PLURAL_COHERENCE",
+      "civicRuleDescription": "The Society achieves coherence through plurality",
+      "primaryMechanic": "finale_all_verbs",
+      "npcs": [
+        "DAZIE",
+        "June",
+        "Winton"
+      ],
+      "introDialogue": [
+        {
+          "speaker": "dazie_vine",
+          "text": "You didn't fix us. You reminded us how to care.",
+          "iconVersion": "💝 Not fixed - remembered care",
+          "minimalVersion": "Reminded us to care.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "june_corrow",
+          "text": "This time it will remember.",
+          "iconVersion": "🧠 Will remember this time",
+          "minimalVersion": "Will remember.",
+          "emotion": "neutral"
+        },
+        {
+          "speaker": "winton",
+          "text": "Coherence achieved through plurality.",
+          "iconVersion": "✅ Coherence = plurality",
+          "minimalVersion": "Plurality = coherence.",
+          "emotion": "neutral"
+        }
+      ]
+    }
+  ],
+  "districts": [
+    {
+      "id": "windgap_academy",
+      "name": "Windgap Academy",
+      "description": "Learning commons, workshops, archives, simulation studios; the Society's 'translation engine'",
+      "colorTheme": "warm_amber",
+      "windPattern": "gentle_uplift"
+    },
+    {
+      "id": "veil_market",
+      "name": "The Veil Market",
+      "description": "Sheltered trading lane where information, tools, and favours exchange; signage drifts first",
+      "colorTheme": "dappled_green",
+      "windPattern": "swirling_eddies"
+    },
+    {
+      "id": "sandstone_quarter",
+      "name": "Sandstone Quarter",
+      "description": "Foundation terraces carved into warm rock; the Society's charter stones live here",
+      "colorTheme": "golden_ochre",
+      "windPattern": "steady_horizontal"
+    },
+    {
+      "id": "umbel_gardens",
+      "name": "The Umbel Gardens",
+      "description": "Suspended neighbourhoods held by clustered supports; community visible as structure",
+      "colorTheme": "soft_violet",
+      "windPattern": "rhythmic_pulse"
+    },
+    {
+      "id": "smoke_margin",
+      "name": "The Smoke Margin",
+      "description": "Controlled-burn perimeter and repair yards; where obsolete rules are decommissioned",
+      "colorTheme": "ash_grey",
+      "windPattern": "turbulent_gusts"
+    },
+    {
+      "id": "reliquary_edge",
+      "name": "The Reliquary Edge",
+      "description": "Seed bank vault and principle conservatory; preserves rare design laws and cultural practices",
+      "colorTheme": "deep_teal",
+      "windPattern": "still_and_calm"
+    }
+  ],
+  "characters": [
+    {
+      "id": "translator",
+      "name": "The Translator",
+      "role": "Player Character",
+      "description": "Newcomer with the rare capacity to perceive Windprints",
+      "voice": "Player-defined communication mode",
+      "introduces": []
+    },
+    {
+      "id": "dazie_vine",
+      "name": "DAZIE Vine",
+      "role": "Mentor / Systems Ethicist",
+      "description": "Resident of Spiny Flannel Society and orientation lead at Windgap Academy",
+      "voice": "Calm, precise, non-patronising",
+      "introduces": [
+        "Guard Mode",
+        "Edge Claim",
+        "Consent gates"
+      ]
+    },
+    {
+      "id": "june_corrow",
+      "name": "June Corrow",
+      "role": "Sensory Architect / Biodesign Maker",
+      "description": "Designed the Society's quiet infrastructure",
+      "voice": "Sparse, warm, incisive",
+      "introduces": [
+        "Cushion Mode",
+        "Filtration mechanics",
+        "Veil traversal"
+      ]
+    },
+    {
+      "id": "winton",
+      "name": "Winton",
+      "role": "Civic OS / System-Ghost",
+      "description": "The Society's operating interface made audible",
+      "voice": "Blunt, ethically focused, occasionally dry",
+      "introduces": [
+        "System states",
+        "Design terminals",
+        "Windprint recording"
+      ]
+    },
+    {
+      "id": "ari",
+      "name": "Ari",
+      "role": "Resident / Guide",
+      "description": "Appears in Chapter 11 at the Reliquary Edge",
+      "voice": "Hopeful, practical",
+      "introduces": []
+    }
+  ],
+  "combatVerbs": [
+    {
+      "id": "pulse",
+      "energyCost": 10,
+      "cooldown": 1.0,
+      "effectRadius": 5.0,
+      "duration": 0,
+      "description": "Clears/resets cycles; breaks Distortion loops"
+    },
+    {
+      "id": "thread_lash",
+      "energyCost": 15,
+      "cooldown": 1.5,
+      "effectRadius": 8.0,
+      "duration": 0,
+      "description": "Interrupts Echo Form patterns"
+    },
+    {
+      "id": "radiant_hold",
+      "energyCost": 20,
+      "cooldown": 2.0,
+      "effectRadius": 3.0,
+      "duration": 3.0,
+      "description": "Creates shields and safe footholds"
+    },
+    {
+      "id": "edge_claim",
+      "energyCost": 15,
+      "cooldown": 1.5,
+      "effectRadius": 4.0,
+      "duration": 5.0,
+      "description": "Pins rhythms; stabilises platform timing"
+    },
+    {
+      "id": "retune",
+      "energyCost": 25,
+      "cooldown": 3.0,
+      "effectRadius": 6.0,
+      "duration": 0,
+      "description": "Cleans signal corruption; calms Noise Beasts"
+    }
+  ],
+  "antagonists": [
+    {
+      "id": "echo_form",
+      "name": "Echo Form",
+      "description": "Coercive social scripts given motion",
+      "resolutionVerb": "thread_lash",
+      "secondaryVerb": "pulse",
+      "baseIntensity": 0.7
+    },
+    {
+      "id": "distortion",
+      "name": "Distortion",
+      "description": "Broken rules manifested physically",
+      "resolutionVerb": "pulse",
+      "secondaryVerb": "edge_claim",
+      "baseIntensity": 0.8
+    },
+    {
+      "id": "noise_beast",
+      "name": "Noise Beast",
+      "description": "Sensory overload as weather",
+      "resolutionVerb": "retune",
+      "secondaryVerb": "radiant_hold",
+      "baseIntensity": 0.9
+    }
+  ],
+  "civicRules": [
+    {
+      "id": "ACCESS_WITHOUT_PROOF",
+      "description": "Supports appear without justification required"
+    },
+    {
+      "id": "BUFFERS_BY_DEFAULT",
+      "description": "Rest pockets and quiet routes are standard infrastructure"
+    },
+    {
+      "id": "PERFORMANCE_DECOUPLED_FROM_VALUE",
+      "description": "Expression mode does not determine worth"
+    },
+    {
+      "id": "TRANSLATION_LAYERS",
+      "description": "Systems accommodate different speeds and communication styles"
+    },
+    {
+      "id": "CONSENT_AS_STRUCTURE",
+      "description": "Boundaries are encoded into environmental design"
+    },
+    {
+      "id": "ADAPTATION_RECOGNISED",
+      "description": "Difference is classified as adaptation, not deviation"
+    },
+    {
+      "id": "SAFE_PATH_MAIN_PATH",
+      "description": "Accessible routes are the primary routes"
+    },
+    {
+      "id": "FLEXIBLE_BY_DEFAULT",
+      "description": "Multiple valid approaches are structurally supported"
+    },
+    {
+      "id": "PREDICTABLE_TRANSITIONS",
+      "description": "Environmental changes are signalled in multiple modalities"
+    },
+    {
+      "id": "PLURAL_ROUTES",
+      "description": "Diversity increases system resilience"
+    },
+    {
+      "id": "PRINCIPLES_INTEGRATED",
+      "description": "Rare civic principles are restored to active use"
+    },
+    {
+      "id": "PLURAL_COHERENCE",
+      "description": "The Society achieves coherence through plurality"
+    }
+  ],
+  "windprint": {
+    "modes": {
+      "CUSHION": "cushion",
+      "GUARD": "guard"
+    },
+    "energyMax": 100,
+    "energyRegen": 5,
+    "modeSwitchCost": 5,
+    "cushionEffects": {
+      "timing_window_multiplier": 1.5,
+      "safe_pocket_spawn_rate": 0.3,
+      "clutter_reduction": 0.6,
+      "hazard_slowdown": 0.5,
+      "wind_impact_reduction": 0.8
+    },
+    "guardEffects": {
+      "rhythm_pin_strength": 0.8,
+      "jitter_stabilisation": 0.9,
+      "edge_claim_range": 3.0,
+      "boundary_hold_duration": 5.0
+    },
+    "guardConsentGateActive": true
+  },
+  "playerStats": {
+    "speed": 5.0,
+    "jumpHeight": 2.5,
+    "wallRunSpeed": 4.0,
+    "airDashSpeed": 8.0,
+    "airDashDistance": 4.0,
+    "glideSpeed": 3.0,
+    "grappleSpeed": 10.0,
+    "tripleHopHeights": [
+      1.5,
+      2.5,
+      3.5
+    ],
+    "tripleHopWindow": 0.5,
+    "coyoteTime": 0.15,
+    "jumpBufferTime": 0.1
+  },
+  "driftConfig": {
+    "reductionPerChapter": 0.08333333333333333,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "rewriting": {
+    "energyCost": 10,
+    "cooldown": 2.0,
+    "scanRadius": 5.0,
+    "terminalInteractionRange": 2.0
+  },
+  "enums": {
+    "translatorAbilities": {
+      "CREATE_PATHWAYS": "create_alternative_pathways",
+      "CUSHION_MODE": "cushion_mode",
+      "DECODE_SIGNALS": "decode_corrupted_signals",
+      "GUARD_MODE": "guard_mode",
+      "PERCEIVE_WINDPRINTS": "perceive_windprints",
+      "READ_ASSUMPTIONS": "read_hidden_assumptions",
+      "REWRITE_ENVIRONMENT": "rewrite_environment"
+    },
+    "combatVerbs": {
+      "EDGE_CLAIM": "edge_claim",
+      "PULSE": "pulse",
+      "RADIANT_HOLD": "radiant_hold",
+      "RETUNE": "retune",
+      "THREAD_LASH": "thread_lash"
+    },
+    "communicationModes": {
+      "DIRECT": "direct",
+      "ICONS": "icons",
+      "MINIMAL": "minimal_speech",
+      "SCRIPTED": "scripted"
+    },
+    "electiveSubjects": {
+      "DIGITAL": "digital_literacy",
+      "LANGUAGE": "language",
+      "LITERACY": "literacy",
+      "LOGIC": "logic",
+      "NUMERACY": "numeracy"
+    },
+    "districts": {
+      "RELIQUARY_EDGE": "reliquary_edge",
+      "SANDSTONE_QUARTER": "sandstone_quarter",
+      "SMOKE_MARGIN": "smoke_margin",
+      "UMBEL_GARDENS": "umbel_gardens",
+      "VEIL_MARKET": "veil_market",
+      "WINDGAP_ACADEMY": "windgap_academy"
+    },
+    "characters": {
+      "ARI": "ari",
+      "DAZIE": "dazie_vine",
+      "JUNE": "june_corrow",
+      "TRANSLATOR": "translator",
+      "WINTON": "winton"
+    }
+  },
+  "windPatterns": {
+    "stable": {
+      "variance": 0.1,
+      "direction_change": 0.05
+    },
+    "drifting": {
+      "variance": 0.4,
+      "direction_change": 0.3
+    },
+    "restored": {
+      "variance": 0.2,
+      "direction_change": 0.1
+    },
+    "gentle_uplift": {
+      "variance": 0.15,
+      "direction_change": 0.08,
+      "vertical_bias": 0.3
+    },
+    "swirling_eddies": {
+      "variance": 0.35,
+      "direction_change": 0.25,
+      "rotation": 0.5
+    },
+    "steady_horizontal": {
+      "variance": 0.1,
+      "direction_change": 0.05,
+      "horizontal_bias": 0.8
+    },
+    "rhythmic_pulse": {
+      "variance": 0.2,
+      "direction_change": 0.1,
+      "pulse_frequency": 2.0
+    },
+    "turbulent_gusts": {
+      "variance": 0.5,
+      "direction_change": 0.4,
+      "gust_intensity": 1.5
+    },
+    "still_and_calm": {
+      "variance": 0.05,
+      "direction_change": 0.02
+    }
+  }
+}

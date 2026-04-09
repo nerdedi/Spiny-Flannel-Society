@@ -1,0 +1,78 @@
+{
+  "source": {
+    "document": "NDIS Pricing Arrangements and Price Limits 2025-26 PDF.pdf",
+    "location": "ndis_data/NDIS Pricing Arrangements and Price Limits 2025-26 PDF.pdf",
+    "notes": "Rates captured from extracted PDF text. National rate is used as default quote rate.",
+    "captured_at": "2026-04-09"
+  },
+  "items": [
+    {
+      "code": "04_102_0136_6_1",
+      "name": "Group Activities - Standard - Weekday Daytime",
+      "unit": "hour",
+      "rate": 70.23,
+      "remote_rate": 98.32,
+      "very_remote_rate": 105.35,
+      "claiming_categories": ["LLND_GROUP_ACTIVITIES"]
+    },
+    {
+      "code": "04_103_0136_6_1",
+      "name": "Group Activities - Standard - Weekday Evening",
+      "unit": "hour",
+      "rate": 77.38,
+      "remote_rate": 108.33,
+      "very_remote_rate": 116.07,
+      "claiming_categories": ["LLND_GROUP_ACTIVITIES"]
+    },
+    {
+      "code": "04_104_0136_6_1",
+      "name": "Group Activities - Standard - Saturday",
+      "unit": "hour",
+      "rate": 98.83,
+      "remote_rate": 138.36,
+      "very_remote_rate": 148.25,
+      "claiming_categories": ["LLND_GROUP_ACTIVITIES"]
+    },
+    {
+      "code": "04_105_0136_6_1",
+      "name": "Group Activities - Standard - Sunday",
+      "unit": "hour",
+      "rate": 127.43,
+      "remote_rate": 178.40,
+      "very_remote_rate": 191.15,
+      "claiming_categories": ["LLND_GROUP_ACTIVITIES"]
+    },
+    {
+      "code": "04_106_0136_6_1",
+      "name": "Group Activities - Standard - Public Holiday",
+      "unit": "hour",
+      "rate": 156.03,
+      "remote_rate": 218.44,
+      "very_remote_rate": 234.05,
+      "claiming_categories": ["LLND_GROUP_ACTIVITIES"]
+    },
+    {
+      "code": "04_599_0136_6_1",
+      "name": "Centre Capital Cost",
+      "unit": "hour",
+      "rate": 2.59,
+      "remote_rate": 3.63,
+      "very_remote_rate": 3.89,
+      "claiming_categories": ["LLND_CENTRE_CAPITAL"]
+    },
+    {
+      "code": "04_591_0136_6_1",
+      "name": "Activity Based Transport - Social, Economic and Community Participation Supports",
+      "unit": "each",
+      "rate": 1.00,
+      "claiming_categories": ["LLND_ACTIVITY_BASED_TRANSPORT"]
+    },
+    {
+      "code": "04_799_0136_6_1",
+      "name": "Provider travel - non-labour costs",
+      "unit": "each",
+      "rate": 1.00,
+      "claiming_categories": ["LLND_PROVIDER_TRAVEL_NON_LABOUR"]
+    }
+  ]
+}

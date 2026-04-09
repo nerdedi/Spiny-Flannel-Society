@@ -41,6 +41,9 @@ Thumbs.db
 .coverage
 htmlcov/
 
+# Sync config (user-specific local paths)
+.sync_config.json
+
 # Temporary files
 /tmp/
 *.tmp

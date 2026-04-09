@@ -138,6 +138,97 @@ The demo showcases:
 python3 test_game.py
 ```
 
+### Generate NDIS Quote (Participant Summary of Supports)
+
+```bash
+python3 ndis_quote_generator.py
+python3 test_ndis_quote_generator.py
+```
+
+Optional region selector (uses regional rate columns when available):
+
+```bash
+python3 ndis_quote_generator.py --region national
+python3 ndis_quote_generator.py --region remote
+python3 ndis_quote_generator.py --region very_remote
+```
+
+This writes a quote HTML file to:
+
+- `output/participant_summary_of_supports.html`
+
+Data sources are file-based so you can swap in your real pricing and category rules:
+
+- `ndis_data/price_guide.2025-26.json` (preferred when present)
+- `ndis_data/price_guide.sample.json`
+- `ndis_data/claiming_categories.sample.json`
+
+Supporting extraction artifacts generated from the uploaded PDF:
+
+- `ndis_data/NDIS Pricing Arrangements and Price Limits 2025-26 PDF.pdf`
+- `ndis_data/ndis_price_guide_extract.txt`
+- `ndis_data/ndis_code_line_candidates.txt`
+
+Governance source extracts used to guide quote/report/review/letter content:
+
+- `ndis_data/reasonable_and_necessary_extract.txt`
+- `ndis_data/ndis_act_2013_extract.txt`
+- `ndis_data/practice_standards_extract.txt`
+
+Guidance module:
+
+- `ndis_compliance_guidance.py`
+
+Example usage in Python:
+
+```python
+from ndis_compliance_guidance import get_document_guidance
+
+quote_guidance = get_document_guidance("quote")
+report_guidance = get_document_guidance("report")
+review_guidance = get_document_guidance("review")
+letter_guidance = get_document_guidance("letter")
+```
+
+### Generate governance-guided Reports / Reviews / Letters
+
+```bash
+python3 ndis_document_generator.py --type report --participant "Sample Participant"
+python3 ndis_document_generator.py --type review --participant "Sample Participant" --period-start "01/01/2026" --period-end "31/03/2026"
+python3 ndis_document_generator.py --type letter --participant "Sample Participant" --purpose "Request for review consideration"
+python3 test_ndis_document_generator.py
+```
+
+Progress note upload support (for feature/adaptation recommendations):
+
+```bash
+python3 ndis_document_generator.py \
+	--type report \
+	--participant "Sample Participant" \
+	--progress-note "ndis_data/sample_progress_note.txt"
+
+python3 test_ndis_progress_notes.py
+```
+
+When progress notes are provided, generated drafts include:
+
+- progress-note analysis summary
+- recommended features/adaptations with priority and confidence
+- evidence lines from uploaded notes
+
+Outputs are written to `output/` as markdown drafts with:
+
+- compliance checklist
+- suggested structure
+- participant-specific key points
+- governance references and source snippets
+
+The generator validates each quote line against:
+
+- known support item codes
+- known claiming categories
+- item/category compatibility
+
 ---
 
 ## Project Structure

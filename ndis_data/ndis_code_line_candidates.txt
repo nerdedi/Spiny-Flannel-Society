@@ -1,0 +1,425 @@
+For example: | 01_013_0107_1_1 – Assistance with Self-Care Activities – Standard – Saturday | Support
+If, as in the above example, the non-labour costs of the activity based transport was $21.50 (in this example against | the support item 04_590_0125_6_1) then the provider would submit a payment request for 21.5 units at $1.00 a unit | for a total cost of $21.50.
+Remote | 01_799_0102_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0104_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0102_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0104_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0106_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0104_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0106_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0107_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0106_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0107_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0110_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0107_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0110_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0114_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0110_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0114_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0115_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0114_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0115_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0117_8_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0115_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0117_8_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0118_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0117_8_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0118_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0119_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0118_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0119_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0120_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0119_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0120_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0126_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0120_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0126_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0128_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0126_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0128_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0129_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0128_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0129_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0132_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0129_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0132_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0104_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0132_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0104_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0125_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+04_799_0104_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0125_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0133_5_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+04_799_0125_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0133_5_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0134_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+04_799_0133_5_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0134_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0135_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0134_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 01_799_0135_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0136_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+01_799_0135_1_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 04_799_0136_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 07_799_0106_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+04_799_0136_6_1 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 07_799_0106_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 07_799_0117_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+07_799_0106_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 07_799_0117_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 07_799_0132_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+07_799_0117_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 07_799_0132_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 08_799_0106_2_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+07_799_0132_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 08_799_0106_2_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 09_799_0106_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+08_799_0106_2_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 09_799_0106_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 09_799_0117_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+09_799_0106_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 09_799_0117_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 10_799_0102_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+09_799_0117_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 10_799_0102_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 10_799_0128_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+10_799_0102_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 10_799_0128_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 10_799_0133_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+10_799_0128_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 10_799_0133_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 11_799_0110_7_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+10_799_0133_5_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 11_799_0110_7_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 11_799_0117_7_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+11_799_0110_7_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 11_799_0117_7_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 12_799_0126_3_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+11_799_0117_7_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 12_799_0126_3_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 12_799_0128_3_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+12_799_0126_3_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 12_799_0128_3_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 13_799_0102_4_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+12_799_0128_3_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 13_799_0102_4_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 14_799_0127_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+13_799_0102_4_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 14_799_0127_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0106_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+14_799_0127_8_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0106_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0103_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0106_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0103_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0114_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0103_6_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0114_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0117_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0114_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0117_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0118_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0117_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0118_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+Remote | 15_799_0119_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0126_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0119_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0126_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0128_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0126_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0128_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0134_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0128_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0134_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0135_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+15_799_0134_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00 | 15_799_0135_1_3 Provider travel - non-labour costs Each $1.00 $1.00 $1.00
+participant and claimed for separately in the system. | • $100.00 for the two hours of support against support item 01_301_0104_1_1; | • $41.67 for the 50 minutes travel to and from the participant against support item 01_301_0104_1_1 using the
+• $100.00 for the two hours of support against support item 01_301_0104_1_1; | • $41.67 for the 50 minutes travel to and from the participant against support item 01_301_0104_1_1 using the | drop-down field “Provider Travel”; and
+drop-down field “Provider Travel”; and | • $46.80 for the 60 kilometres travel to and from the participant against support item 01_799_0104_1_1. | Example – Core support – Multiple Participants – MMM 4-5
+Participant A | • $100.00 for the two hours of support against support item 01_301_0104_1_1; | • $54.17 for the 65 minutes travel to, between and from participants against support item 01_301_0104_1_1
+• $100.00 for the two hours of support against support item 01_301_0104_1_1; | • $54.17 for the 65 minutes travel to, between and from participants against support item 01_301_0104_1_1 | using the drop-down field “Provider Travel”; and
+using the drop-down field “Provider Travel”; and | • $58.50 for 75 kilometres travel to and between participants against support item 01_799_0104_1_1. | Participant B
+Participant B | • $50.00 for the one hour of support against support item 01_301_0104_1_1;
+NDIS Pricing Arrangements and Price Limits 2025-26 Version 1.0 (published 16/06/2025)  Page 26 of 103 | • $54.17 for the 65 minutes travel to, between and from participants against support item 01_301_0104_1_1 | using the drop-down field “Provider Travel”; and
+using the drop-down field “Provider Travel”; and | • $58.50 for 75 kilometres travel to and between participants against support item 01_799_0104_1_1. | Example – Capacity building support -Single Participant – MMM 1-3
+participant and claimed for separately. | • $380.00 for the two hours of support against support item 15_622_0128_1_3 | • $88.91 for the 55 minutes travel to the participant against support item 15_622_0128_1_3 using the drop-
+• $380.00 for the two hours of support against support item 15_622_0128_1_3 | • $88.91 for the 55 minutes travel to the participant against support item 15_622_0128_1_3 using the drop- | down field “Provider Travel”; and
+• $62.40 for the non-labour costs of 80 kilometres travel to and from the participant against support item | 15_799_0128_1_3. | Provider Travel (in Remote and Very Remote Areas)
+Remote | 04_590_0125_6_1 Activity Based Transport Each $1.00 $1.00 $1.00 | 04_591_0136_6_1 Activity Based Transport Each $1.00 $1.00 $1.00
+04_590_0125_6_1 Activity Based Transport Each $1.00 $1.00 $1.00 | 04_591_0136_6_1 Activity Based Transport Each $1.00 $1.00 $1.00 | 04_592_0104_6_1 Activity Based Transport Each $1.00 $1.00 $1.00
+04_591_0136_6_1 Activity Based Transport Each $1.00 $1.00 $1.00 | 04_592_0104_6_1 Activity Based Transport Each $1.00 $1.00 $1.00
+NDIS Pricing Arrangements and Price Limits 2025-26 Version 1.0 (published 16/06/2025)  Page 30 of 103 | 04_821_0133_6_1 Activity Based Transport Each $1.00 $1.00 $1.00
+Higher Education | Finding and keeping a job 10_016_0102_5_3 Employment Support
+Improved learning 13_030_0102_4_3 Transition Through School And To Further | Education
+arrangements | 08_005_0106_2_3 Assistance With Accommodation And Tenancy | Obligations
+community participation | 09_006_0106_6_3 Life Transition Planning Incl. Mentoring, Peer- | Support And Individual Skill Develop
+Support And Individual Skill Develop | Support Coordination 07_101_0106_6_3 | to
+to | 07_105_0106_6_3 | Psychosocial Recovery Coaching
+community participation | 09_009_0117_6_3 Skills Development And Training
+Improved relationships 11_024_0117_7_3 Individual Social Skills Development | Support items
+Remote | 07_501_0106_6_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 08_590_0106_2_3 Activity Based Transport Each $1.00 $1.00 $1.00
+07_501_0106_6_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 08_590_0106_2_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 09_590_0106_6_3 Activity Based Transport Each $1.00 $1.00 $1.00
+08_590_0106_2_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 09_590_0106_6_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 09_591_0117_6_3 Activity Based Transport Each $1.00 $1.00 $1.00
+09_590_0106_6_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 09_591_0117_6_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 10_590_0102_5_3 Activity Based Transport Each $1.00 $1.00 $1.00
+09_591_0117_6_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 10_590_0102_5_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 10_590_0133_5_3 Activity Based Transport Each $1.00 $1.00 $1.00
+10_590_0102_5_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 10_590_0133_5_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 11_590_0117_7_3 Activity Based Transport Each $1.00 $1.00 $1.00
+10_590_0133_5_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 11_590_0117_7_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 13_590_0102_4_3 Activity Based Transport Each $1.00 $1.00 $1.00
+11_590_0117_7_3 Activity Based Transport Each $1.00 $1.00 $1.00 | 13_590_0102_4_3 Activity Based Transport Each $1.00 $1.00 $1.00
+• $70.83 for the 40 minutes of direct support at the swimming pool and 45 minutes transport time against | support item 04_104_0125_6_1; | • $21.50 for the non-labour costs of the activity-based transport against the support item 04_590_0125_6_1.
+support item 04_104_0125_6_1; | • $21.50 for the non-labour costs of the activity-based transport against the support item 04_590_0125_6_1. | Note: The provider may also be able to make a claim for the time taken by the worker to travel to the participant
+Remote | 04_599_0104_6_1 Centre Capital Cost Hour $2.59  $3.63  $3.89 | 04_599_0133_5_1 Centre Capital Cost Hour $2.59  $3.63  $3.89
+04_599_0104_6_1 Centre Capital Cost Hour $2.59  $3.63  $3.89 | 04_599_0133_5_1 Centre Capital Cost Hour $2.59  $3.63  $3.89 | 04_599_0136_6_1 Centre Capital Cost Hour  $2.59   $3.63  $3.89
+04_599_0133_5_1 Centre Capital Cost Hour $2.59  $3.63  $3.89 | 04_599_0136_6_1 Centre Capital Cost Hour  $2.59   $3.63  $3.89 | 10_599_0133_5_3 Centre Capital Cost Hour  $2.59   $3.63  $3.89
+04_599_0136_6_1 Centre Capital Cost Hour  $2.59   $3.63  $3.89 | 10_599_0133_5_3 Centre Capital Cost Hour  $2.59   $3.63  $3.89 | Claiming for Establishment Fees for Personal Care/Participation
+Remote | 01_049_0104_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 01_049_0107_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45
+01_049_0104_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 01_049_0107_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0104_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45
+01_049_0107_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0104_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0125_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45
+04_049_0104_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0125_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0136_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45
+04_049_0125_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0136_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0133_5_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45
+04_049_0136_1_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | 04_049_0133_5_1 Establishment Fee for Personal Care/Participation Each $702.30 $983.22 $1053.45 | Claiming for Irregular SIL Supports
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0107_1_1. | These support items are subject to price limits as set out in the following Table. Different price
+Item Number Item Name and Notes Unit National Remote Very Remote | 01_011_0107_1_1 Assistance With Self-Care Activities - | Standard - Weekday Daytime
+Hour $70.23 $98.32 $105.35 | 01_015_0107_1_1 Assistance With Self-Care Activities - | Standard - Weekday Evening
+Hour $77.38 $108.33 $116.07 | 01_002_0107_1_1 Assistance With Self-Care Activities - | Standard - Weekday Night
+Hour $78.81 $110.33 $118.22 | 01_013_0107_1_1 Assistance With Self-Care Activities - | Standard - Saturday
+Hour $98.83 $138.36 $148.25 | 01_014_0107_1_1 Assistance With Self-Care Activities - | Standard - Sunday
+Hour $127.43 $178.40 $191.15 | 01_012_0107_1_1 Assistance With Self-Care Activities - | Standard - Public Holiday
+Hour $156.03 $218.44 $234.05 | 01_450_0107_1_1 Intensive and Complex Behaviour | Supports - Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 01_451_0107_1_1 Intensive and Complex Behaviour | Supports - Weekday Evening
+Hour $83.72 $117.21 $125.58 | 01_452_0107_1_1 Intensive and Complex Behaviour | Supports - Saturday
+Hour $106.93 $149.70 $160.40 | 01_453_0107_1_1 Intensive and Complex Behaviour | Supports - Sunday
+Hour $137.87 $193.02 $206.81 | 01_454_0107_1_1 Intensive and Complex Behaviour | Supports - Public Holiday
+Hour $168.81 $236.33 $253.22 | 01_455_0107_1_1 Intensive and Complex Behaviour | Supports - Weekday Night
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0107_1_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 01_010_0107_1_1 Assistance with Self-Care Activities - Night-Time | Sleepover
+Remote | 01_003_0107_1_1 Assistance from Live-In Carer Hour N/A N/A N/A | Assistance with Personal Domestic Activities
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0107_1_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 01_004_0107_1_1 Assistance with Personal Domestic Activities Hour  $59.06   $82.68  $88.59 | On-Call Overnight Monitoring
+Remote | 01_017_0107_1_1 On-Call Overnight Monitoring-Off Site or Onsite | (Includes 1 hour of assistance)
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0104_1_1. | These support items are subject to price limits as set out in the following Table. Different price
+Remote | 01_400_0104_1_1 Assistance With Self-Care Activities - High Intensity - | Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 01_401_0104_1_1 Assistance With Self-Care Activities - High Intensity - | Weekday Evening
+Hour $83.72 $117.21 $125.58 | 01_405_0104_1_1 Assistance With Self-Care Activities - High Intensity - | Weekday Night
+Remote | 01_402_0104_1_1 Assistance With Self-Care Activities - High Intensity - | Saturday
+Hour $106.93 $149.70 $160.40 | 01_403_0104_1_1 Assistance With Self-Care Activities - High Intensity - | Sunday
+Hour $137.87 $193.02 $206.81 | 01_404_0104_1_1 Assistance With Self-Care Activities - High Intensity - | Public Holiday
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0104_1_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 01_016_0104_1_1 Specialised Home Based Assistance For A Child Hour  $59.06   $82.68   $88.59 | Assistance with household tasks
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0120_1_1. | These support items are subject to price limits as set out in the following Table.
+Remote | 01_019_0120_1_1 House or Yard Maintenance Hour $56.98  $79.77  $85.47
+undertake. | 01_020_0120_1_1 House Cleaning And Other Household Activities | • Performing essential house cleaning activities
+Remote | 01_021_0120_1_1 Linen Service Each N/A N/A N/A | Preparation and Delivery of Meals
+Remote | 01_023_0120_1_1 Assistance with the cost of the preparation and | delivery of meals
+Remote | 01_821_0115_1_1 Assistance in Supported Independent Living - Weekly Week As stated in the participant’s plan or | otherwise agreed in writing with the
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0115_1_1.
+Item Number Item Name and Notes Unit National Remote Very Remote | 01_801_0115_1_1 Assistance in Supported Independent Living | - Standard - Weekday Daytime
+Hour $70.23 $98.32 $105.35 | 01_802_0115_1_1 Assistance in Supported Independent Living | - Standard - Weekday Evening
+Hour $77.38 $108.33 $116.07 | 01_803_0115_1_1 Assistance in Supported Independent Living | - Standard - Weekday Night
+Hour $78.81 $110.33 $118.22 | 01_804_0115_1_1 Assistance in Supported Independent Living | - Standard - Saturday
+Hour $98.83 $138.36 $148.25 | 01_805_0115_1_1 Assistance in Supported Independent Living | - Standard - Sunday
+Hour $127.43 $178.40 $191.15 | 01_806_0115_1_1 Assistance in Supported Independent Living | - Standard - Public Holiday
+Hour $156.03 $218.44 $234.05 | 01_450_0115_1_1 Intensive and Complex Behaviour Supports | - Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 01_451_0115_1_1 Intensive and Complex Behaviour Supports | - Weekday Evening
+Hour $83.72 $117.21 $125.58 | 01_452_0115_1_1 Intensive and Complex Behaviour Supports | – Saturday
+Hour $106.93 $149.70 $160.40 | 01_453_0115_1_1 Intensive and Complex Behaviour Supports | – Sunday
+Hour $137.87 $193.02 $206.81 | 01_454_0115_1_1 Intensive and Complex Behaviour Supports | - Public Holiday
+Hour $168.81 $236.33 $253.22 | 01_455_0115_1_1 Intensive and Complex Behaviour Supports | - Weekday Night
+Hour $85.27 $119.38 $127.91 | 01_811_0115_1_1 Assistance in Supported Independent Living | - High Intensity - Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 01_812_0115_1_1 Assistance in Supported Independent Living | - High Intensity - Weekday Evening
+Hour $83.72 $117.21 $125.58 | 01_813_0115_1_1 Assistance in Supported Independent Living | - High Intensity - Weekday Night
+Hour  $85.27   $119.38   $127.91 | 01_814_0115_1_1 Assistance in Supported Independent Living | - High Intensity - Saturday
+Hour $106.93 $149.70 $160.40 | 01_815_0115_1_1 Assistance in Supported Independent Living | - High Intensity - Sunday
+Hour $137.87 $193.02 $206.81 | 01_816_0115_1_1 Assistance in Supported Independent Living | - High Intensity - Public Holiday
+Hour $168.81 $236.33 $253.22 | 01_832_0115_1_1 Assistance in Supported Independent Living | - Night-Time Sleepover
+Remote | 01_822_0115_1_1 Assistance in Supported Independent Living - Exit | Accommodation Permanently
+Remote | 01_058_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Weekday Day $2,178.57 $3,050.00 $3,267.86
+Remote | 01_059_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Saturday Day $2,785.13 $3,899.18 $4,177.70 | 01_060_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Sunday Day $3,527.69 $4,938.77 $5,291.54
+01_059_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Saturday Day $2,785.13 $3,899.18 $4,177.70 | 01_060_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Sunday Day $3,527.69 $4,938.77 $5,291.54 | 01_061_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Public
+01_060_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Sunday Day $3,527.69 $4,938.77 $5,291.54 | 01_061_0115_1_1 STA And Assistance (Inc. Respite) - 1:1 - Public | Holiday
+Day $4,270.25 $5,978.35 $6,405.38 | 01_054_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Weekday Day $1,198.69 $1,678.17 $1,798.04 | 01_055_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Saturday Day $1,501.97 $2,102.76 $2,252.96
+01_054_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Weekday Day $1,198.69 $1,678.17 $1,798.04 | 01_055_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Saturday Day $1,501.97 $2,102.76 $2,252.96 | 01_056_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Sunday Day $1,873.25 $2,622.55 $2,809.88
+01_055_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Saturday Day $1,501.97 $2,102.76 $2,252.96 | 01_056_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Sunday Day $1,873.25 $2,622.55 $2,809.88 | 01_057_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Public
+01_056_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Sunday Day $1,873.25 $2,622.55 $2,809.88 | 01_057_0115_1_1 STA And Assistance (Inc. Respite) - 1:2 - Public | Holiday
+Day $2,244.53 $3,142.34 $3,366.80 | 01_062_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Weekday Day $872.06 $1,220.88 $1,308.09 | 01_063_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Saturday Day $1,074.25 $1,503.95 $1,611.38
+01_062_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Weekday Day $872.06 $1,220.88 $1,308.09 | 01_063_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Saturday Day $1,074.25 $1,503.95 $1,611.38 | 01_064_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Sunday Day $1,321.77 $1,850.48 $1,982.66
+01_063_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Saturday Day $1,074.25 $1,503.95 $1,611.38 | 01_064_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Sunday Day $1,321.77 $1,850.48 $1,982.66 | 01_065_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Public
+01_064_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Sunday Day $1,321.77 $1,850.48 $1,982.66 | 01_065_0115_1_1 STA And Assistance (Inc. Respite) - 1:3 - Public | Holiday
+Day $1,569.29 $2,197.01 $2,353.94 | 01_045_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Weekday Day $708.75 $992.25 $1,063.13 | 01_051_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Saturday Day $860.39 $1,204.55 $1,290.59
+01_045_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Weekday Day $708.75 $992.25 $1,063.13 | 01_051_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Saturday Day $860.39 $1,204.55 $1,290.59 | 01_052_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Sunday Day $1,046.03 $1,464.44 $1,569.05
+01_051_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Saturday Day $860.39 $1,204.55 $1,290.59 | 01_052_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Sunday Day $1,046.03 $1,464.44 $1,569.05 | 01_053_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Public
+01_052_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Sunday Day $1,046.03 $1,464.44 $1,569.05 | 01_053_0115_1_1 STA And Assistance (Inc. Respite) - 1:4 - Public | Holiday
+Remote | 01_200_0115_1_1 Assistance With Self-Care Activities in a STA - | Weekday Daytime
+Hour $70.23 $98.32 $105.35 | 01_201_0115_1_1 Assistance With Self-Care Activities in a STA - | Weekday Evening
+Hour $77.38 $108.33 $116.07 | 01_205_0115_1_1 Assistance With Self-Care Activities in a STA - | Weekday Night
+Hour $78.81 $110.33 $118.22 | 01_202_0115_1_1 Assistance With Self-Care Activities in a STA - | Saturday
+Hour $98.83 $138.36 $148.25 | 01_203_0115_1_1 Assistance With Self-Care Activities in a STA - | Sunday
+Hour $127.43 $178.40 $191.15 | 01_204_0115_1_1 Assistance With Self-Care Activities in a STA - | Public Holiday
+Remote | 01_082_0115_1_1 Medium Term Accommodation Day $155.68  $217.95  $233.52
+Remote | 01_066_0115_1_1 Unplanned onsite shared supports in Specialist | Disability Accommodation
+Remote | 01_026_0115_1_1 Assistance In Living Arrangements (Host | Family/Alternative Family Situation)
+Day N/A N/A N/A | 01_027_0115_1_1 Assistance In A Shared Living Arrangement | • Daily living support provided in a shared living
+Each N/A N/A N/A | 01_046_0115_1_1 Assistance In Individual Living Arrangement For | Person With Complex Needs
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0106_1_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 01_850_0106_1_1 Individualised Living Options - Exploration and | Design
+Remote | 01_851_0115_1_1 Individualised Living Options - Support Model Week N/A N/A N/A | Capacity Building and Training in Self-Management and Plan
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0117_8_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 01_134_0117_8_1 Capacity Building and Training in Self- | Management and Plan Management
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0114_1_1. | These support items are subject to price limits as set out in the following Table. Different price
+Remote | 01_600_0114_1_1 Delivery of Health Supports by an Enrolled Nurse - | Weekday Daytime
+Hour  $99.88  $139.83  $149.82 | 01_601_0114_1_1 Delivery of Health Supports by an Enrolled Nurse - | Weekday Evening
+Hour  $110.18   $154.25   $165.27 | 01_605_0114_1_1 Delivery of Health Supports by an Enrolled Nurse - | Weekday Night
+Hour  $112.22   $157.11   $168.33 | 01_602_0114_1_1 Delivery of Health Supports by an Enrolled Nurse - | Saturday
+Hour  $142.48   $199.47   $213.72 | 01_603_0114_1_1 Delivery of Health Supports by an Enrolled Nurse - | Sunday
+Hour  $163.79   $229.31   $245.69 | 01_604_0114_1_1 Delivery of Health Supports by an Enrolled Nurse - | Public Holiday
+Hour  $185.08   $259.11   $277.62 | 01_606_0114_1_1 Delivery of Health Supports by a Registered Nurse | - Weekday Daytime
+Hour  $123.65  $173.11   $185.48 | 01_607_0114_1_1 Delivery of Health Supports by a Registered Nurse | - Weekday Evening
+Hour  $136.41   $190.97   $204.62 | 01_611_0114_1_1 Delivery of Health Supports by a Registered Nurse | - Weekday Night
+Hour  $138.95   $194.53   $208.43 | 01_608_0114_1_1 Delivery of Health Supports by a Registered Nurse | - Saturday
+Hour  $176.47   $247.06   $264.71 | 01_609_0114_1_1 Delivery of Health Supports by a Registered Nurse | - Sunday
+Hour  $202.87   $284.02   $304.31 | 01_610_0114_1_1 Delivery of Health Supports by a Registered Nurse | - Public Holiday
+Hour  $229.27   $320.98   $343.91 | 01_612_0114_1_1 Delivery of Health Supports by a Clinical Nurse - | Weekday Daytime
+Hour  $143.04   $200.26   $214.56 | 01_613_0114_1_1 Delivery of Health Supports by a Clinical Nurse - | Weekday Evening
+Hour  $157.77   $220.88   $236.66 | 01_617_0114_1_1 Delivery of Health Supports by a Clinical Nurse - | Weekday Night
+Hour  $160.73   $225.02   $241.10 | 01_614_0114_1_1 Delivery of Health Supports by a Clinical Nurse – | Saturday
+Hour  $204.12   $285.77   $306.18 | 01_615_0114_1_1 Delivery of Health Supports by a Clinical Nurse – | Sunday
+Hour  $234.67   $328.54   $352.01 | 01_616_0114_1_1 Delivery of Health Supports by a Clinical Nurse - | Public Holiday
+Hour  $265.20   $371.28   $397.80 | 01_618_0114_1_1 Delivery of Health Supports by a Clinical Nurse | Consultant - Weekday Daytime
+Hour  $169.16   $236.82   $253.74 | 01_619_0114_1_1 Delivery of Health Supports by a Clinical Nurse | Consultant - Weekday Evening
+Hour  $186.63   $261.28   $279.95 | 01_623_0114_1_1 Delivery of Health Supports by a Clinical Nurse | Consultant - Weekday Night
+Hour  $190.12   $266.17   $285.18 | 01_620_0114_1_1 Delivery of Health Supports by a Clinical Nurse | Consultant - Saturday
+Remote | 01_621_0114_1_1 Delivery of Health Supports by a Clinical Nurse | Consultant - Sunday
+Hour  $277.69   $388.77   $416.54 | 01_622_0114_1_1 Delivery of Health Supports by a Clinical Nurse | Consultant - Public Holiday
+Hour  $313.86   $439.40   $470.79 | 01_624_0114_1_1 Delivery of Health Supports by a Nurse Practitioner | - Weekday Daytime
+Hour  $176.85   $247.59   $265.28 | 01_625_0114_1_1 Delivery of Health Supports by a Nurse Practitioner | - Weekday Evening
+Hour  $195.09   $273.13   $292.64 | 01_629_0114_1_1 Delivery of Health Supports by a Nurse Practitioner | - Weekday Night
+Hour  $198.75   $278.25   $298.13 | 01_626_0114_1_1 Delivery of Health Supports by a Nurse Practitioner | – Saturday
+Hour  $252.51   $353.51   $378.77 | 01_627_0114_1_1 Delivery of Health Supports by a Nurse Practitioner | – Sunday
+Hour  $290.33   $406.46   $435.50 | 01_628_0114_1_1 Delivery of Health Supports by a Nurse Practitioner | - Public Holiday
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0128_1_1 and | 01_799_0118_1_1.
+• Provider Travel – Non-Labour Costs using support item 01_799_0128_1_1 and | 01_799_0118_1_1. | These support items are subject to price limits as set out in the following Table. Different price
+Item Number Item Name and Notes Unit National Remote Very Remote | 01_760_0128_3_3 Assessment Recommendation Therapy or | Training Supports - Dietitian
+Hour $188.99 $264.59 $283.49 | 01_661_0128_1_3 Assessment Recommendation Therapy or | Training Supports - Occupational Therapist
+Hour $193.99 $271.59 $290.99 | 01_721_0128_1_3 Assessment Recommendation Therapy or | Training Supports - Physiotherapist
+Hour $183.99 $257.59  $275.99 | 01_663_0128_1_3 Assessment Recommendation Therapy or | Training Supports - Podiatrist
+Hour $188.99 $264.59 $283.49 | 01_701_0128_1_3 Assessment Recommendation Therapy or | Training Supports - Psychologist
+Hour $232.99 $326.19  $349.49 | 01_665_0128_1_3 Assessment Recommendation Therapy or | Training Supports - Speech Pathologist
+Hour $193.99 $271.59 $290.99 | 01_741_0128_1_3 Assessment Recommendation Therapy or | Training Supports - Other Professional
+Remote | 01_760_0118_1_3 Assessment Recommendation Therapy or Training - EC - | Dietitian
+Hour $188.99 $264.59 $283.49 | 01_650_0118_1_3 Assessment Recommendation Therapy or Training - EC - | Occupational Therapist
+Hour $193.99 $271.59 $290.99 | 01_720_0118_1_3 Assessment Recommendation Therapy or Training - EC - | Physiotherapist
+Hour $183.99 $257.59  $275.99 | 01_663_0118_1_3 Assessment Recommendation Therapy or Training - EC - | Podiatrist
+Hour $188.99 $264.59 $283.49 | 01_700_0118_1_3 Assessment Recommendation Therapy or Training - EC - | Psychologist
+Hour $232.99 $326.19  $349.49 | 01_653_0118_1_3 Assessment Recommendation Therapy or Training - EC - | Speech Pathologist
+Hour $193.99 $271.59 $290.99 | 01_740_0118_1_3 Assessment Recommendation Therapy or Training - EC - Other | Professional
+Remote | 02_051_0108_1_1 Transport Year $1.00 $1.00 $1.00 | Specialised Transport
+Remote | 02_050_0108_1_1 Specialised Transport To School/Educational | Facility/Employment/Community
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 04_799_0125_6_1 | • Activity Based Transport – Social, Economic and Community Participation Supports
+• Activity Based Transport – Social, Economic and Community Participation Supports | using support item 04_590_0125_6_1. | These support items are subject to price limits as set out in the following Table. Different price
+Item Number Item Name and Notes Unit National Remote Very Remote | 04_104_0125_6_1 Access Community Social and Rec Activ - | Standard - Weekday Daytime
+Hour $70.23 $98.32 $105.35 | 04_103_0125_6_1 Access Community Social and Rec Activ - | Standard - Weekday Evening
+Hour $77.38 $108.33 $116.07 | 04_105_0125_6_1 Access Community Social and Rec Activ - | Standard - Saturday
+Hour $98.83  $138.36  $148.25 | 04_106_0125_6_1 Access Community Social and Rec Activ - | Standard - Sunday
+Hour $127.43  $178.40  $191.15 | 04_102_0125_6_1 Access Community Social and Rec Activ - | Standard - Public Holiday
+Hour $156.03  $218.44  $234.05 | 04_450_0125_1_1 Intensive and Complex Behaviour Supports | - Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 04_451_0125_1_1 Intensive and Complex Behaviour Supports | - Weekday Evening
+Hour $83.72 $117.21 $125.58 | 04_452_0125_1_1 Intensive and Complex Behaviour Supports | - Saturday
+Hour $106.93 $149.70 $160.40 | 04_453_0125_1_1 Intensive and Complex Behaviour Supports | - Sunday
+Hour $137.87 $193.02 $206.81 | 04_454_0125_1_1 Intensive and Complex Behaviour Supports | - Public Holiday
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 04_799_0104_6_1 | • Activity Based Transport – Social, Economic and Community Participation Supports
+• Activity Based Transport – Social, Economic and Community Participation Supports | using support item 04_592_0104_6_1. | These support items are subject to price limits as set out in the following Table. Different price
+Remote | 04_400_0104_1_1 Access Community Social and Rec Activ - High | Intensity - Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 04_401_0104_1_1 Access Community Social and Rec Activ - High | Intensity - Weekday Evening
+Hour $83.72 $117.21 $125.58 | 04_402_0104_1_1 Access Community Social and Rec Activ - High | Intensity - Saturday
+Hour $106.93 $149.70 $160.40 | 04_403_0104_1_1 Access Community Social and Rec Activ - High | Intensity - Sunday
+Hour $137.87 $193.02 $206.81 | 04_404_0104_1_1 Access Community Social and Rec Activ - High | Intensity - Public Holiday
+Remote | 04_210_0125_6_1 Community Social and Recreational Activities Each N/A N/A N/A
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 04_799_0136_6_1 | • Activity Based Transport – Social, Economic and Community Participation Supports
+• Activity Based Transport – Social, Economic and Community Participation Supports | using support item 04_591_0136_6_1 | • Centre Capital Costs using support item 04_599_0136_6_1, when the support is provided in
+using support item 04_591_0136_6_1 | • Centre Capital Costs using support item 04_599_0136_6_1, when the support is provided in | a centre rather than in the community.
+Item Number Item Name and Notes Unit National Remote Very Remote | 04_102_0136_6_1 Group Activities - Standard - Weekday | Daytime
+Hour $70.23 $98.32 $105.35 | 04_103_0136_6_1 Group Activities - Standard - Weekday | Evening
+Hour $77.38 $108.33 $116.07 | 04_104_0136_6_1 Group Activities - Standard - Saturday Hour $98.83  $138.36  $148.25 | 04_105_0136_6_1 Group Activities - Standard - Sunday Hour $127.43 $178.40 $191.15
+04_104_0136_6_1 Group Activities - Standard - Saturday Hour $98.83  $138.36  $148.25 | 04_105_0136_6_1 Group Activities - Standard - Sunday Hour $127.43 $178.40 $191.15 | 04_106_0136_6_1 Group Activities - Standard - Public
+04_105_0136_6_1 Group Activities - Standard - Sunday Hour $127.43 $178.40 $191.15 | 04_106_0136_6_1 Group Activities - Standard - Public | Holiday
+Hour $156.03 $218.44 $234.05 | 04_450_0136_1_1 Intensive and Complex Behaviour | Supports - Weekday Daytime
+Hour $75.98 $106.37 $113.97 | 04_451_0136_1_1 Intensive and Complex Behaviour | Supports - Weekday Evening
+Hour $83.72 $117.21 $125.58 | 04_452_0136_1_1 Intensive and Complex Behaviour | Supports - Saturday
+Hour $106.93 $149.70 $160.40 | 04_453_0136_1_1 Intensive and Complex Behaviour | Supports - Sunday
+Hour $137.87 $193.02 $206.81 | 04_454_0136_1_1 Intensive and Complex Behaviour | Supports - Public Holiday
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 01_799_0104_6_1 | • Activity Based Transport – Social, Economic and Community Participation Supports
+• Activity Based Transport – Social, Economic and Community Participation Supports | using support item 04_592_0104_6_1 | • Centre Capital Costs using support item 04_599_0104_6_1, when the support is provided in
+using support item 04_592_0104_6_1 | • Centre Capital Costs using support item 04_599_0104_6_1, when the support is provided in | a centre rather than in the community.
+Remote | 04_600_0104_6_1 Group Activities - High Intensity - Weekday | Daytime
+Hour $75.98 $106.37 $113.97 | 04_601_0104_6_1 Group Activities - High Intensity - Weekday | Evening
+Hour $83.72 $117.21 $125.58 | 04_602_0104_6_1 Group Activities - High Intensity - Saturday Hour $106.93 $149.70 $160.40 | 04_603_0104_6_1 Group Activities - High Intensity - Sunday Hour $137.87 $193.02 $206.81
+04_602_0104_6_1 Group Activities - High Intensity - Saturday Hour $106.93 $149.70 $160.40 | 04_603_0104_6_1 Group Activities - High Intensity - Sunday Hour $137.87 $193.02 $206.81 | 04_604_0104_6_1 Group Activities - High Intensity - Public Holiday Hour $168.81 $236.33 $253.22
+04_603_0104_6_1 Group Activities - High Intensity - Sunday Hour $137.87 $193.02 $206.81 | 04_604_0104_6_1 Group Activities - High Intensity - Public Holiday Hour $168.81 $236.33 $253.22
+Providers of these supports can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 04_799_0133_5_1 | • Activity Based Transport – Social, Economic and Community Participation Supports
+• Activity Based Transport – Social, Economic and Community Participation Supports | using support item 04_821_0133_6_1 | • Centre Capital Costs using support item 04_599_0133_5_1, when the support is provided in
+using support item 04_821_0133_6_1 | • Centre Capital Costs using support item 04_599_0133_5_1, when the support is provided in | a centre rather than in the community.
+Item Number Item Name and Notes Unit National Remote Very Remote | 04_801_0133_5_1 Supports in Employment - Weekday | Daytime
+Item Number Item Name and Notes Unit National Remote Very Remote | 04_802_0133_5_1 Supports in Employment - Weekday | Evening
+Hour $77.38 $108.33 $116.07 | 04_803_0133_5_1 Supports in Employment - Saturday Hour $98.83  $138.36  $148.25 | 04_804_0133_5_1 Supports in Employment - Sunday Hour $127.43  $178.40  $191.15
+04_803_0133_5_1 Supports in Employment - Saturday Hour $98.83  $138.36  $148.25 | 04_804_0133_5_1 Supports in Employment - Sunday Hour $127.43  $178.40  $191.15 | 04_805_0133_5_1 Supports in Employment - Public
+04_804_0133_5_1 Supports in Employment - Sunday Hour $127.43  $178.40  $191.15 | 04_805_0133_5_1 Supports in Employment - Public | Holiday
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 07_799_0106_6_3 or | 01_799_0106_1_1.
+• Provider Travel – Non-Labour Costs using the support item 07_799_0106_6_3 or | 01_799_0106_1_1. | This support item is subject to price limits as set out in the following Table.
+Item Number Item Name and Notes Unit National Remote Very Remote | 07_001_0106_8_3 Support Coordination Level 1: Support Connection Hour $80.06 $112.08  $120.09 | Where a participant younger than 9 is receiving assistance from Partners in the Community (PITC)
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 07_799_0106_6_3 or | 01_799_0106_1_1.
+• Provider Travel – Non-Labour Costs using the support item 07_799_0106_6_3 or | 01_799_0106_1_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 07_002_0106_8_3 Support Coordination Level 2: Coordination of | Supports
+NDIS Pricing Arrangements and Price Limits 2025-26 Version 1.0 (published 16/06/2025)  Page 74 of 103 | • Provider Travel – Non-Labour Costs using the support item 07_799_0132_8_3 or | 01_799_0132_1_1.
+• Provider Travel – Non-Labour Costs using the support item 07_799_0132_8_3 or | 01_799_0132_1_1. | This support item is subject to price limits as set out in the following Table.
+Remote | 07_004_0132_8_3 Support Coordination Level 3: Specialist Support | Coordination
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 07_799_0106_6_3 | • Activity Based Transport – Capacity Building Supports using support item
+• Activity Based Transport – Capacity Building Supports using support item | 07_501_0106_6_3. | These support items are subject to price limits as set out in the following Table. Different price
+Remote | 07_101_0106_6_3 Psychosocial Recovery Coaching - Weekday | Daytime
+Hour $105.43   $147.60   $158.15 | 07_102_0106_6_3 Psychosocial Recovery Coaching - Weekday | Evening
+Hour $116.16   $162.62   $174.24 | 07_103_0106_6_3 Psychosocial Recovery Coaching - Weekday Night Hour $118.31   $165.63   $177.47 | 07_104_0106_6_3 Psychosocial Recovery Coaching - Saturday Hour $148.36   $207.70   $222.54
+07_103_0106_6_3 Psychosocial Recovery Coaching - Weekday Night Hour $118.31   $165.63   $177.47 | 07_104_0106_6_3 Psychosocial Recovery Coaching - Saturday Hour $148.36   $207.70   $222.54 | 07_105_0106_6_3 Psychosocial Recovery Coaching - Sunday Hour $191.29  $267.81   $286.94
+07_104_0106_6_3 Psychosocial Recovery Coaching - Saturday Hour $148.36   $207.70   $222.54 | 07_105_0106_6_3 Psychosocial Recovery Coaching - Sunday Hour $191.29  $267.81   $286.94 | 07_106_0106_6_3 Psychosocial Recovery Coaching - Public Holiday Hour $234.23   $327.92   $351.35
+07_105_0106_6_3 Psychosocial Recovery Coaching - Sunday Hour $191.29  $267.81   $286.94 | 07_106_0106_6_3 Psychosocial Recovery Coaching - Public Holiday Hour $234.23   $327.92   $351.35
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 08_799_0106_2_3 | • Activity Based Transport – Capacity Building Supports using support item
+• Activity Based Transport – Capacity Building Supports using support item | 08_590_0106_2_3. | This support item is subject to price limits as set out in the following Table
+Item Number Item Name and Notes Unit National Remote Very Remote | 08_005_0106_2_3 Assistance With Accommodation And Tenancy | Obligations
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 09_799_0106_6_3 | • Activity Based Transport – Capacity Building Supports using support item
+• Activity Based Transport – Capacity Building Supports using support item | 09_590_0106_6_3. | This support item is subject to price limits as set out in the following Table.
+Remote | 09_006_0106_6_3 Life Transition Planning Incl. Mentoring Peer- | Support And Indiv Skill Develop
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 09_799_0117_6_3 | • Activity Based Transport – Capacity Building Supports using support item
+• Activity Based Transport – Capacity Building Supports using support item | 09_591_0117_6_3. | This support item is subject to price limits as set out in the following Table.
+Remote | 09_009_0117_6_3 Skills Development and Training Hour $80.06  $112.08  $120.09 | Innovative Community Participation
+Remote | 09_008_0116_6_3 Innovative Community Participation Each N/A N/A N/A
+Remote | 09_011_0125_6_3 Community Participation Activities Each N/A N/A N/A
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 10_799_0128_5_3. | This support item is subject to price limits as set out in the following Table.
+Remote | 10_011_0128_5_3 Employment Related Assessment, Counselling | and Advice – Other Professional
+Hour $193.99 $271.59 $290.99 | 10_054_0128_5_3 Employment Related Assessment, Counselling | and Advice -Psychologist
+Hour $232.99 $326.19  $349.49 | 10_055_0128_5_3 Employment Related Assessment, Counselling | and Advice -Physiotherapist
+Hour $183.99 $257.59  $275.99 | 10_613_0128_5_3 Employment Related Assessment, Counselling | and Advice - Developmental Educator
+Hour $193.99 $271.59 $290.99 | 10_617_0128_5_3 Employment Related Assessment, Counselling | and Advice - Occupational Therapist
+Hour $193.99 $271.59 $290.99 | 10_622_0128_5_3 Employment Related Assessment, Counselling | and Advice – Speech Pathologist
+Hour $193.99 $271.59 $290.99 | 10_620_0128_5_3 Employment Related  Assessment, Counselling | and Advice - Rehabilitation Counsellor
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 10_799_0102_5_3 | • Activity Based Transport – Capacity Building Supports using the support item
+• Activity Based Transport – Capacity Building Supports using the support item | 10_590_0102_5_3. | This support item is subject to price limits as set out in the following Table.
+Item Number Item Name and Notes Unit National Remote Very Remote | 10_016_0102_5_3 Employment Assistance Hour $80.06  $112.08  $120.09 | Other Support Items to assist successful development and placement in employment
+Remote | 10_002_0106_8_3 Support Coordination Level 2: Coordination of | Supports
+Remote | 10_101_0106_6_3 Psychosocial Recovery Coaching – Weekday | Daytime
+Item Number Item Name and Notes Unit National Remote Very Remote | 10_806_0133_5_1 Supports in Employment - Weekday Daytime Hour $70.23 $98.32 $105.35
+Remote | 10_021_0102_5_3 School Leaver Employment Supports (transitional) Each N/A N/A N/A
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 01_799_0110_1_1 or | 11_799_0110_7_3.
+• Provider Travel – Non-Labour Costs using the support item 01_799_0110_1_1 or | 11_799_0110_7_3. | These support items are subject to price limits as set out in the following Table.
+Remote | 11_022_0110_7_3 Specialist Behavioural Intervention Support | • Highly specialised intensive support interventions to
+Hour $232.99 $326.19 $349.49 | 11_023_0110_7_3 Behaviour Management Plan Including Training in | Behaviour Management Strategies
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using the support item 11_799_0117_7_3 | • Activity Based Transport – Capacity Building Supports using the support item
+• Activity Based Transport – Capacity Building Supports using the support item | 11_590_0117_7_3. | This support item is subject to price limits as set out in the following Table.
+Remote | 11_024_0117_7_3 Individual Social Skills Development Hour  $80.06   $112.08   $120.09
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0126_1_1 or | 12_799_0126_3_3 or support item 12_799_0128_3_3, depending on their Registration Group.
+• Provider Travel – Non-Labour Costs using support item 01_799_0126_1_1 or | 12_799_0126_3_3 or support item 12_799_0128_3_3, depending on their Registration Group. | These support items are subject to price limits as set out in the following Table. If a support item is
+Remote | 12_027_0126_3_3 Advice provided by an Exercise Physiologist | regarding exercise required
+Hour $166.99 $233.79 $250.49 | 12_027_0128_3_3 Advice provided by an Exercise Physiologist | regarding exercise required
+Hour $166.99 $233.79 $250.49 | 12_029_0126_3_3 Personal training provided by a Personal Trainer to a | participant
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 12_799_0128_3_3. | This support item is subject to price limits as set out in the following Table. If a support item is
+Remote | 12_025_0128_3_3 Advice provided by a Dietitian on managing diet for | health and well-being
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0102_1_1 or | 13_799_0102_4_3.
+• Provider Travel – Non-Labour Costs using support item 01_799_0102_1_1 or | 13_799_0102_4_3. | • Activity Based Transport – Capacity Building Supports using the support item
+• Activity Based Transport – Capacity Building Supports using the support item | 13_590_0102_4_3. | This support item is subject to price limits as set out in the following Table. If a support item is
+Remote | 13_030_0102_4_3 Transition through School and to Further Education Hour  $80.06   $112.08   $120.09
+Item Number Item Name and Notes Unit National | 14_034_0127_8_3 Plan Management - Monthly Fee | • A monthly fee for the ongoing maintenance of
+Providers of these support items can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 15_799_0118_1_3. | These support items are subject to the price limits set out in the following Table. Different price
+Remote | 15_005_0118_1_3 Early Childhood Intervention Professional  - | Other Early Childhood Professional
+Hour $193.99 $271.59 $290.99 | 15_613_0118_1_3 Early Childhood Intervention Professional – | Developmental educator
+Hour $193.99 $271.59 $290.99 | 15_622_0118_1_3 Early Childhood Intervention Professional – | Speech Pathologist
+Hour $193.99 $271.59 $290.99 | 15_625_0118_1_3 Early Childhood Intervention Professional – | Early Childhood Teacher or Educator
+Hour $193.99 $271.59 $290.99 | 15_617_0118_1_3 Early Childhood Intervention Professional – | Occupational Therapist
+Hour $193.99 $271.59 $290.99 | 15_621_0118_1_3 Early Childhood Intervention Professional – | Social worker
+NDIS Pricing Arrangements and Price Limits 2025-26 Version 1.0 (published 16/06/2025)  Page 92 of 103 | 15_610_0118_1_3 Early Childhood Intervention Professional – | Art Therapist
+Hour $193.99 $271.59 $290.99 | 15_615_0118_1_3 Early Childhood Intervention Professional – | Music Therapist
+Hour $193.99 $271.59 $290.99 | 15_619_0118_1_3 Early Childhood Intervention Professional – | Podiatrist
+Hour $188.99 $264.59  $283.49 | 15_062_0118_1_3 Early Childhood Intervention Professional – | Dietitian
+Hour $188.99 $264.59 $283.49 | 15_003_0118_1_3 Early Childhood Intervention Professional - | Physiotherapist
+Hour $183.99 $257.59 $275.99 | 15_001_0118_1_3 Early Childhood Intervention Professional - | Psychologist
+Hour $232.99 $326.19 $349.49 | 15_606_0118_1_3 Early Childhood Intervention Professional - | Counsellor
+Hour $156.16 $218.62 $234.24 | 15_609_0118_1_3 Early Childhood Intervention Professional - | Exercise Physiologist
+Hour $166.99 $233.79 $250.49 | 15_007_0118_1_3 Early Childhood Intervention Professional - | Therapy Assistant - Level 1
+Hour $56.16 $78.62 $84.24 | 15_008_0118_1_3 Early Childhood Intervention Professional - | Therapy Assistant - Level 2
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 15_799_0114_1_3 or | 15_799_0126_1_3 or 15_799_0128_1_3, depending on their Registration Group.
+• Provider Travel – Non-Labour Costs using support item 15_799_0114_1_3 or | 15_799_0126_1_3 or 15_799_0128_1_3, depending on their Registration Group. | These support items are subject to the price limits set out in the following Table. Different price
+Remote | 15_610_0128_1_3 Assessment Recommendation Therapy or | Training - Art Therapist
+Hour $193.99 $271.59 $290.99 | 15_611_0128_1_3 Assessment Recommendation Therapy or | Training - Audiologist
+Hour $193.99 $271.59 $290.99 | 15_043_0128_1_3 Assessment Recommendation Therapy or | Training - Counsellor
+Hour $156.16 $218.62 $234.24 | 15_613_0128_1_3 Assessment Recommendation Therapy or | Training - Developmental Educator
+Hour $193.99 $271.59 $290.99 | 15_062_0128_3_3 Assessment Recommendation Therapy or | Training - Dietitian
+Hour $188.99 $264.59  $283.49 | 15_200_0126_1_3 Assessment Recommendation Therapy or | Training - Exercise Physiologist
+Hour $166.99 $233.79 $250.49 | 15_200_0128_1_3 Assessment Recommendation Therapy or | Training - Exercise Physiologist
+Hour $166.99 $233.79 $250.49 | 15_615_0128_1_3 Assessment Recommendation Therapy or | Training - Music Therapist
+Hour $193.99 $271.59 $290.99 | 15_617_0128_1_3 Assessment Recommendation Therapy or | Training - Occupational Therapist
+Hour $193.99 $271.59 $290.99 | 15_618_0128_1_3 Assessment Recommendation Therapy or | Training - Orthoptist
+Hour $193.99 $271.59 $290.99 | 15_055_0128_1_3 Assessment Recommendation Therapy or | Training - Physiotherapist
+Hour $183.99 $257.59  $275.99 | 15_619_0128_1_3 Assessment Recommendation Therapy or | Training - Podiatrist
+Hour $188.99 $264.59  $283.49 | 15_054_0128_1_3 Assessment Recommendation Therapy or | Training - Psychologist
+Hour $232.99 $326.19 $349.49 | 15_620_0128_1_3 Assessment Recommendation Therapy or | Training - Rehabilitation Counsellor
+Hour $193.99 $271.59 $290.99 | 15_621_0128_1_3 Assessment Recommendation Therapy or | Training - Social Worker
+Remote | 15_622_0128_1_3 Assessment Recommendation Therapy or | Training - Speech Pathologist
+Hour $193.99 $271.59 $290.99 | 15_056_0128_1_3 Assessment Recommendation Therapy or | Training - Other Professional
+Hour $193.99 $271.59 $290.99 | 15_052_0128_1_3 Therapy Assistant - Level 1 | • Support must be delivered by a therapy
+Hour $56.16 $78.62 $84.24 | 15_053_0128_1_3 Therapy Assistant - Level 2 | • Support must be delivered by a therapy
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 15_799_0128_1_3. | This support item is subject to the price limits set out in the following Table. If the support item is
+Remote | 15_045_0128_1_3 Community Engagement Assistance Hour $51.20 $71.68 $76.80 | Hearing Supports
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 01_799_0119_1_1 or | 15_799_0119_1_3 or 01_799_0134_1_1 or 15_799_0134_1_3, depending on their
+• Provider Travel – Non-Labour Costs using support item 01_799_0119_1_1 or | 15_799_0119_1_3 or 01_799_0134_1_1 or 15_799_0134_1_3, depending on their | Registration Group.
+Remote | 15_501_0119_1_3 Provision of Hearing Services by an Audiologist Hour $193.99 $271.59 $290.99 | 15_502_0134_1_3 Provision of Hearing Services by an Audiologist Hour $193.99 $271.59 $290.99
+15_501_0119_1_3 Provision of Hearing Services by an Audiologist Hour $193.99 $271.59 $290.99 | 15_502_0134_1_3 Provision of Hearing Services by an Audiologist Hour $193.99 $271.59 $290.99 | 15_503_0134_1_3 Provision of Hearing Services by an Audiometrist Hour $166.83 $233.56 $250.25
+15_502_0134_1_3 Provision of Hearing Services by an Audiologist Hour $193.99 $271.59 $290.99 | 15_503_0134_1_3 Provision of Hearing Services by an Audiometrist Hour $166.83 $233.56 $250.25 | Multidisciplinary Team Supports
+Remote | 15_049_0128_1_3 Multidisciplinary Team Each N/A N/A N/A | Delivery of Disability Related Health Supports by a Nurse
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 15_799_0114_1_3. | These support items are subject to price limits as set out in the following Table. Different price
+Remote | 15_400_0114_1_3 Delivery of Health Supports by an Enrolled Nurse - | Weekday Daytime
+Remote | 15_401_0114_1_3 Delivery of Health Supports by an Enrolled Nurse - | Weekday Evening
+Hour  $110.18   $154.25   $165.27 | 15_405_0114_1_3 Delivery of Health Supports by an Enrolled Nurse - | Weekday Night
+Hour  $112.22   $157.11   $168.33 | 15_402_0114_1_3 Delivery of Health Supports by an Enrolled Nurse - | Saturday
+Hour  $142.48   $199.47   $213.72 | 15_403_0114_1_3 Delivery of Health Supports by an Enrolled Nurse - | Sunday
+Hour  $163.79   $229.31   $245.69 | 15_404_0114_1_3 Delivery of Health Supports by an Enrolled Nurse - | Public Holiday
+Hour  $185.08   $259.11   $277.62 | 15_406_0114_1_3 Delivery of Health Supports by a Registered Nurse | - Weekday Daytime
+Hour  $123.65  $173.11   $185.48 | 15_407_0114_1_3 Delivery of Health Supports by a Registered Nurse | - Weekday Evening
+Hour  $136.41   $190.97   $204.62 | 15_411_0114_1_3 Delivery of Health Supports by a Registered Nurse | - Weekday Night
+Hour  $138.95   $194.53   $208.43 | 15_408_0114_1_3 Delivery of Health Supports by a Registered Nurse | - Saturday
+Hour  $176.47   $247.06   $264.71 | 15_409_0114_1_3 Delivery of Health Supports by a Registered Nurse | - Sunday
+Hour  $202.87   $284.02   $304.31 | 15_410_0114_1_3 Delivery of Health Supports by a Registered Nurse | - Public Holiday
+Hour  $229.27   $320.98   $343.91 | 15_412_0114_1_3 Delivery of Health Supports by a Clinical Nurse - | Weekday Daytime
+Hour  $143.04   $200.26   $214.56 | 15_413_0114_1_3 Delivery of Health Supports by a Clinical Nurse - | Weekday Evening
+Hour  $157.77   $220.88   $236.66 | 15_417_0114_1_3 Delivery of Health Supports by a Clinical Nurse - | Weekday Night
+Hour  $160.73   $225.02   $241.10 | 15_414_0114_1_3 Delivery of Health Supports by a Clinical Nurse - | Saturday
+Hour  $204.12   $285.77   $306.18 | 15_415_0114_1_3 Delivery of Health Supports by a Clinical Nurse - | Sunday
+Hour  $234.67   $328.54   $352.01 | 15_416_0114_1_3 Delivery of Health Supports by a Clinical Nurse - | Public Holiday
+Hour  $265.20   $371.28   $397.80 | 15_418_0114_1_3 Delivery of Health Supports by a Clinical Nurse | Consultant - Weekday Daytime
+Hour  $169.16   $236.82   $253.74 | 15_419_0114_1_3 Delivery of Health Supports by a Clinical Nurse | Consultant - Weekday Evening
+Hour  $186.63   $261.28   $279.95 | 15_423_0114_1_3 Delivery of Health Supports by a Clinical Nurse | Consultant - Weekday Night
+Hour  $190.12   $266.17   $285.18 | 15_420_0114_1_3 Delivery of Health Supports by a Clinical Nurse | Consultant - Saturday
+Hour  $241.52   $338.13   $362.28 | 15_421_0114_1_3 Delivery of Health Supports by a Clinical Nurse | Consultant - Sunday
+Hour  $277.69   $388.77   $416.54 | 15_422_0114_1_3 Delivery of Health Supports by a Clinical Nurse | Consultant - Public Holiday
+Hour  $313.86   $439.40   $470.79 | 15_424_0114_1_3 Delivery of Health Supports by a Nurse Practitioner | - Weekday Daytime
+Hour  $176.85   $247.59   $265.28 | 15_425_0114_1_3 Delivery of Health Supports by a Nurse Practitioner | - Weekday Evening
+Hour  $195.09   $273.13   $292.64 | 15_429_0114_1_3 Delivery of Health Supports by a Nurse Practitioner | - Weekday Night
+Hour  $198.75   $278.25   $298.13 | 15_426_0114_1_3 Delivery of Health Supports by a Nurse Practitioner | - Saturday
+Hour  $252.51   $353.51   $378.77 | 15_427_0114_1_3 Delivery of Health Supports by a Nurse Practitioner | - Sunday
+Hour  $290.33   $406.46   $435.50 | 15_428_0114_1_3 Delivery of Health Supports by a Nurse Practitioner | - Public Holiday
+Remote | 15_046_0129_1_3 Specialised Driver Training Each N/A N/A N/A | Other Supports
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 15_799_0106_1_3 or | 15_799_0117_1_3 or 01_799_0135_1_1 or 15_799_0135_1_3, depending on their
+• Provider Travel – Non-Labour Costs using support item 15_799_0106_1_3 or | 15_799_0117_1_3 or 01_799_0135_1_1 or 15_799_0135_1_3, depending on their | Registration Group.
+Item Number Item Name and Notes Unit National Remote Very Remote | 15_035_0106_1_3 Assistance With Decision Making Daily Planning | and Budgeting
+Hour $70.23 $98.32 $105.35 | 15_037_0117_1_3 Skill Development And Training including Public | Transport Training
+Hour $70.23 $98.32 $105.35 | 15_038_0117_1_3 Training For Carers/Parents | • Training for carers in matters related to caring
+Hour  $80.06   $112.08   $120.09 | 15_047_0135_1_3 Selection and/or Manufacture of Customised or | Wearable Technology
+Providers of this support can also claim for the costs of: | • Provider Travel – Non-Labour Costs using support item 15_799_0103_6_3 | These support items are subject to price limits as set out in the following Table.
+Remote | 15_300_0103_1_3  Assistive Technology Mentoring  Hour   $105.43   $147.60   $158.15

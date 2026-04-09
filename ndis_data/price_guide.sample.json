@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "code": "04_102_0136_6_1",
+      "name": "Group Activities - Standard - Weekday Daytime",
+      "unit": "hour",
+      "rate": 70.23,
+      "claiming_categories": ["LLND_GROUP_ACTIVITIES"]
+    },
+    {
+      "code": "04_599_0136_6_1",
+      "name": "Centre Capital Cost Standard",
+      "unit": "each",
+      "rate": 2.59,
+      "claiming_categories": ["LLND_CENTRE_CAPITAL"]
+    }
+  ]
+}
