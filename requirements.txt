@@ -1,6 +1,10 @@
-# Python standard library only - no external dependencies required
-# The game uses only built-in Python modules:
-# - math (for vector calculations)
-# - random (for wind variance)
-# - time (for demo delays)
-# - typing (for type hints)
+Flask>=2.2.0
+python-dotenv>=1.0.0
+openai>=0.27.0
+python-docx>=0.8.11
+msal>=1.20.0
+passlib[bcrypt]>=1.7.4
+requests>=2.31.0
+xhtml2pdf>=0.2.7
+pytest>=7.0.0
+pypdf>=6.0.0

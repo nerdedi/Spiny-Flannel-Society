@@ -1,0 +1,1860 @@
+diff --git a/README.md b/README.md
+index f1884a3..de380f1 100644
+--- a/README.md
++++ b/README.md
+@@ -223,6 +223,32 @@ Outputs are written to `output/` as markdown drafts with:
+ - participant-specific key points
+ - governance references and source snippets
+ 
++### Professional web app (quotes + notes + docs)
++
++```bash
++python app.py
++```
++
++Features include:
++
++- Flask-based UI with modern tabs, dropdowns, and interactive widgets
++- Windgap-inspired color styling used discreetly across the interface
++- quote builder with regional pricing and HTML download
++- progress note upload and adaptation recommendations
++- governance-guided report/review/letter generation with file download
++- SharePoint deployment guidance for online and downloadable access
++
++Health check endpoint:
++
++```bash
++curl http://127.0.0.1:8000/health
++```
++
++Deployment docs:
++
++- `DEPLOY_SHAREPOINT.md`
++- `Dockerfile`
++
+ The generator validates each quote line against:
+ 
+ - known support item codes
+diff --git a/requirements.txt b/requirements.txt
+index b7f05ac..5a68770 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,6 +1,10 @@
+-# Python standard library only - no external dependencies required
+-# The game uses only built-in Python modules:
+-# - math (for vector calculations)
+-# - random (for wind variance)
+-# - time (for demo delays)
+-# - typing (for type hints)
++Flask>=2.2.0
++python-dotenv>=1.0.0
++openai>=0.27.0
++python-docx>=0.8.11
++msal>=1.20.0
++passlib[bcrypt]>=1.7.4
++requests>=2.31.0
++xhtml2pdf>=0.2.7
++pytest>=7.0.0
++pypdf>=6.0.0
+diff --git a/.env b/.env
+new file mode 100644
+index 0000000..3cac181
+--- /dev/null
++++ b/.env
+@@ -0,0 +1 @@
++OPENAI_API_KEY=your_openai_api_key_here
+diff --git a/app.py b/app.py
+new file mode 100644
+index 0000000..f46e9a1
+--- /dev/null
++++ b/app.py
+@@ -0,0 +1,275 @@
++from __future__ import annotations
++
++from datetime import date
++from io import BytesIO
++from pathlib import Path
++from tempfile import TemporaryDirectory
++from typing import Any
++import os
++
++from dotenv import load_dotenv
++from flask import Flask, flash, render_template, request, send_file, url_for
++
++from ndis_document_generator import DocumentRequest, build_document_markdown
++from ndis_progress_notes import analyze_progress_notes
++from ndis_quote_generator import (
++    Participant,
++    ParticipantQuote,
++    QuoteLine,
++    generate_quote_html,
++    load_default_catalog,
++)
++
++
++APP_TITLE = "Windgap NDIS Workspace"
++DEFAULT_QUOTE_ROWS = [
++    {
++        "program": "Core Supports",
++        "code": "04_102_0136_6_1",
++        "name": "Group Activities - Standard - Weekday Daytime",
++        "service_type": "Face-to-Face",
++        "category": "LLND_GROUP_ACTIVITIES",
++        "ratio": "1:1",
++        "qty": "1.00",
++        "days": "1",
++    },
++    {
++        "program": "Core Supports",
++        "code": "04_102_0136_6_1",
++        "name": "Group Activities - Standard - Weekday Daytime",
++        "service_type": "Non Face-to-Face",
++        "category": "LLND_GROUP_ACTIVITIES",
++        "ratio": "N/A",
++        "qty": "0.03846",
++        "days": "1",
++    },
++    {
++        "program": "Core Supports",
++        "code": "04_599_0136_6_1",
++        "name": "Centre Capital Cost",
++        "service_type": "Centre Capital Costs",
++        "category": "LLND_CENTRE_CAPITAL",
++        "ratio": "N/A",
++        "qty": "1.00",
++        "days": "1",
++    },
++]
++
++
++def _catalog_options() -> dict[str, Any]:
++    catalog = load_default_catalog()
++    items = [
++        {
++            "code": item.code,
++            "name": item.name,
++            "rate": item.rate,
++            "remote_rate": item.remote_rate,
++            "very_remote_rate": item.very_remote_rate,
++            "claiming_categories": item.claiming_categories,
++        }
++        for item in sorted(catalog.items.values(), key=lambda item: (item.code, item.name))
++    ]
++    categories = [
++        {
++            "code": category.code,
++            "name": category.name,
++        }
++        for category in sorted(catalog.categories.values(), key=lambda category: (category.code, category.name))
++    ]
++    return {"items": items, "categories": categories}
++
++
++def _parse_quote_lines(form) -> list[QuoteLine]:
++    programs = form.getlist("program[]")
++    codes = form.getlist("code[]")
++    names = form.getlist("name[]")
++    service_types = form.getlist("service_type[]")
++    categories = form.getlist("category[]")
++    ratios = form.getlist("ratio[]")
++    quantities = form.getlist("qty[]")
++    days = form.getlist("days[]")
++
++    lines: list[QuoteLine] = []
++    row_count = max(
++        len(programs),
++        len(codes),
++        len(names),
++        len(service_types),
++        len(categories),
++        len(ratios),
++        len(quantities),
++        len(days),
++    )
++
++    for index in range(row_count):
++        code = (codes[index] if index < len(codes) else "").strip()
++        if not code:
++            continue
++
++        lines.append(
++            QuoteLine(
++                program=(programs[index] if index < len(programs) else "Core Supports").strip() or "Core Supports",
++                support_item_code=code,
++                support_item_name=(names[index] if index < len(names) else "").strip(),
++                service_type=(service_types[index] if index < len(service_types) else "").strip(),
++                claiming_category=(categories[index] if index < len(categories) else "").strip(),
++                ratio=(ratios[index] if index < len(ratios) else "N/A").strip() or "N/A",
++                quantity_per_day=float((quantities[index] if index < len(quantities) else "0") or 0),
++                days_per_week=int(float((days[index] if index < len(days) else "0") or 0)),
++            )
++        )
++
++    return lines
++
++
++def _save_uploaded_notes(files) -> tuple[list[str], TemporaryDirectory[str]]:
++    temp_dir = TemporaryDirectory()
++    paths: list[str] = []
++    for storage in files:
++        if not storage or not storage.filename:
++            continue
++        target = Path(temp_dir.name) / Path(storage.filename).name
++        target.write_bytes(storage.read())
++        paths.append(str(target))
++    return paths, temp_dir
++
++
++def _base_context(**extra: Any) -> dict[str, Any]:
++    today = date.today()
++    return {
++        "app_title": APP_TITLE,
++        "today": today,
++        "default_quote_rows": DEFAULT_QUOTE_ROWS,
++        "catalog_options": _catalog_options(),
++        "regions": ["national", "remote", "very_remote"],
++        "default_support_start": "2026-03-09",
++        "default_support_end": "2026-04-27",
++        "document_types": ["report", "review", "letter"],
++        **extra,
++    }
++
++
++def create_app(test_config: dict[str, Any] | None = None) -> Flask:
++    load_dotenv()
++
++    app = Flask(__name__)
++    app.config.update(
++        SECRET_KEY=os.getenv("FLASK_SECRET_KEY", "windgap-dev-secret"),
++        MAX_CONTENT_LENGTH=10 * 1024 * 1024,
++    )
++
++    if test_config:
++        app.config.update(test_config)
++
++    @app.get("/")
++    def index():
++        return render_template("index.html", **_base_context())
++
++    @app.post("/generate-quote")
++    def generate_quote():
++        catalog = load_default_catalog()
++        try:
++            participant = Participant(
++                name=request.form.get("participant_name", "Sample Participant").strip(),
++                ndis_number=request.form.get("ndis_number", "").strip(),
++                dob=request.form.get("dob", "").strip(),
++            )
++            quote = ParticipantQuote(
++                participant=participant,
++                support_start=date.fromisoformat(request.form.get("support_start", "2026-03-09")),
++                support_end=date.fromisoformat(request.form.get("support_end", "2026-04-27")),
++                lines=_parse_quote_lines(request.form),
++                region=request.form.get("region", "national"),
++            )
++            weeks_override = float(request.form.get("weeks_override", "8") or 8)
++
++            with TemporaryDirectory() as tmp:
++                output_path = Path(tmp) / "participant_summary_of_supports.html"
++                generate_quote_html(
++                    quote=quote,
++                    output_path=str(output_path),
++                    catalog=catalog,
++                    weeks_override=weeks_override,
++                    region_override=quote.region,
++                )
++                html_bytes = output_path.read_bytes()
++
++            return send_file(
++                BytesIO(html_bytes),
++                mimetype="text/html",
++                as_attachment=True,
++                download_name="participant_summary_of_supports.html",
++            )
++        except Exception as exc:
++            flash(f"Quote generation failed: {exc}", "error")
++            return render_template("index.html", **_base_context(active_tab="quote")), 400
++
++    @app.post("/analyze-notes")
++    def analyze_notes():
++        files = request.files.getlist("progress_notes")
++        if not any(file.filename for file in files):
++            flash("Upload at least one progress note before analysis.", "error")
++            return render_template("index.html", **_base_context(active_tab="notes")), 400
++
++        temp_dir = None
++        try:
++            note_paths, temp_dir = _save_uploaded_notes(files)
++            analysis = analyze_progress_notes(note_paths)
++            context = _base_context(active_tab="notes", note_analysis=analysis)
++            return render_template("index.html", **context)
++        except Exception as exc:
++            flash(f"Progress note analysis failed: {exc}", "error")
++            return render_template("index.html", **_base_context(active_tab="notes")), 400
++        finally:
++            if temp_dir is not None:
++                temp_dir.cleanup()
++
++    @app.post("/generate-document")
++    def generate_document():
++        files = request.files.getlist("document_progress_notes")
++        temp_dir = None
++        try:
++            note_paths, temp_dir = _save_uploaded_notes(files)
++            request_model = DocumentRequest(
++                document_type=request.form.get("document_type", "report"),
++                participant_name=request.form.get("document_participant_name", "Sample Participant").strip(),
++                ndis_number=request.form.get("document_ndis_number", "").strip(),
++                author_name=request.form.get("author_name", "").strip(),
++                organisation=request.form.get("organisation", "").strip(),
++                purpose=request.form.get("purpose", "").strip(),
++                period_start=request.form.get("period_start", "").strip(),
++                period_end=request.form.get("period_end", "").strip(),
++                key_points=[
++                    line.strip()
++                    for line in request.form.get("key_points", "").splitlines()
++                    if line.strip()
++                ],
++                progress_note_paths=note_paths,
++            )
++            content = build_document_markdown(request_model, max_snippets_per_source=2)
++            file_name = f"{request_model.normalized_type()}_{request_model.participant_name.replace(' ', '_')}.md"
++            return send_file(
++                BytesIO(content.encode("utf-8")),
++                mimetype="text/markdown",
++                as_attachment=True,
++                download_name=file_name,
++            )
++        except Exception as exc:
++            flash(f"Document generation failed: {exc}", "error")
++            return render_template("index.html", **_base_context(active_tab="documents")), 400
++        finally:
++            if temp_dir is not None:
++                temp_dir.cleanup()
++
++    @app.get("/health")
++    def health():
++        return {"status": "ok", "app": APP_TITLE}
++
++    return app
++
++
++app = create_app()
++
++
++if __name__ == "__main__":
++    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "8000")), debug=True)
+diff --git a/DEPLOY_SHAREPOINT.md b/DEPLOY_SHAREPOINT.md
+new file mode 100644
+index 0000000..818f679
+--- /dev/null
++++ b/DEPLOY_SHAREPOINT.md
+@@ -0,0 +1,66 @@
++# Deploy Windgap NDIS Web App for SharePoint Access
++
++This guide provides two practical rollout paths for organisations using SharePoint.
++
++## Option A (Recommended): Online hosted app + SharePoint link/embed
++
++### 1) Host the app
++
++Use your approved hosting platform (e.g., Azure App Service, Azure Container Apps, or internal VM).
++
++For container-based deployment, build from this repo with `Dockerfile`.
++
++The container now starts the Flask application from `app.py` on port `8000`.
++
++### 2) Add app to SharePoint
++
++- Add as **Site Link** (quickest)
++- Or use **Embed web part** with hosted URL (if allowed by tenant policy)
++
++### 3) Operational setup
++
++- Use organisation SSO/reverse proxy where required
++- Restrict access to approved groups
++- Keep governance PDFs and JSON data in controlled storage
++
++## Option B: Downloadable desktop app from SharePoint library
++
++Best for staff who need offline/local access.
++
++### 1) Build executable
++
++Use PyInstaller (Windows build recommended):
++
++- Install PyInstaller
++- Build executable from `app.py`
++- Use helper script: `scripts/build_windows_offline.ps1`
++
++### 2) Publish to SharePoint
++
++Upload installer/exe into your SharePoint Document Library and share with staff.
++
++If needed, include `scripts/run_local_windows.bat` for local launch convenience.
++
++### 3) Update strategy
++
++Version releases (e.g. v1.0.1) and keep a changelog in the same library.
++
++## Suggested architecture
++
++- **Source of truth:** GitHub repo
++- **Operational host:** Azure/internal environment
++- **User access layer:** SharePoint links/embed
++- **File distribution:** SharePoint Document Library
++
++## Security and governance notes
++
++- Do not upload sensitive participant data into version control.
++- Keep uploaded progress notes in temporary processing storage.
++- Apply your organisation's retention and audit requirements.
++- Validate generated documents before formal submission.
++
++## Local run command
++
++```bash
++python app.py
++```
+diff --git a/Dockerfile b/Dockerfile
+new file mode 100644
+index 0000000..cea4a36
+--- /dev/null
++++ b/Dockerfile
+@@ -0,0 +1,12 @@
++FROM python:3.12-slim
++
++WORKDIR /app
++
++COPY requirements.txt ./
++RUN pip install --no-cache-dir -r requirements.txt
++
++COPY . .
++
++EXPOSE 8000
++
++CMD ["python", "app.py"]
+diff --git a/web_app.py b/web_app.py
+new file mode 100644
+index 0000000..ee597da
+--- /dev/null
++++ b/web_app.py
+@@ -0,0 +1,355 @@
++"""
++Windgap NDIS Workspace (Streamlit)
++
++Professional web interface for:
++- Quote generation
++- Governance-guided report/review/letter generation
++- Progress note upload and adaptation recommendations
++
++Theme colors are discretely inspired by the Windgap quote aesthetic.
++"""
++
++from __future__ import annotations
++
++from datetime import date
++from pathlib import Path
++from tempfile import TemporaryDirectory
++import streamlit as st
++
++from ndis_quote_generator import (
++    Participant,
++    ParticipantQuote,
++    QuoteLine,
++    load_default_catalog,
++    generate_quote_html,
++)
++from ndis_document_generator import DocumentRequest, write_document_markdown
++from ndis_progress_notes import analyze_progress_notes
++
++
++APP_TITLE = "Windgap NDIS Workspace"
++
++
++def inject_theme() -> None:
++    st.set_page_config(page_title=APP_TITLE, layout="wide", page_icon="🧾")
++    st.markdown(
++        """
++        <style>
++        :root {
++            --windgap-burgundy: #b72d2f;
++            --windgap-teal: #66c1c4;
++            --windgap-teal-dark: #2f7f84;
++            --windgap-ink: #1f2937;
++            --windgap-surface: #f7f9fb;
++        }
++
++        .stApp {
++            background: linear-gradient(180deg, #ffffff 0%, var(--windgap-surface) 100%);
++        }
++
++        .hero {
++            background: linear-gradient(120deg, rgba(183,45,47,0.92), rgba(102,193,196,0.88));
++            border-radius: 14px;
++            padding: 1rem 1.25rem;
++            color: white;
++            margin-bottom: 0.8rem;
++            box-shadow: 0 6px 16px rgba(47,127,132,0.18);
++        }
++
++        .soft-card {
++            background: white;
++            border: 1px solid rgba(31,41,55,0.08);
++            border-radius: 12px;
++            padding: 0.8rem 1rem;
++            box-shadow: 0 3px 10px rgba(31,41,55,0.06);
++            margin-bottom: 0.75rem;
++        }
++
++        .pill {
++            display: inline-block;
++            background: rgba(102,193,196,0.15);
++            color: var(--windgap-teal-dark);
++            border: 1px solid rgba(102,193,196,0.5);
++            border-radius: 999px;
++            padding: 2px 10px;
++            font-size: 0.8rem;
++            margin-right: 6px;
++        }
++        </style>
++        """,
++        unsafe_allow_html=True,
++    )
++
++
++def render_header() -> None:
++    st.markdown(
++        """
++        <div class="hero">
++            <h2 style="margin:0;">Windgap NDIS Workspace</h2>
++            <p style="margin:6px 0 0 0;">Professional quote, progress-note, and governance-guided document workflows.</p>
++        </div>
++        """,
++        unsafe_allow_html=True,
++    )
++
++
++def quote_builder_tab() -> None:
++    st.subheader("Quote Builder")
++    st.markdown("<div class='soft-card'>Create Participant Summary of Supports quotes with regional pricing.</div>", unsafe_allow_html=True)
++
++    catalog = load_default_catalog()
++
++    col1, col2, col3 = st.columns(3)
++    participant_name = col1.text_input("Participant name", value="Sample Participant")
++    ndis_number = col2.text_input("NDIS number", value="4300 000 000")
++    dob = col3.text_input("Date of birth", value="01/01/2000")
++
++    col4, col5, col6 = st.columns(3)
++    start = col4.date_input("Support start", value=date(2026, 3, 9))
++    end = col5.date_input("Support end", value=date(2026, 4, 27))
++    region = col6.selectbox("Rate region", ["national", "remote", "very_remote"], index=0)
++
++    st.markdown("#### Weekly support lines")
++
++    default_rows = [
++        {
++            "program": "Core Supports",
++            "code": "04_102_0136_6_1",
++            "name": "Group Activities - Standard - Weekday Daytime",
++            "service_type": "Face-to-Face",
++            "category": "LLND_GROUP_ACTIVITIES",
++            "ratio": "1:1",
++            "qty": 1.00,
++            "days": 1,
++        },
++        {
++            "program": "Core Supports",
++            "code": "04_102_0136_6_1",
++            "name": "Group Activities - Standard - Weekday Daytime",
++            "service_type": "Non Face-to-Face",
++            "category": "LLND_GROUP_ACTIVITIES",
++            "ratio": "N/A",
++            "qty": 0.03846,
++            "days": 1,
++        },
++        {
++            "program": "Core Supports",
++            "code": "04_599_0136_6_1",
++            "name": "Centre Capital Cost",
++            "service_type": "Centre Capital Costs",
++            "category": "LLND_CENTRE_CAPITAL",
++            "ratio": "N/A",
++            "qty": 1.00,
++            "days": 1,
++        },
++    ]
++
++    edited = st.data_editor(default_rows, num_rows="dynamic", use_container_width=True)
++
++    weeks_override = st.slider("Weeks override for quote total", min_value=1, max_value=52, value=8)
++
++    if st.button("Generate quote", type="primary"):
++        participant = Participant(name=participant_name, ndis_number=ndis_number, dob=dob)
++        lines = []
++        for row in edited:
++            if not row.get("code"):
++                continue
++            lines.append(
++                QuoteLine(
++                    program=str(row.get("program", "Core Supports")),
++                    support_item_code=str(row.get("code")),
++                    support_item_name=str(row.get("name", "")),
++                    service_type=str(row.get("service_type", "")),
++                    claiming_category=str(row.get("category", "")),
++                    ratio=str(row.get("ratio", "N/A")),
++                    quantity_per_day=float(row.get("qty", 0.0)),
++                    days_per_week=int(row.get("days", 1)),
++                )
++            )
++
++        quote = ParticipantQuote(
++            participant=participant,
++            support_start=start,
++            support_end=end,
++            lines=lines,
++            region=region,
++        )
++
++        with TemporaryDirectory() as tmp:
++            output = Path(tmp) / "participant_summary_of_supports.html"
++            generate_quote_html(
++                quote=quote,
++                output_path=str(output),
++                catalog=catalog,
++                weeks_override=float(weeks_override),
++                region_override=region,
++            )
++            html_bytes = output.read_bytes()
++
++        st.success("Quote generated successfully.")
++        st.download_button(
++            label="Download quote HTML",
++            data=html_bytes,
++            file_name="participant_summary_of_supports.html",
++            mime="text/html",
++        )
++
++
++def notes_and_adaptations_tab() -> None:
++    st.subheader("Progress Notes & Adaptation Recommendations")
++    st.markdown("<div class='soft-card'>Upload progress notes to auto-suggest features/adaptations with evidence lines.</div>", unsafe_allow_html=True)
++
++    uploaded = st.file_uploader(
++        "Upload progress notes (txt, md, csv, pdf)",
++        type=["txt", "md", "csv", "pdf"],
++        accept_multiple_files=True,
++    )
++
++    if st.button("Analyze notes"):
++        if not uploaded:
++            st.warning("Upload at least one progress note file first.")
++            return
++
++        with TemporaryDirectory() as tmp:
++            paths = []
++            for file in uploaded:
++                target = Path(tmp) / file.name
++                target.write_bytes(file.getvalue())
++                paths.append(str(target))
++
++            analysis = analyze_progress_notes(paths)
++
++        st.info(f"Scanned {analysis.total_lines_scanned} lines across {len(analysis.note_files)} file(s).")
++
++        if not analysis.recommendations:
++            st.warning("No recommendations were triggered from these notes.")
++            return
++
++        for rec in analysis.recommendations:
++            with st.expander(f"{rec.title}  |  Priority: {rec.priority.upper()}  |  Confidence: {rec.confidence:.2f}"):
++                st.write(rec.description)
++                if rec.evidence:
++                    st.caption("Evidence from notes")
++                    for item in rec.evidence:
++                        st.markdown(f"- {item}")
++
++
++def document_generator_tab() -> None:
++    st.subheader("Governance-Guided Documents")
++    st.markdown("<div class='soft-card'>Generate professional report/review/letter drafts with integrated governance and adaptation planning.</div>", unsafe_allow_html=True)
++
++    col1, col2, col3 = st.columns(3)
++    doc_type = col1.selectbox("Document type", ["report", "review", "letter"])
++    participant = col2.text_input("Participant", value="Sample Participant")
++    ndis_number = col3.text_input("NDIS number", value="4300 000 000")
++
++    col4, col5, col6 = st.columns(3)
++    author = col4.text_input("Author", value="Provider Clinician")
++    organisation = col5.text_input("Organisation", value="Windgap Support Services")
++    purpose = col6.text_input("Purpose", value="Progress and recommendations for plan review")
++
++    col7, col8 = st.columns(2)
++    period_start = col7.text_input("Period start (optional)", value="")
++    period_end = col8.text_input("Period end (optional)", value="")
++
++    key_points_text = st.text_area(
++        "Key points (one per line)",
++        value="Improved engagement in community activities\nOngoing need for structured supports",
++        height=120,
++    )
++
++    progress_files = st.file_uploader(
++        "Attach progress notes for recommendations (optional)",
++        type=["txt", "md", "csv", "pdf"],
++        accept_multiple_files=True,
++        key="doc_progress_notes",
++    )
++
++    if st.button("Generate document", type="primary"):
++        key_points = [line.strip() for line in key_points_text.splitlines() if line.strip()]
++
++        with TemporaryDirectory() as tmp:
++            note_paths = []
++            for file in progress_files or []:
++                target = Path(tmp) / file.name
++                target.write_bytes(file.getvalue())
++                note_paths.append(str(target))
++
++            request = DocumentRequest(
++                document_type=doc_type,
++                participant_name=participant,
++                ndis_number=ndis_number,
++                author_name=author,
++                organisation=organisation,
++                purpose=purpose,
++                period_start=period_start,
++                period_end=period_end,
++                key_points=key_points,
++                progress_note_paths=note_paths,
++            )
++
++            output_path = Path(tmp) / f"{doc_type}_{participant.replace(' ', '_')}.md"
++            write_document_markdown(
++                request=request,
++                output_path=str(output_path),
++                max_snippets_per_source=2,
++            )
++            md_bytes = output_path.read_bytes()
++
++        st.success("Document generated successfully.")
++        st.download_button(
++            label=f"Download {doc_type} draft (.md)",
++            data=md_bytes,
++            file_name=f"{doc_type}_{participant.replace(' ', '_')}.md",
++            mime="text/markdown",
++        )
++
++
++def deployment_tab() -> None:
++    st.subheader("SharePoint-friendly Deployment Options")
++    st.markdown("<div class='soft-card'>Use this tab to align online + downloadable access with organisation workflows.</div>", unsafe_allow_html=True)
++
++    st.markdown("<span class='pill'>Recommended</span><strong>Host app online and link/embed in SharePoint</strong>", unsafe_allow_html=True)
++    st.markdown(
++        """
++- Deploy this app to an internal cloud host (e.g., Azure App Service / Container Apps).
++- Add URL to SharePoint as a Site Link or Embed web part.
++- Users access the latest version anytime online with central updates.
++"""
++    )
++
++    st.markdown("<span class='pill'>Offline-capable</span><strong>Distribute desktop bundle</strong>", unsafe_allow_html=True)
++    st.markdown(
++        """
++- Build a Windows executable with PyInstaller for offline local use.
++- Publish the installer/exe via SharePoint Document Library.
++- Team can download and run without local Python setup.
++"""
++    )
++
++    st.info("Detailed rollout instructions are in DEPLOY_SHAREPOINT.md in this repository.")
++
++
++def main() -> None:
++    inject_theme()
++    render_header()
++
++    tabs = st.tabs([
++        "Quote Builder",
++        "Progress Notes",
++        "Document Generator",
++        "SharePoint Deployment",
++    ])
++
++    with tabs[0]:
++        quote_builder_tab()
++    with tabs[1]:
++        notes_and_adaptations_tab()
++    with tabs[2]:
++        document_generator_tab()
++    with tabs[3]:
++        deployment_tab()
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/ndis_document_generator.py b/ndis_document_generator.py
+index be3ffbb..1bd9ca4 100644
+--- a/ndis_document_generator.py
++++ b/ndis_document_generator.py
+@@ -30,6 +30,22 @@ from ndis_progress_notes import analyze_progress_notes
+ SUPPORTED_TYPES = {"report", "review", "letter"}
+ 
+ 
++def _build_action_plan_rows(recommendations) -> List[str]:
++    """Build concise week-by-week action plan rows from recommendations."""
++    if not recommendations:
++        return []
++
++    rows: List[str] = []
++    for idx, rec in enumerate(recommendations, start=1):
++        week = ((idx - 1) % 4) + 1
++        owner = "Key worker / clinician"
++        metric = "Participant response and goal-aligned progress noted"
++        rows.append(
++            f"| Week {week} | {rec.title} | {owner} | {metric} |"
++        )
++    return rows
++
++
+ @dataclass
+ class DocumentRequest:
+     document_type: str
+@@ -168,6 +184,16 @@ def build_document_markdown(request: DocumentRequest, max_snippets_per_source: i
+         lines.append("- No adaptation recommendations were triggered from the uploaded notes.")
+     lines.append("")
+ 
++    lines.append("## Implementation action plan (suggested 4-week cycle)")
++    lines.append("")
++    if note_analysis.recommendations:
++        lines.append("| Timeline | Action | Owner | Review metric |")
++        lines.append("|---|---|---|---|")
++        lines.extend(_build_action_plan_rows(note_analysis.recommendations))
++    else:
++        lines.append("- Action plan pending: upload progress notes or add recommendations manually.")
++    lines.append("")
++
+     lines.append("## Draft body scaffold")
+     lines.append("")
+     for section in structure:
+diff --git a/test_ndis_document_generator.py b/test_ndis_document_generator.py
+index 846c982..011e499 100644
+--- a/test_ndis_document_generator.py
++++ b/test_ndis_document_generator.py
+@@ -44,6 +44,7 @@ def test_markdown_includes_progress_note_recommendations():
+     md = build_document_markdown(request)
+     assert "## Progress note analysis" in md
+     assert "## Recommended features/adaptations" in md
++    assert "## Implementation action plan (suggested 4-week cycle)" in md
+     assert "sensory_modulation_pack" in md
+ 
+ 
+diff --git a/test_flask_app.py b/test_flask_app.py
+new file mode 100644
+index 0000000..05b49f9
+--- /dev/null
++++ b/test_flask_app.py
+@@ -0,0 +1,99 @@
++from __future__ import annotations
++
++from io import BytesIO
++
++from app import create_app
++
++
++def _client():
++    app = create_app({"TESTING": True, "SECRET_KEY": "test-secret"})
++    return app.test_client()
++
++
++def test_index_loads():
++    client = _client()
++    response = client.get("/")
++
++    assert response.status_code == 200
++    assert b"Windgap NDIS Workspace" in response.data
++    assert b"Quote Builder" in response.data
++
++
++def test_health_endpoint():
++    client = _client()
++    response = client.get("/health")
++
++    assert response.status_code == 200
++    assert response.json == {"status": "ok", "app": "Windgap NDIS Workspace"}
++
++
++def test_generate_quote_downloads_html():
++    client = _client()
++    response = client.post(
++        "/generate-quote",
++        data={
++            "participant_name": "Sample Participant",
++            "ndis_number": "4300 000 000",
++            "dob": "01/01/2000",
++            "support_start": "2026-03-09",
++            "support_end": "2026-04-27",
++            "region": "national",
++            "weeks_override": "8",
++            "program[]": ["Core Supports"],
++            "code[]": ["04_102_0136_6_1"],
++            "name[]": ["Group Activities - Standard - Weekday Daytime"],
++            "service_type[]": ["Face-to-Face"],
++            "category[]": ["LLND_GROUP_ACTIVITIES"],
++            "ratio[]": ["1:1"],
++            "qty[]": ["1.0"],
++            "days[]": ["1"],
++        },
++    )
++
++    assert response.status_code == 200
++    assert response.mimetype == "text/html"
++    assert b"Participant Summary of Supports" in response.data
++
++
++def test_analyze_notes_renders_recommendations():
++    client = _client()
++    response = client.post(
++        "/analyze-notes",
++        data={
++            "progress_notes": [
++                (
++                    BytesIO(
++                        b"Participant experienced sensory overload, fatigue, and anxiety during transitions."
++                    ),
++                    "progress_note.txt",
++                )
++            ]
++        },
++        content_type="multipart/form-data",
++    )
++
++    assert response.status_code == 200
++    assert b"Enhanced sensory modulation options" in response.data
++    assert b"Fatigue-aware pacing and scheduling" in response.data
++
++
++def test_generate_document_downloads_markdown():
++    client = _client()
++    response = client.post(
++        "/generate-document",
++        data={
++            "document_type": "report",
++            "document_participant_name": "Sample Participant",
++            "document_ndis_number": "4300 000 000",
++            "author_name": "Provider Clinician",
++            "organisation": "Windgap Support Services",
++            "purpose": "Progress and recommendations for plan review",
++            "period_start": "01/01/2026",
++            "period_end": "31/03/2026",
++            "key_points": "Improved engagement\nOngoing need for structured supports",
++        },
++    )
++
++    assert response.status_code == 200
++    assert response.mimetype == "text/markdown"
++    assert b"# NDIS Participant Report Draft" in response.data
+diff --git a/templates/base.html b/templates/base.html
+new file mode 100644
+index 0000000..d1f62fd
+--- /dev/null
++++ b/templates/base.html
+@@ -0,0 +1,18 @@
++<!doctype html>
++<html lang="en">
++<head>
++    <meta charset="utf-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1">
++    <title>{{ app_title }}</title>
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
++</head>
++<body>
++    <div class="page-shell">
++        {% block body %}{% endblock %}
++    </div>
++    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
++</body>
++</html>
+diff --git a/templates/index.html b/templates/index.html
+new file mode 100644
+index 0000000..f9fed0b
+--- /dev/null
++++ b/templates/index.html
+@@ -0,0 +1,349 @@
++{% extends 'base.html' %}
++
++{% block body %}
++<header class="hero-card">
++    <div>
++        <p class="eyebrow">Professional NDIS workflow</p>
++        <h1>{{ app_title }}</h1>
++        <p class="hero-copy">Create participant support quotes, analyse progress notes, and generate governance-guided documents from one discreet, SharePoint-friendly workspace.</p>
++        <div class="hero-pills">
++            <span class="pill">Quotes</span>
++            <span class="pill">Progress notes</span>
++            <span class="pill">Reports · Reviews · Letters</span>
++        </div>
++    </div>
++    <aside class="hero-side-panel">
++        <div class="metric-card">
++            <span class="metric-label">Rate regions</span>
++            <strong>{{ regions|length }}</strong>
++        </div>
++        <div class="metric-card">
++            <span class="metric-label">Document types</span>
++            <strong>{{ document_types|length }}</strong>
++        </div>
++        <div class="metric-card">
++            <span class="metric-label">Updated</span>
++            <strong>{{ today.strftime('%d/%m/%Y') }}</strong>
++        </div>
++    </aside>
++</header>
++
++{% with messages = get_flashed_messages(with_categories=true) %}
++    {% if messages %}
++        <section class="flash-stack">
++            {% for category, message in messages %}
++                <div class="flash flash-{{ category }}">{{ message }}</div>
++            {% endfor %}
++        </section>
++    {% endif %}
++{% endwith %}
++
++<section class="tab-shell" data-default-tab="{{ active_tab or 'quote' }}">
++    <nav class="tab-nav" aria-label="Workspace sections">
++        <button type="button" class="tab-link" data-tab="quote">Quote Builder</button>
++        <button type="button" class="tab-link" data-tab="notes">Progress Notes</button>
++        <button type="button" class="tab-link" data-tab="documents">Document Generator</button>
++        <button type="button" class="tab-link" data-tab="deployment">SharePoint Rollout</button>
++    </nav>
++
++    <section class="tab-panel" data-tab="quote">
++        <div class="card section-intro">
++            <h2>Participant Summary of Supports</h2>
++            <p>Build a polished quote using the bundled NDIS catalogue and regional pricing. Download opens as clean printable HTML.</p>
++        </div>
++
++        <form action="{{ url_for('generate_quote') }}" method="post" class="stack-lg">
++            <div class="grid cols-3">
++                <label class="field">
++                    <span>Participant name</span>
++                    <input type="text" name="participant_name" value="Sample Participant" required>
++                </label>
++                <label class="field">
++                    <span>NDIS number</span>
++                    <input type="text" name="ndis_number" value="4300 000 000" required>
++                </label>
++                <label class="field">
++                    <span>Date of birth</span>
++                    <input type="text" name="dob" value="01/01/2000" required>
++                </label>
++            </div>
++
++            <div class="grid cols-4">
++                <label class="field">
++                    <span>Support start</span>
++                    <input type="date" name="support_start" value="{{ default_support_start }}" required>
++                </label>
++                <label class="field">
++                    <span>Support end</span>
++                    <input type="date" name="support_end" value="{{ default_support_end }}" required>
++                </label>
++                <label class="field">
++                    <span>Rate region</span>
++                    <select name="region">
++                        {% for region in regions %}
++                            <option value="{{ region }}">{{ region.replace('_', ' ')|title }}</option>
++                        {% endfor %}
++                    </select>
++                </label>
++                <label class="field">
++                    <span>Weeks override</span>
++                    <input type="number" step="0.5" min="1" max="52" name="weeks_override" value="8">
++                </label>
++            </div>
++
++            <div class="card">
++                <div class="card-heading split-row">
++                    <div>
++                        <h3>Weekly support lines</h3>
++                        <p>Add or adjust support rows. Blank rows are ignored.</p>
++                    </div>
++                    <button type="button" class="secondary-button" data-add-row>Add support line</button>
++                </div>
++
++                <div class="table-wrap">
++                    <table class="data-table" id="quote-lines-table">
++                        <thead>
++                            <tr>
++                                <th>Program</th>
++                                <th>Code</th>
++                                <th>Name</th>
++                                <th>Service type</th>
++                                <th>Claiming category</th>
++                                <th>Ratio</th>
++                                <th>Qty/day</th>
++                                <th>Days/week</th>
++                                <th></th>
++                            </tr>
++                        </thead>
++                        <tbody>
++                            {% for row in default_quote_rows %}
++                                <tr>
++                                    <td><input type="text" name="program[]" value="{{ row.program }}"></td>
++                                    <td><input type="text" name="code[]" value="{{ row.code }}" list="support-code-options"></td>
++                                    <td><input type="text" name="name[]" value="{{ row.name }}"></td>
++                                    <td><input type="text" name="service_type[]" value="{{ row.service_type }}"></td>
++                                    <td><input type="text" name="category[]" value="{{ row.category }}" list="claiming-category-options"></td>
++                                    <td><input type="text" name="ratio[]" value="{{ row.ratio }}"></td>
++                                    <td><input type="number" step="0.00001" min="0" name="qty[]" value="{{ row.qty }}"></td>
++                                    <td><input type="number" step="1" min="0" name="days[]" value="{{ row.days }}"></td>
++                                    <td><button type="button" class="ghost-button" data-remove-row aria-label="Remove line">×</button></td>
++                                </tr>
++                            {% endfor %}
++                        </tbody>
++                    </table>
++                </div>
++
++                <datalist id="support-code-options">
++                    {% for item in catalog_options['items'] %}
++                        <option value="{{ item['code'] }}">{{ item['name'] }}</option>
++                    {% endfor %}
++                </datalist>
++                <datalist id="claiming-category-options">
++                    {% for category in catalog_options['categories'] %}
++                        <option value="{{ category['code'] }}">{{ category['name'] }}</option>
++                    {% endfor %}
++                </datalist>
++            </div>
++
++            <div class="card subtle-card">
++                <h3>Pricing catalogue snapshot</h3>
++                <div class="catalog-grid">
++                    {% for item in catalog_options['items'][:6] %}
++                        <article class="catalog-card">
++                            <strong>{{ item['code'] }}</strong>
++                            <p>{{ item['name'] }}</p>
++                            <small>National ${{ '%.2f'|format(item['rate']) }}</small>
++                        </article>
++                    {% endfor %}
++                </div>
++            </div>
++
++            <div class="actions-row">
++                <button type="submit" class="primary-button">Generate quote download</button>
++            </div>
++        </form>
++    </section>
++
++    <section class="tab-panel" data-tab="notes">
++        <div class="card section-intro">
++            <h2>Progress notes and adaptation recommendations</h2>
++            <p>Upload text, markdown, CSV, or PDF notes to surface likely support adaptations and evidence lines.</p>
++        </div>
++
++        <form action="{{ url_for('analyze_notes') }}" method="post" enctype="multipart/form-data" class="stack-lg">
++            <label class="field">
++                <span>Upload progress note files</span>
++                <input type="file" name="progress_notes" accept=".txt,.md,.csv,.pdf" multiple>
++            </label>
++            <div class="actions-row">
++                <button type="submit" class="primary-button">Analyse notes</button>
++            </div>
++        </form>
++
++        {% if note_analysis is defined %}
++            <div class="result-grid">
++                <article class="card metric-highlight">
++                    <span>Total lines scanned</span>
++                    <strong>{{ note_analysis.total_lines_scanned }}</strong>
++                </article>
++                <article class="card metric-highlight">
++                    <span>Files analysed</span>
++                    <strong>{{ note_analysis.note_files|length }}</strong>
++                </article>
++                <article class="card metric-highlight">
++                    <span>Recommendations</span>
++                    <strong>{{ note_analysis.recommendations|length }}</strong>
++                </article>
++            </div>
++
++            <div class="stack-md">
++                {% if note_analysis.recommendations %}
++                    {% for recommendation in note_analysis.recommendations %}
++                        <article class="card recommendation-card">
++                            <div class="split-row split-top">
++                                <div>
++                                    <h3>{{ recommendation.title }}</h3>
++                                    <p>{{ recommendation.description }}</p>
++                                </div>
++                                <div class="rec-meta">
++                                    <span class="pill priority-{{ recommendation.priority }}">{{ recommendation.priority|upper }}</span>
++                                    <span class="confidence">Confidence {{ '%.2f'|format(recommendation.confidence) }}</span>
++                                </div>
++                            </div>
++                            {% if recommendation.evidence %}
++                                <h4>Evidence from notes</h4>
++                                <ul class="evidence-list">
++                                    {% for item in recommendation.evidence %}
++                                        <li>{{ item }}</li>
++                                    {% endfor %}
++                                </ul>
++                            {% endif %}
++                        </article>
++                    {% endfor %}
++                {% else %}
++                    <article class="card empty-state">
++                        <h3>No recommendations were triggered</h3>
++                        <p>Try uploading richer notes or include more observable support data, fatigue patterns, transitions, or communication details.</p>
++                    </article>
++                {% endif %}
++            </div>
++        {% endif %}
++    </section>
++
++    <section class="tab-panel" data-tab="documents">
++        <div class="card section-intro">
++            <h2>Governance-guided document drafts</h2>
++            <p>Generate reports, reviews, and letters with compliance guidance, participant context, progress-note insights, and an implementation action plan.</p>
++        </div>
++
++        <form action="{{ url_for('generate_document') }}" method="post" enctype="multipart/form-data" class="stack-lg">
++            <div class="grid cols-3">
++                <label class="field">
++                    <span>Document type</span>
++                    <select name="document_type">
++                        {% for document_type in document_types %}
++                            <option value="{{ document_type }}">{{ document_type|title }}</option>
++                        {% endfor %}
++                    </select>
++                </label>
++                <label class="field">
++                    <span>Participant</span>
++                    <input type="text" name="document_participant_name" value="Sample Participant" required>
++                </label>
++                <label class="field">
++                    <span>NDIS number</span>
++                    <input type="text" name="document_ndis_number" value="4300 000 000">
++                </label>
++            </div>
++
++            <div class="grid cols-3">
++                <label class="field">
++                    <span>Author</span>
++                    <input type="text" name="author_name" value="Provider Clinician">
++                </label>
++                <label class="field">
++                    <span>Organisation</span>
++                    <input type="text" name="organisation" value="Windgap Support Services">
++                </label>
++                <label class="field">
++                    <span>Purpose</span>
++                    <input type="text" name="purpose" value="Progress and recommendations for plan review">
++                </label>
++            </div>
++
++            <div class="grid cols-2">
++                <label class="field">
++                    <span>Period start</span>
++                    <input type="text" name="period_start" placeholder="01/01/2026">
++                </label>
++                <label class="field">
++                    <span>Period end</span>
++                    <input type="text" name="period_end" placeholder="31/03/2026">
++                </label>
++            </div>
++
++            <label class="field">
++                <span>Key points (one per line)</span>
++                <textarea name="key_points" rows="6">Improved engagement in community activities
++Ongoing need for structured supports</textarea>
++            </label>
++
++            <label class="field">
++                <span>Attach progress notes (optional)</span>
++                <input type="file" name="document_progress_notes" accept=".txt,.md,.csv,.pdf" multiple>
++            </label>
++
++            <div class="actions-row">
++                <button type="submit" class="primary-button">Generate markdown draft</button>
++            </div>
++        </form>
++    </section>
++
++    <section class="tab-panel" data-tab="deployment">
++        <div class="card section-intro">
++            <h2>SharePoint-friendly rollout</h2>
++            <p>Use a hosted deployment for live updates, or provide an offline desktop bundle for staff who need downloadable access.</p>
++        </div>
++
++        <div class="grid cols-2">
++            <article class="card deployment-card">
++                <span class="pill">Recommended</span>
++                <h3>Hosted online workspace</h3>
++                <ul>
++                    <li>Deploy this Flask app to Azure App Service or a container host.</li>
++                    <li>Add the app URL to SharePoint as a site link or embed web part.</li>
++                    <li>Keep pricing, governance documents, and templates centralised.</li>
++                </ul>
++            </article>
++            <article class="card deployment-card">
++                <span class="pill">Offline option</span>
++                <h3>Downloadable desktop package</h3>
++                <ul>
++                    <li>Bundle the app for Windows distribution when offline access is needed.</li>
++                    <li>Store the installer in a SharePoint document library.</li>
++                    <li>Publish release notes so staff know when governance data changes.</li>
++                </ul>
++            </article>
++        </div>
++
++        <article class="card note-card">
++            <h3>Implementation notes</h3>
++            <p>Detailed deployment instructions live in <code>DEPLOY_SHAREPOINT.md</code>. If you later move this into the correct <code>WindgapNDIS</code> repository, this Flask UI is ready to transfer alongside the quote and document engines.</p>
++        </article>
++    </section>
++</section>
++
++<template id="quote-line-template">
++    <tr>
++        <td><input type="text" name="program[]" value="Core Supports"></td>
++        <td><input type="text" name="code[]" list="support-code-options"></td>
++        <td><input type="text" name="name[]"></td>
++        <td><input type="text" name="service_type[]"></td>
++        <td><input type="text" name="category[]" list="claiming-category-options"></td>
++        <td><input type="text" name="ratio[]" value="N/A"></td>
++        <td><input type="number" step="0.00001" min="0" name="qty[]" value="0"></td>
++        <td><input type="number" step="1" min="0" name="days[]" value="1"></td>
++        <td><button type="button" class="ghost-button" data-remove-row aria-label="Remove line">×</button></td>
++    </tr>
++</template>
++{% endblock %}
+diff --git a/static/css/app.css b/static/css/app.css
+new file mode 100644
+index 0000000..43a4fd8
+--- /dev/null
++++ b/static/css/app.css
+@@ -0,0 +1,420 @@
++:root {
++    --windgap-burgundy: #b72d2f;
++    --windgap-teal: #66c1c4;
++    --windgap-teal-deep: #2e7b80;
++    --windgap-ink: #18222f;
++    --windgap-surface: #f5f7fb;
++    --windgap-card: rgba(255, 255, 255, 0.94);
++    --windgap-border: rgba(24, 34, 47, 0.08);
++    --windgap-shadow: 0 18px 45px rgba(24, 34, 47, 0.08);
++    --windgap-radius: 18px;
++}
++
++* {
++    box-sizing: border-box;
++}
++
++body {
++    margin: 0;
++    font-family: 'Inter', system-ui, sans-serif;
++    color: var(--windgap-ink);
++    background:
++        radial-gradient(circle at top left, rgba(183, 45, 47, 0.08), transparent 24%),
++        radial-gradient(circle at top right, rgba(102, 193, 196, 0.12), transparent 20%),
++        linear-gradient(180deg, #ffffff 0%, var(--windgap-surface) 100%);
++}
++
++.page-shell {
++    max-width: 1320px;
++    margin: 0 auto;
++    padding: 32px 20px 56px;
++}
++
++.hero-card,
++.card {
++    background: var(--windgap-card);
++    border: 1px solid var(--windgap-border);
++    border-radius: var(--windgap-radius);
++    box-shadow: var(--windgap-shadow);
++    backdrop-filter: blur(12px);
++}
++
++.hero-card {
++    padding: 28px;
++    display: grid;
++    grid-template-columns: 1.7fr 0.9fr;
++    gap: 24px;
++    background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,251,252,0.95));
++    margin-bottom: 20px;
++}
++
++.eyebrow {
++    letter-spacing: 0.14em;
++    text-transform: uppercase;
++    font-size: 0.75rem;
++    font-weight: 700;
++    color: var(--windgap-burgundy);
++    margin: 0 0 10px;
++}
++
++h1,
++h2,
++h3,
++h4,
++p {
++    margin-top: 0;
++}
++
++h1 {
++    font-size: clamp(2.2rem, 4vw, 3.25rem);
++    line-height: 1.05;
++    margin-bottom: 14px;
++}
++
++.hero-copy {
++    max-width: 70ch;
++    color: rgba(24, 34, 47, 0.78);
++    font-size: 1.02rem;
++}
++
++.hero-pills,
++.actions-row,
++.split-row {
++    display: flex;
++    gap: 10px;
++    flex-wrap: wrap;
++}
++
++.hero-side-panel {
++    display: grid;
++    gap: 12px;
++}
++
++.metric-card,
++.metric-highlight,
++.catalog-card,
++.deployment-card,
++.note-card,
++.recommendation-card {
++    border-radius: 16px;
++}
++
++.metric-card {
++    background: linear-gradient(160deg, rgba(183, 45, 47, 0.08), rgba(102, 193, 196, 0.12));
++    border: 1px solid rgba(102, 193, 196, 0.22);
++    padding: 16px;
++}
++
++.metric-card strong,
++.metric-highlight strong {
++    display: block;
++    font-size: 1.5rem;
++    margin-top: 6px;
++}
++
++.metric-label,
++.metric-highlight span {
++    color: rgba(24, 34, 47, 0.68);
++    font-size: 0.9rem;
++}
++
++.flash-stack {
++    display: grid;
++    gap: 10px;
++    margin-bottom: 18px;
++}
++
++.flash {
++    border-radius: 14px;
++    padding: 14px 16px;
++    font-weight: 600;
++}
++
++.flash-error {
++    background: rgba(183, 45, 47, 0.10);
++    color: #812224;
++    border: 1px solid rgba(183, 45, 47, 0.22);
++}
++
++.flash-message,
++.flash-success {
++    background: rgba(102, 193, 196, 0.10);
++    color: var(--windgap-teal-deep);
++    border: 1px solid rgba(102, 193, 196, 0.25);
++}
++
++.tab-shell {
++    display: grid;
++    gap: 16px;
++}
++
++.tab-nav {
++    display: flex;
++    gap: 10px;
++    flex-wrap: wrap;
++}
++
++.tab-link,
++.primary-button,
++.secondary-button,
++.ghost-button {
++    border: none;
++    cursor: pointer;
++    font: inherit;
++    transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
++}
++
++.tab-link {
++    background: rgba(255, 255, 255, 0.8);
++    border: 1px solid var(--windgap-border);
++    border-radius: 999px;
++    padding: 12px 16px;
++    font-weight: 700;
++    color: rgba(24, 34, 47, 0.8);
++}
++
++.tab-link.is-active {
++    background: linear-gradient(135deg, var(--windgap-burgundy), #cb5759);
++    color: white;
++    box-shadow: 0 12px 24px rgba(183, 45, 47, 0.22);
++}
++
++.tab-panel {
++    display: none;
++    gap: 16px;
++}
++
++.tab-panel.is-active {
++    display: grid;
++}
++
++.card {
++    padding: 22px;
++}
++
++.section-intro p,
++.card-heading p,
++.deployment-card li,
++.note-card p,
++.recommendation-card p {
++    color: rgba(24, 34, 47, 0.75);
++}
++
++.stack-lg,
++.stack-md {
++    display: grid;
++    gap: 16px;
++}
++
++.grid {
++    display: grid;
++    gap: 16px;
++}
++
++.cols-2 {
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++}
++
++.cols-3 {
++    grid-template-columns: repeat(3, minmax(0, 1fr));
++}
++
++.cols-4 {
++    grid-template-columns: repeat(4, minmax(0, 1fr));
++}
++
++.field {
++    display: grid;
++    gap: 8px;
++}
++
++.field span,
++.card-heading h3,
++.section-intro h2 {
++    font-weight: 700;
++}
++
++input,
++select,
++textarea {
++    width: 100%;
++    border: 1px solid rgba(24, 34, 47, 0.12);
++    border-radius: 14px;
++    background: rgba(255, 255, 255, 0.95);
++    padding: 12px 14px;
++    font: inherit;
++    color: var(--windgap-ink);
++}
++
++input:focus,
++select:focus,
++textarea:focus {
++    outline: 3px solid rgba(102, 193, 196, 0.2);
++    border-color: rgba(102, 193, 196, 0.62);
++}
++
++.table-wrap {
++    overflow-x: auto;
++}
++
++.data-table {
++    width: 100%;
++    border-collapse: collapse;
++    min-width: 1080px;
++}
++
++.data-table th,
++.data-table td {
++    padding: 10px 8px;
++    border-bottom: 1px solid rgba(24, 34, 47, 0.08);
++    vertical-align: top;
++}
++
++.data-table th {
++    text-align: left;
++    font-size: 0.85rem;
++    text-transform: uppercase;
++    letter-spacing: 0.06em;
++    color: rgba(24, 34, 47, 0.65);
++}
++
++.catalog-grid,
++.result-grid {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
++    gap: 14px;
++}
++
++.catalog-card {
++    background: linear-gradient(160deg, rgba(102, 193, 196, 0.10), rgba(255, 255, 255, 0.9));
++    border: 1px solid rgba(102, 193, 196, 0.2);
++    padding: 16px;
++}
++
++.catalog-card p {
++    min-height: 42px;
++    margin: 10px 0;
++}
++
++.primary-button,
++.secondary-button {
++    border-radius: 14px;
++    padding: 12px 18px;
++    font-weight: 700;
++}
++
++.primary-button {
++    background: linear-gradient(135deg, var(--windgap-burgundy), #d35759);
++    color: white;
++    box-shadow: 0 12px 24px rgba(183, 45, 47, 0.2);
++}
++
++.secondary-button {
++    background: rgba(102, 193, 196, 0.14);
++    color: var(--windgap-teal-deep);
++}
++
++.ghost-button {
++    width: 36px;
++    height: 36px;
++    border-radius: 12px;
++    background: rgba(24, 34, 47, 0.06);
++    color: var(--windgap-ink);
++    font-size: 1.2rem;
++}
++
++.primary-button:hover,
++.secondary-button:hover,
++.ghost-button:hover,
++.tab-link:hover {
++    transform: translateY(-1px);
++}
++
++.subtle-card {
++    background: linear-gradient(180deg, rgba(102, 193, 196, 0.06), rgba(255, 255, 255, 0.96));
++}
++
++.split-top {
++    align-items: flex-start;
++    justify-content: space-between;
++}
++
++.rec-meta {
++    display: grid;
++    gap: 8px;
++    justify-items: end;
++}
++
++.pill {
++    display: inline-flex;
++    align-items: center;
++    gap: 6px;
++    border-radius: 999px;
++    padding: 7px 11px;
++    font-size: 0.8rem;
++    font-weight: 700;
++    background: rgba(102, 193, 196, 0.14);
++    color: var(--windgap-teal-deep);
++    border: 1px solid rgba(102, 193, 196, 0.26);
++}
++
++.priority-high {
++    background: rgba(183, 45, 47, 0.1);
++    color: #8b2526;
++    border-color: rgba(183, 45, 47, 0.18);
++}
++
++.priority-medium {
++    background: rgba(102, 193, 196, 0.14);
++    color: var(--windgap-teal-deep);
++}
++
++.confidence {
++    color: rgba(24, 34, 47, 0.72);
++    font-size: 0.92rem;
++    font-weight: 600;
++}
++
++.evidence-list,
++.deployment-card ul {
++    margin: 0;
++    padding-left: 18px;
++}
++
++.empty-state {
++    text-align: center;
++}
++
++.note-card code {
++    background: rgba(24, 34, 47, 0.06);
++    border-radius: 8px;
++    padding: 2px 6px;
++}
++
++@media (max-width: 1040px) {
++    .hero-card,
++    .cols-4,
++    .cols-3,
++    .cols-2 {
++        grid-template-columns: 1fr;
++    }
++
++    .hero-side-panel {
++        grid-template-columns: repeat(3, minmax(0, 1fr));
++    }
++}
++
++@media (max-width: 720px) {
++    .page-shell {
++        padding: 20px 14px 40px;
++    }
++
++    .hero-card,
++    .card {
++        padding: 18px;
++    }
++
++    .hero-side-panel {
++        grid-template-columns: 1fr;
++    }
++}
+diff --git a/static/js/app.js b/static/js/app.js
+new file mode 100644
+index 0000000..9ed49c9
+--- /dev/null
++++ b/static/js/app.js
+@@ -0,0 +1,57 @@
++(() => {
++    const shell = document.querySelector('.tab-shell');
++    if (!shell) {
++        return;
++    }
++
++    const defaultTab = shell.dataset.defaultTab || 'quote';
++    const links = Array.from(shell.querySelectorAll('.tab-link'));
++    const panels = Array.from(shell.querySelectorAll('.tab-panel'));
++
++    const activateTab = (name) => {
++        links.forEach((link) => {
++            link.classList.toggle('is-active', link.dataset.tab === name);
++        });
++        panels.forEach((panel) => {
++            panel.classList.toggle('is-active', panel.dataset.tab === name);
++        });
++    };
++
++    links.forEach((link) => {
++        link.addEventListener('click', () => activateTab(link.dataset.tab));
++    });
++
++    activateTab(defaultTab);
++
++    const table = document.getElementById('quote-lines-table');
++    const template = document.getElementById('quote-line-template');
++    const addRowButton = document.querySelector('[data-add-row]');
++
++    if (table && template && addRowButton) {
++        const tbody = table.querySelector('tbody');
++        addRowButton.addEventListener('click', () => {
++            tbody.appendChild(template.content.cloneNode(true));
++        });
++
++        table.addEventListener('click', (event) => {
++            const target = event.target;
++            if (!(target instanceof HTMLElement)) {
++                return;
++            }
++            if (!target.matches('[data-remove-row]')) {
++                return;
++            }
++            const row = target.closest('tr');
++            if (!row) {
++                return;
++            }
++            if (tbody.querySelectorAll('tr').length <= 1) {
++                row.querySelectorAll('input').forEach((input) => {
++                    input.value = '';
++                });
++                return;
++            }
++            row.remove();
++        });
++    }
++})();
+diff --git a/scripts/build_windows_offline.ps1 b/scripts/build_windows_offline.ps1
+new file mode 100644
+index 0000000..3ff2c8e
+--- /dev/null
++++ b/scripts/build_windows_offline.ps1
+@@ -0,0 +1,15 @@
++Param(
++    [string]$PythonExe = ".venv\Scripts\python.exe"
++)
++
++Write-Host "Building Windgap NDIS Workspace offline executable..."
++
++if (-Not (Test-Path $PythonExe)) {
++    Write-Error "Python executable not found: $PythonExe"
++    exit 1
++}
++
++& $PythonExe -m pip install pyinstaller
++& $PythonExe -m PyInstaller --onefile --name WindgapNDISWorkspace app.py
++
++Write-Host "Build complete. Distribute dist\WindgapNDISWorkspace.exe via SharePoint."
+diff --git a/scripts/run_local_windows.bat b/scripts/run_local_windows.bat
+new file mode 100644
+index 0000000..d815009
+--- /dev/null
++++ b/scripts/run_local_windows.bat
+@@ -0,0 +1,7 @@
++@echo off
++set PY=.venv\Scripts\python.exe
++if not exist %PY% (
++  echo Python virtual environment not found at %PY%
++  exit /b 1
++)
++%PY% app.py

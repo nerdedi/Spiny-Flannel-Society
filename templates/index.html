@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<header class="hero-card">
+    <div>
+        <p class="eyebrow">Professional NDIS workflow</p>
+        <h1>{{ app_title }}</h1>
+        <p class="hero-copy">Create participant support quotes, analyse progress notes, and generate governance-guided documents from one discreet, SharePoint-friendly workspace.</p>
+        <div class="hero-pills">
+            <span class="pill">Quotes</span>
+            <span class="pill">Progress notes</span>
+            <span class="pill">Reports · Reviews · Letters</span>
+        </div>
+    </div>
+    <aside class="hero-side-panel">
+        <div class="metric-card">
+            <span class="metric-label">Rate regions</span>
+            <strong>{{ regions|length }}</strong>
+        </div>
+        <div class="metric-card">
+            <span class="metric-label">Document types</span>
+            <strong>{{ document_types|length }}</strong>
+        </div>
+        <div class="metric-card">
+            <span class="metric-label">Updated</span>
+            <strong>{{ today.strftime('%d/%m/%Y') }}</strong>
+        </div>
+    </aside>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <section class="flash-stack">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </section>
+    {% endif %}
+{% endwith %}
+
+<section class="tab-shell" data-default-tab="{{ active_tab or 'quote' }}">
+    <nav class="tab-nav" aria-label="Workspace sections">
+        <button type="button" class="tab-link" data-tab="quote">Quote Builder</button>
+        <button type="button" class="tab-link" data-tab="notes">Progress Notes</button>
+        <button type="button" class="tab-link" data-tab="documents">Document Generator</button>
+        <button type="button" class="tab-link" data-tab="deployment">SharePoint Rollout</button>
+    </nav>
+
+    <section class="tab-panel" data-tab="quote">
+        <div class="card section-intro">
+            <h2>Participant Summary of Supports</h2>
+            <p>Build a polished quote using the bundled NDIS catalogue and regional pricing. Download opens as clean printable HTML.</p>
+        </div>
+
+        <form action="{{ url_for('generate_quote') }}" method="post" class="stack-lg">
+            <div class="grid cols-3">
+                <label class="field">
+                    <span>Participant name</span>
+                    <input type="text" name="participant_name" value="Sample Participant" required>
+                </label>
+                <label class="field">
+                    <span>NDIS number</span>
+                    <input type="text" name="ndis_number" value="4300 000 000" required>
+                </label>
+                <label class="field">
+                    <span>Date of birth</span>
+                    <input type="text" name="dob" value="01/01/2000" required>
+                </label>
+            </div>
+
+            <div class="grid cols-4">
+                <label class="field">
+                    <span>Support start</span>
+                    <input type="date" name="support_start" value="{{ default_support_start }}" required>
+                </label>
+                <label class="field">
+                    <span>Support end</span>
+                    <input type="date" name="support_end" value="{{ default_support_end }}" required>
+                </label>
+                <label class="field">
+                    <span>Rate region</span>
+                    <select name="region">
+                        {% for region in regions %}
+                            <option value="{{ region }}">{{ region.replace('_', ' ')|title }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Weeks override</span>
+                    <input type="number" step="0.5" min="1" max="52" name="weeks_override" value="8">
+                </label>
+            </div>
+
+            <div class="card">
+                <div class="card-heading split-row">
+                    <div>
+                        <h3>Weekly support lines</h3>
+                        <p>Add or adjust support rows. Blank rows are ignored.</p>
+                    </div>
+                    <button type="button" class="secondary-button" data-add-row>Add support line</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="data-table" id="quote-lines-table">
+                        <thead>
+                            <tr>
+                                <th>Program</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Service type</th>
+                                <th>Claiming category</th>
+                                <th>Ratio</th>
+                                <th>Qty/day</th>
+                                <th>Days/week</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in default_quote_rows %}
+                                <tr>
+                                    <td><input type="text" name="program[]" value="{{ row.program }}"></td>
+                                    <td><input type="text" name="code[]" value="{{ row.code }}" list="support-code-options"></td>
+                                    <td><input type="text" name="name[]" value="{{ row.name }}"></td>
+                                    <td><input type="text" name="service_type[]" value="{{ row.service_type }}"></td>
+                                    <td><input type="text" name="category[]" value="{{ row.category }}" list="claiming-category-options"></td>
+                                    <td><input type="text" name="ratio[]" value="{{ row.ratio }}"></td>
+                                    <td><input type="number" step="0.00001" min="0" name="qty[]" value="{{ row.qty }}"></td>
+                                    <td><input type="number" step="1" min="0" name="days[]" value="{{ row.days }}"></td>
+                                    <td><button type="button" class="ghost-button" data-remove-row aria-label="Remove line">×</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <datalist id="support-code-options">
+                    {% for item in catalog_options['items'] %}
+                        <option value="{{ item['code'] }}">{{ item['name'] }}</option>
+                    {% endfor %}
+                </datalist>
+                <datalist id="claiming-category-options">
+                    {% for category in catalog_options['categories'] %}
+                        <option value="{{ category['code'] }}">{{ category['name'] }}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
+
+            <div class="card subtle-card">
+                <h3>Pricing catalogue snapshot</h3>
+                <div class="catalog-grid">
+                    {% for item in catalog_options['items'][:6] %}
+                        <article class="catalog-card">
+                            <strong>{{ item['code'] }}</strong>
+                            <p>{{ item['name'] }}</p>
+                            <small>National ${{ '%.2f'|format(item['rate']) }}</small>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="actions-row">
+                <button type="submit" class="primary-button">Generate quote download</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="tab-panel" data-tab="notes">
+        <div class="card section-intro">
+            <h2>Progress notes and adaptation recommendations</h2>
+            <p>Upload text, markdown, CSV, or PDF notes to surface likely support adaptations and evidence lines.</p>
+        </div>
+
+        <form action="{{ url_for('analyze_notes') }}" method="post" enctype="multipart/form-data" class="stack-lg">
+            <label class="field">
+                <span>Upload progress note files</span>
+                <input type="file" name="progress_notes" accept=".txt,.md,.csv,.pdf" multiple>
+            </label>
+            <div class="actions-row">
+                <button type="submit" class="primary-button">Analyse notes</button>
+            </div>
+        </form>
+
+        {% if note_analysis is defined %}
+            <div class="result-grid">
+                <article class="card metric-highlight">
+                    <span>Total lines scanned</span>
+                    <strong>{{ note_analysis.total_lines_scanned }}</strong>
+                </article>
+                <article class="card metric-highlight">
+                    <span>Files analysed</span>
+                    <strong>{{ note_analysis.note_files|length }}</strong>
+                </article>
+                <article class="card metric-highlight">
+                    <span>Recommendations</span>
+                    <strong>{{ note_analysis.recommendations|length }}</strong>
+                </article>
+            </div>
+
+            <div class="stack-md">
+                {% if note_analysis.recommendations %}
+                    {% for recommendation in note_analysis.recommendations %}
+                        <article class="card recommendation-card">
+                            <div class="split-row split-top">
+                                <div>
+                                    <h3>{{ recommendation.title }}</h3>
+                                    <p>{{ recommendation.description }}</p>
+                                </div>
+                                <div class="rec-meta">
+                                    <span class="pill priority-{{ recommendation.priority }}">{{ recommendation.priority|upper }}</span>
+                                    <span class="confidence">Confidence {{ '%.2f'|format(recommendation.confidence) }}</span>
+                                </div>
+                            </div>
+                            {% if recommendation.evidence %}
+                                <h4>Evidence from notes</h4>
+                                <ul class="evidence-list">
+                                    {% for item in recommendation.evidence %}
+                                        <li>{{ item }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <article class="card empty-state">
+                        <h3>No recommendations were triggered</h3>
+                        <p>Try uploading richer notes or include more observable support data, fatigue patterns, transitions, or communication details.</p>
+                    </article>
+                {% endif %}
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="tab-panel" data-tab="documents">
+        <div class="card section-intro">
+            <h2>Governance-guided document drafts</h2>
+            <p>Generate reports, reviews, and letters with compliance guidance, participant context, progress-note insights, and an implementation action plan.</p>
+        </div>
+
+        <form action="{{ url_for('generate_document') }}" method="post" enctype="multipart/form-data" class="stack-lg">
+            <div class="grid cols-3">
+                <label class="field">
+                    <span>Document type</span>
+                    <select name="document_type">
+                        {% for document_type in document_types %}
+                            <option value="{{ document_type }}">{{ document_type|title }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Participant</span>
+                    <input type="text" name="document_participant_name" value="Sample Participant" required>
+                </label>
+                <label class="field">
+                    <span>NDIS number</span>
+                    <input type="text" name="document_ndis_number" value="4300 000 000">
+                </label>
+            </div>
+
+            <div class="grid cols-3">
+                <label class="field">
+                    <span>Author</span>
+                    <input type="text" name="author_name" value="Provider Clinician">
+                </label>
+                <label class="field">
+                    <span>Organisation</span>
+                    <input type="text" name="organisation" value="Windgap Support Services">
+                </label>
+                <label class="field">
+                    <span>Purpose</span>
+                    <input type="text" name="purpose" value="Progress and recommendations for plan review">
+                </label>
+            </div>
+
+            <div class="grid cols-2">
+                <label class="field">
+                    <span>Period start</span>
+                    <input type="text" name="period_start" placeholder="01/01/2026">
+                </label>
+                <label class="field">
+                    <span>Period end</span>
+                    <input type="text" name="period_end" placeholder="31/03/2026">
+                </label>
+            </div>
+
+            <label class="field">
+                <span>Key points (one per line)</span>
+                <textarea name="key_points" rows="6">Improved engagement in community activities
+Ongoing need for structured supports</textarea>
+            </label>
+
+            <label class="field">
+                <span>Attach progress notes (optional)</span>
+                <input type="file" name="document_progress_notes" accept=".txt,.md,.csv,.pdf" multiple>
+            </label>
+
+            <div class="actions-row">
+                <button type="submit" class="primary-button">Generate markdown draft</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="tab-panel" data-tab="deployment">
+        <div class="card section-intro">
+            <h2>SharePoint-friendly rollout</h2>
+            <p>Use a hosted deployment for live updates, or provide an offline desktop bundle for staff who need downloadable access.</p>
+        </div>
+
+        <div class="grid cols-2">
+            <article class="card deployment-card">
+                <span class="pill">Recommended</span>
+                <h3>Hosted online workspace</h3>
+                <ul>
+                    <li>Deploy this Flask app to Azure App Service or a container host.</li>
+                    <li>Add the app URL to SharePoint as a site link or embed web part.</li>
+                    <li>Keep pricing, governance documents, and templates centralised.</li>
+                </ul>
+            </article>
+            <article class="card deployment-card">
+                <span class="pill">Offline option</span>
+                <h3>Downloadable desktop package</h3>
+                <ul>
+                    <li>Bundle the app for Windows distribution when offline access is needed.</li>
+                    <li>Store the installer in a SharePoint document library.</li>
+                    <li>Publish release notes so staff know when governance data changes.</li>
+                </ul>
+            </article>
+        </div>
+
+        <article class="card note-card">
+            <h3>Implementation notes</h3>
+            <p>Detailed deployment instructions live in <code>DEPLOY_SHAREPOINT.md</code>. If you later move this into the correct <code>WindgapNDIS</code> repository, this Flask UI is ready to transfer alongside the quote and document engines.</p>
+        </article>
+    </section>
+</section>
+
+<template id="quote-line-template">
+    <tr>
+        <td><input type="text" name="program[]" value="Core Supports"></td>
+        <td><input type="text" name="code[]" list="support-code-options"></td>
+        <td><input type="text" name="name[]"></td>
+        <td><input type="text" name="service_type[]"></td>
+        <td><input type="text" name="category[]" list="claiming-category-options"></td>
+        <td><input type="text" name="ratio[]" value="N/A"></td>
+        <td><input type="number" step="0.00001" min="0" name="qty[]" value="0"></td>
+        <td><input type="number" step="1" min="0" name="days[]" value="1"></td>
+        <td><button type="button" class="ghost-button" data-remove-row aria-label="Remove line">×</button></td>
+    </tr>
+</template>
+{% endblock %}

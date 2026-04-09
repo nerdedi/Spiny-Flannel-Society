@@ -44,6 +44,7 @@ def test_markdown_includes_progress_note_recommendations():
     md = build_document_markdown(request)
     assert "## Progress note analysis" in md
     assert "## Recommended features/adaptations" in md
+    assert "## Implementation action plan (suggested 4-week cycle)" in md
     assert "sensory_modulation_pack" in md
 
 

@@ -1,0 +1,36 @@
+README.md
+requirements.txt
+.env
+app.py
+DEPLOY_SHAREPOINT.md
+Dockerfile
+web_app.py
+ndis_quote_generator.py
+ndis_compliance_guidance.py
+ndis_document_generator.py
+ndis_progress_notes.py
+test_ndis_quote_generator.py
+test_ndis_compliance_guidance.py
+test_ndis_document_generator.py
+test_ndis_progress_notes.py
+test_flask_app.py
+ndis_data/price_guide.sample.json
+ndis_data/claiming_categories.sample.json
+ndis_data/price_guide.2025-26.json
+ndis_data/NDIS Pricing Arrangements and Price Limits 2025-26 PDF.pdf
+ndis_data/OG - Reasonable and necessary supports.pdf
+ndis_data/C2025C00607.pdf
+ndis_data/ndis-practice-standards-and-quality-indicators.pdf
+ndis_data/ndis_price_guide_extract.txt
+ndis_data/ndis_code_line_candidates.txt
+ndis_data/ndis_llnd_mentions.txt
+ndis_data/reasonable_and_necessary_extract.txt
+ndis_data/ndis_act_2013_extract.txt
+ndis_data/practice_standards_extract.txt
+ndis_data/sample_progress_note.txt
+templates/base.html
+templates/index.html
+static/css/app.css
+static/js/app.js
+scripts/build_windows_offline.ps1
+scripts/run_local_windows.bat

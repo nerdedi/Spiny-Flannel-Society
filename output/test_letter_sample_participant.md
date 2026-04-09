@@ -39,6 +39,10 @@
 
 - No adaptation recommendations were triggered from the uploaded notes.
 
+## Implementation action plan (suggested 4-week cycle)
+
+- Action plan pending: upload progress notes or add recommendations manually.
+
 ## Draft body scaffold
 
 ### Purpose of this correspondence

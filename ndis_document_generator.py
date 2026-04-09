@@ -30,6 +30,22 @@ from ndis_progress_notes import analyze_progress_notes
 SUPPORTED_TYPES = {"report", "review", "letter"}
 
 
+def _build_action_plan_rows(recommendations) -> List[str]:
+    """Build concise week-by-week action plan rows from recommendations."""
+    if not recommendations:
+        return []
+
+    rows: List[str] = []
+    for idx, rec in enumerate(recommendations, start=1):
+        week = ((idx - 1) % 4) + 1
+        owner = "Key worker / clinician"
+        metric = "Participant response and goal-aligned progress noted"
+        rows.append(
+            f"| Week {week} | {rec.title} | {owner} | {metric} |"
+        )
+    return rows
+
+
 @dataclass
 class DocumentRequest:
     document_type: str
@@ -166,6 +182,16 @@ def build_document_markdown(request: DocumentRequest, max_snippets_per_source: i
                     lines.append(f"    - {ev}")
     else:
         lines.append("- No adaptation recommendations were triggered from the uploaded notes.")
+    lines.append("")
+
+    lines.append("## Implementation action plan (suggested 4-week cycle)")
+    lines.append("")
+    if note_analysis.recommendations:
+        lines.append("| Timeline | Action | Owner | Review metric |")
+        lines.append("|---|---|---|---|")
+        lines.extend(_build_action_plan_rows(note_analysis.recommendations))
+    else:
+        lines.append("- Action plan pending: upload progress notes or add recommendations manually.")
     lines.append("")
 
     lines.append("## Draft body scaffold")

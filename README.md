@@ -223,6 +223,32 @@ Outputs are written to `output/` as markdown drafts with:
 - participant-specific key points
 - governance references and source snippets
 
+### Professional web app (quotes + notes + docs)
+
+```bash
+python app.py
+```
+
+Features include:
+
+- Flask-based UI with modern tabs, dropdowns, and interactive widgets
+- Windgap-inspired color styling used discreetly across the interface
+- quote builder with regional pricing and HTML download
+- progress note upload and adaptation recommendations
+- governance-guided report/review/letter generation with file download
+- SharePoint deployment guidance for online and downloadable access
+
+Health check endpoint:
+
+```bash
+curl http://127.0.0.1:8000/health
+```
+
+Deployment docs:
+
+- `DEPLOY_SHAREPOINT.md`
+- `Dockerfile`
+
 The generator validates each quote line against:
 
 - known support item codes
